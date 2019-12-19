@@ -12,4 +12,4 @@ $.path.tasks.forEach((taskPath) => {
     require(taskPath)(); // собираем задачи
 });
 
-$.gulp.task('default', $.gulp.parallel('html', 'styles', 'scripts', 'server')); // команда по умолчанию
+$.gulp.task('default', $.gulp.parallel('html', 'styles', 'scripts-main', 'server')); // команда по умолчанию

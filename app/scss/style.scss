@@ -1,0 +1,260 @@
+@import "mixins", "variables", "normalize", "scaffolding";
+
+.menu {
+  display: grid;
+  grid-template-rows: max-content;
+  grid-template-columns: max-content 1fr minmax(max-content, 10rem);
+  gap: 2.5rem;
+  padding: 0.625rem 1.25rem;
+
+  @include for-size(phone) {
+    grid-template-columns: max-content minmax(100px, 1fr) max-content;
+    gap: 1rem;
+  }
+
+  @include for-size(desktop) {
+    grid-template-rows: max-content;
+    grid-template-columns: max-content minmax(max-content, 1fr) minmax(max-content, 20rem);
+    gap: 2.5rem;
+  }
+
+  &__item {
+    height: 100%;
+
+    &:nth-child(1) {
+      flex-grow: 0;
+    }
+
+    &:nth-child(2) {
+      flex-grow: 3;
+    }
+  }
+
+  & p {
+    margin-bottom: 0;
+  }
+}
+
+
+.header {
+  position: sticky;
+  top: 0;
+  background: $color-white;
+
+  &.scroll {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: $font-title;
+  letter-spacing: -0.03em;
+
+  &::before {
+    display: block;
+    width: $brandValue;
+    height: $brandValue;
+    margin-right: 0.625rem;
+    background: $color-regular;
+    border-radius: 50%;
+    content: "";
+
+    @include for-size(phone) {
+      margin-right: 0;
+    }
+  }
+}
+
+.menu__search {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 2.5rem;
+  padding: 0.625rem 0.75rem 0.625rem 2.5rem;
+  color: $bg-dark;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  background: $bg-input;
+  border-radius: 0.313rem;
+  appearance: none;
+
+  @include for-size(phone) {
+    padding: 0.625rem 0.75rem;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px $color-shade-2;
+  }
+}
+
+.counter-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: -1.25rem;
+  padding: 0 1.25rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: -0.03em;
+  border-radius: 2.5rem;
+
+
+  &:hover {
+    background: rgba(148, 148, 148, 0.171);
+  }
+}
+
+// MAIN
+
+.page__title {
+  margin-top: -0.5rem;
+  margin-bottom: 0.938rem;
+  margin-left: -0.187rem;
+  font-weight: 700;
+  font-size: $font-header;
+  letter-spacing: -0.03em;
+
+  @include for-size(phone) {
+    // margin-bottom: 1.75rem;
+    font-size: $font-title;
+  }
+}
+
+.hero__text {
+  @include for-size(phone) {
+    margin-bottom: 1.25rem;
+    font-size: $font-regular;
+    line-height: 1.5;
+  }
+}
+
+.hero {
+  padding: 3.75rem 1.25rem;
+}
+
+.filter {
+  display: flex;
+
+  & :not(:last-child) {
+    margin-right: 0.625rem;
+  }
+}
+
+.filter__button {
+  color: $color-shade;
+  font-weight: 700;
+  font-size: $font-up;
+
+  &.active {
+    color: $color-regular;
+  }
+}
+
+// Challenges
+
+.challenges {
+  margin-bottom: 2.5rem;
+  color: $bg-regular;
+}
+
+.challenges__container {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.25rem;
+}
+
+.challenges__item {
+  height: 100%;
+  min-height: 300px;
+  font-weight: 500;
+  text-shadow: $text-shadow;
+  border-radius: 0.313rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  &:nth-child(odd) {
+    background: linear-gradient(-45deg, #3e9ce8 50%, #42a5f5 50%);
+  }
+
+  &:nth-child(even) {
+    background: linear-gradient(-45deg, #e69d30 50%, #f3a633 50%);
+  }
+
+  &:nth-child(3n+4) {
+    background: linear-gradient(-45deg, #e63067 50%, #f33363 50%);
+  }
+
+  &:nth-child(5n+4) {
+    background: linear-gradient(-45deg, #60b163 50%, #66bb69 50%);
+  }
+}
+
+.challenge__text {
+  font-size: $font-regular;
+  text-shadow: $text-shadow;
+}
+
+.challenge__inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0.625rem;
+  padding: 1.25rem;
+  background: rgba(26, 26, 26, 0);
+
+  .challenges__item:hover &:hover,
+  .challenges__item:focus & {
+    background: rgba(26, 26, 26, 0.15);
+  }
+}
+
+.challenge__title {
+  flex: 1;
+  height: 100%;
+  margin-bottom: 0.625rem;
+  font-weight: 700;
+  text-shadow: $text-shadow;
+}
+
+.challenge__tag-list {
+  margin-bottom: 0.625rem;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+
+  &::before {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-right: 0.625rem;
+    background: $bg-input;
+    border-radius: 50%;
+    content: "";
+  }
+}
+
+.tag__badge {
+  color: $color-accent;
+  font-size: 0.85rem;
+}

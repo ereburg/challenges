@@ -1,0 +1,114 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", sans-serif;
+  transition: all 0.2s ease;
+}
+
+html {
+  font-weight: normal;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+.page {
+  color: $color-regular;
+  font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background: $bg-regular;
+}
+
+p {
+  margin-bottom: 1.25rem;
+  font-size: $font-up;
+}
+
+img {
+  image-rendering: pixelated;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+a,
+button,
+input,
+::placeholder {
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  background: none;
+  border: none;
+  // outline: none;
+  cursor: pointer;
+}
+
+::selection {
+  color: #ffffff;
+  text-shadow: none;
+  background: $color-selection;
+}
+
+picture {
+  display: block;
+}
+
+::placeholder {
+  color: $color-shade;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  visibility: hidden;
+  clip: rect (0 0 0 0);
+}
+
+.container {
+  @include push--auto;
+  max-width: 81.25rem;
+  padding: 0 0.95rem;
+}
+
+.socials__icon {
+  max-width: 29px;
+  max-height: 21px;
+
+  &--vk {
+    width: 25px;
+    height: 19px;
+  }
+
+  &--tw {
+    width: 29px;
+    height: 20px;
+  }
+
+  &--fb {
+    width: 10px;
+    height: 21px;
+  }
+}
+
+
+// Удаляем все анимации и переходы для людей, которые предпочитай их не использовать
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,97 @@
+@mixin flexbox($justify: normal) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: $justify;
+}
+
+@mixin shadow {
+  box-shadow: 0 4px 25px rgba(142, 128, 169, 0.2);
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  position: $pos;
+  display: $display;
+  content: $content;
+}
+
+// выравнивание по центру
+@mixin push--auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+// медиа-выражения
+@mixin for-size($size) {
+  @if $size == phone-small {
+    @media (min-width: 430px) and (max-width: 599px) {
+      @content;
+    }
+  }
+
+  @else if $size == phone {
+    @media (max-width: 599px) {
+      @content;
+    }
+  }
+
+  @else if $size == tablet-portrait {
+    @media (min-width: 600px) {
+      @content;
+    }
+  }
+
+  @else if $size == medium {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+
+  // @else if $size == tablet-landscape {
+  //   @media (min-width: 980px) {
+  //     @content;
+  //   }
+  // }
+
+  @else if $size == desktop {
+    @media (min-width: 980px) {
+      @content;
+    }
+  }
+
+  @else if $size == desktop-big {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+
+  @else if $size == full {
+    @media (min-width: 1600px) {
+      @content;
+    }
+  }
+}
+
+
+@mixin bg-set($url, $url2x: false, $webp1x: false, $webp2x: false) {
+  background-image: url($url);
+
+  @if $webp1x {
+    .webp & {
+      background-image: url($webp1x);
+    }
+  }
+
+  @if $url2x {
+    @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
+      background-image: url($url2x);
+
+      @if $webp2x {
+        .webp & {
+          background-image: url($webp2x);
+        }
+      }
+    }
+  }
+}
