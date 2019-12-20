@@ -1,0 +1,9 @@
+mixin challenge(title)
+  article(class="challenges__item challenge" tabindex="0")
+    div(class="challenge__inner")
+      p(class="challenge__text type") Task
+      h2(class="challenge__title")= title
+      ul(class="challenge__tag-list tag")
+        li(class="tag__item")
+          span(class="tag__badge") #JS
+      p(class="challenge__text author") Ereburg

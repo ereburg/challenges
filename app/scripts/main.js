@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Add scroll class to header
 	const header = document.querySelector('.header');
 
-	window.addEventListener('scroll', function () {
+	window.addEventListener('scroll', () => {
 		let y = window.pageYOffset;
 
 		if (y > 0) {
@@ -22,20 +22,31 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	// nav__brand
-	window.addEventListener('resize', () => {
-		const navBrand = document.querySelector('.nav__brand');
-		let viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-		if (viewportWidth > 599) {
-			// console.log('Wide viewport');
-			totalCounter.textContent = `Challenges total:  ${challenge.length}`;
-			navBrand.textContent = 'Ereburg';
-		} else {
-			// console.log('Small viewport');
-			totalCounter.textContent = `Total:  ${challenge.length}`;
-			navBrand.textContent = '';
-		}
-	});
+	// Responsive nav
+	let viewportWidth;
 
-	
+	// Set/update the viewportWidth value
+	const setViewportWidth = function () {
+		viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+	};
+
+	// Log the viewport width into the console
+	const onWidthChange = function () {
+		if (viewportWidth > 599) {
+			totalCounter.textContent = `Challenges total:  ${challenge.length}`;
+		} else {
+			totalCounter.textContent = `${challenge.length}`;
+		}
+	};
+
+	// Set our initial width and log it
+	setViewportWidth();
+	onWidthChange();
+
+	// On resize events, recalculate and log
+	window.addEventListener('resize', () => {
+		setViewportWidth();
+		onWidthChange();
+	}, false);
+
 });

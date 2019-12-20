@@ -1,0 +1,10 @@
+header(class="header")
+  nav(class="nav")
+    ul(class="nav__list menu")
+      li(class="menu__item"): a(href="index.html" class="menu__brand brand")
+        span(class="brand__icon icon"): svg(class="icon__logo"): use(xlink:href="images/sprite.svg#sp-logo")
+        span(class="brand__name") Ereburg
+      li(class="menu__item"): label(class="menu__label")
+        input(class="menu__search" type="text" name="search" id="search" placeholder="Type to search...")
+        span(class="menu__icon icon" tabindex="0"): svg(class="icon__search"): use(xlink:href="images/sprite.svg#sp-search")
+      li(class="menu__item"): div(class="counter-wrapper"): p(class="menu__text counter"): span(class="counter__total")

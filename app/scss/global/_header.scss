@@ -1,0 +1,165 @@
+.menu {
+  display: grid;
+  grid-template-rows: max-content;
+  grid-template-columns: max-content 1fr minmax(max-content, 10rem);
+  gap: 2.5rem;
+  padding: 0.625rem 1.25rem;
+
+  @include for-size(phone) {
+    grid-template-columns: max-content minmax(100px, 1fr) minmax(max-content, 46px);
+    gap: 1rem;
+  }
+
+  @include for-size(desktop) {
+    grid-template-rows: max-content;
+    grid-template-columns: max-content minmax(max-content, 1fr) minmax(max-content, 12rem);
+    gap: 2.5rem;
+  }
+
+  &__item {
+    height: 100%;
+
+    &:nth-child(1) {
+      flex-grow: 0;
+    }
+
+    &:nth-child(2) {
+      flex-grow: 3;
+    }
+  }
+
+  & p {
+    margin-bottom: 0;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background: $color-white;
+
+  &.scroll {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: $font-title;
+  letter-spacing: -0.03em;
+
+  @include for-size(phone) {
+    margin-right: 0;
+  }
+}
+
+.brand__name {
+  margin-left: 0.675rem;
+
+  @include for-size(phone) {
+    display: none;
+  }
+}
+
+.brand__icon {
+  display: flex;
+}
+
+.icon {
+  width: 100%;
+  min-width: 46px;
+  height: 100%;
+  min-height: 46px;
+}
+
+.icon__logo {
+  width: 100%;
+  max-width: 46px;
+  height: 100%;
+  max-height: 46px;
+}
+
+.menu__search {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 2.5rem;
+  padding: 0.625rem 0.75rem 0.625rem 3rem;
+  color: $bg-dark;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  background: $bg-input;
+  border-radius: 0.313rem;
+  appearance: none;
+
+  @include for-size(phone) {
+    position: absolute;
+    padding: 0.625rem 0.75rem;
+    visibility: hidden;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px $color-shade-2;
+  }
+}
+
+.menu__label {
+  position: relative;
+  display: block;
+  height: 100%;
+
+  @include for-size(phone) {
+    display: flex;
+  }
+}
+
+.menu__icon {
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  display: flex;
+  align-items: center;
+  max-width: 46px;
+  fill: $color-shade;
+
+  @include for-size(phone) {
+    position: relative;
+    justify-content: center;
+    border-radius: 50%;
+  }
+}
+
+.icon__search {
+  max-width: 29px;
+  max-height: 21px;
+}
+
+.counter-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: -0.03em;
+  border-radius: 2.5rem;
+  box-shadow: 0 3px 6px  $bg-input, 0 1px 3px $color-shade;
+
+  @include for-size(phone) {
+    font-size: $font-regular;
+  }
+
+  &:hover {
+    background: rgba(104, 104, 104, 0.13);
+  }
+}

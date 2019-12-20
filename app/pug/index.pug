@@ -1,0 +1,28 @@
+extends layouts/_main
+
+block variables
+    //- put your vars here
+    - var pageTitle= 'Code Challenges'
+
+block content
+    main(class="main")
+         div(class="container")
+            section(class="hero")
+                h1(class="page__title") Code Challenges
+                p(class="hero__text") Explore various front-end coding challenges that were made by me and my coder friends. 
+                p(class="hero__text") The major goal was to create solutions to the most common tasks at JS interviews. And in addition, I decided to share with you some of personal code tasks, gists and snippets for HTML and CSS that I constantly use. Also there are a lot of CSS animations, effects and styling components.
+                p(class="hero__text") Hope you'll enjoy this stuff, lets go!
+                
+                ul(class="hero__list filter")
+                    li(class="filter__item"): button(class="filter__button active") All
+                    li(class="filter__item"): button(class="filter__button") JavaScript                    
+                    li(class="filter__item"): button(class="filter__button") HTML & CSS
+                    
+            section(class="challenges")
+                h2(class="visually-hidden") Challenges List
+                div(class="challenges__container")
+                    +challenge("FizzBuzz")
+                   
+
+block scripts
+    script(src="scripts/scripts.min.js")

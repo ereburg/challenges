@@ -1,0 +1,26 @@
+block globalVars 
+    include ../modules/_variables
+
+block variables
+
+block mixins
+    include ../modules/_mixins
+    
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        meta(name="description" content="Code challenges by Ereburg")
+        meta(name="keywords" content="code challenges")
+        meta(name="author" content="Ereburg")
+        link(rel="stylesheet", href="styles/style.min.css")
+        title= pageTitle
+    body.page
+        include ../modules/_header
+    
+        block content
+
+        include ../modules/_footer
+        block scripts

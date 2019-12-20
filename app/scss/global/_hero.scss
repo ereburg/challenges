@@ -1,0 +1,54 @@
+// MAIN
+
+.page__title {
+  margin-top: -0.5rem;
+  margin-bottom: 0.938rem;
+  margin-left: -0.187rem;
+  font-weight: 700;
+  font-size: $font-header;
+  letter-spacing: -0.03em;
+
+  @include for-size(phone) {
+    font-size: $font-title;
+  }
+}
+
+.hero__text {
+  max-width: 810px;
+  line-height: 1.5;
+
+  @include for-size(phone) {
+    margin-bottom: 1.25rem;
+    font-size: $font-regular;
+  }
+}
+
+.hero {
+  padding: 3.75rem 1.25rem;
+}
+
+.filter {
+  display: flex;
+  margin-top: 3.75rem;
+
+  & :not(:last-child) {
+    margin-right: 0.625rem;
+  }
+}
+
+.filter__item {
+  @include for-size(phone) {
+    flex-grow: 1;
+  }
+}
+
+.filter__button {
+  color: $color-shade;
+  font-weight: 700;
+  font-size: $font-up;
+
+  &.active {
+    color: $color-regular;
+  }
+}
+
