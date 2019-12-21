@@ -1,16 +1,21 @@
 // Challenges
 
 .challenges {
-  margin-bottom: 2.5rem;
-  color: $color-white;
+  padding-bottom: 3.75rem;
+}
+
+.challenges__description {
+  padding: 2.5rem 1.25rem 3.75rem;
 }
 
 .challenges__container {
+  position: relative;
   display: grid;
   grid-auto-flow: dense;
   grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 1.25rem;
+  color: $color-white;
 }
 
 .challenges__item {
@@ -24,7 +29,7 @@
 
   &:hover,
   &:focus {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.5);
   }
 
   &:nth-child(odd) {
@@ -43,6 +48,56 @@
     background: linear-gradient(-45deg, #60b163 50%, #66bb69 50%);
   }
 }
+
+
+.filter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20px, max-content));
+  gap: 1.25rem;
+}
+
+.filter__item {
+  @include for-size(phone) {
+    flex-grow: 1;
+  }
+}
+
+.filter__button {
+  color: $color-shade;
+  font-weight: 700;
+  font-size: $font-up;
+  outline: none;
+
+  &:hover {
+    color: $color-regular;
+  }
+
+  &.active {
+    color: $color-regular;
+  }
+}
+
+.challenge {
+  display: block;
+
+  &--hidden {
+    display: none;
+    // animation: disappear 1s ease alternate forwards;
+  }
+}
+
+// @keyframes disappear {
+//   from {
+//     position: relative;
+//   }
+
+//   to {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     // transform: translate(-25px, -50px);
+//   }
+// }
 
 .challenge__text {
   font-size: $font-regular;

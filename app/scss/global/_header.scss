@@ -1,38 +1,3 @@
-.menu {
-  display: grid;
-  grid-template-rows: max-content;
-  grid-template-columns: max-content 1fr minmax(max-content, 10rem);
-  gap: 2.5rem;
-  padding: 0.625rem 1.25rem;
-
-  @include for-size(phone) {
-    grid-template-columns: max-content minmax(100px, 1fr) minmax(max-content, 46px);
-    gap: 1rem;
-  }
-
-  @include for-size(desktop) {
-    grid-template-rows: max-content;
-    grid-template-columns: max-content minmax(max-content, 1fr) minmax(max-content, 12rem);
-    gap: 2.5rem;
-  }
-
-  &__item {
-    height: 100%;
-
-    &:nth-child(1) {
-      flex-grow: 0;
-    }
-
-    &:nth-child(2) {
-      flex-grow: 3;
-    }
-  }
-
-  & p {
-    margin-bottom: 0;
-  }
-}
-
 .header {
   position: sticky;
   top: 0;
@@ -58,7 +23,7 @@
 .brand__name {
   margin-left: 0.675rem;
 
-  @include for-size(phone) {
+  @include for-size(laptop) {
     display: none;
   }
 }
@@ -67,42 +32,98 @@
   display: flex;
 }
 
-.icon {
-  width: 100%;
-  min-width: 46px;
-  height: 100%;
-  min-height: 46px;
-}
 
-.icon__logo {
-  width: 100%;
-  max-width: 46px;
-  height: 100%;
-  max-height: 46px;
-}
+// Меню
 
-.menu__search {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 2.5rem;
-  padding: 0.625rem 0.75rem 0.625rem 3rem;
-  color: $bg-dark;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  background: $bg-input;
-  border-radius: 0.313rem;
-  appearance: none;
+.menu {
+  display: grid;
+  grid-template-rows: max-content;
+  grid-template-columns: max-content 1fr minmax(max-content, 10rem);
+  gap: 2.5rem;
+  padding: 0.625rem 1.25rem;
 
-  @include for-size(phone) {
-    position: absolute;
-    padding: 0.625rem 0.75rem;
-    visibility: hidden;
+  @include for-size(tablets) {
+    position: relative;
+    grid-template-columns: max-content minmax(100px, 1fr) minmax(max-content, 46px);
+    gap: 2rem;
   }
 
-  &:focus {
+  @include for-size(desktop) {
+    grid-template-rows: max-content;
+    grid-template-columns: max-content minmax(max-content, 1fr) minmax(max-content, 12rem);
+    gap: 2.5rem;
+  }
+
+  &__item {
+    height: 100%;
+
+    &:nth-child(1) {
+      flex-grow: 0;
+    }
+
+    &:nth-child(2) {
+      flex-grow: 3;
+    }
+  }
+
+  & p {
+    margin-bottom: 0;
+  }
+}
+
+.search__mobile {
+  display: none;
+
+  @include for-size(phone) {
+    display: flex;
+    height: 100%;
+  }
+}
+
+.search__button {
+  display: none;
+
+  @include for-size(phone) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    fill: $color-shade;
     outline: none;
-    box-shadow: inset 0 0 0 2px $color-shade-2;
+
+    &:focus {
+      box-shadow: 0 3px 6px  $bg-input, 0 1px 3px $color-shade;
+    }
+
+    &--search {
+    max-width: 46px;
+    width: 100%;
+    }
+
+    &--close:focus {
+      box-shadow: 0 3px 6px  $bg-input, 0 1px 3px $color-shade;
+    }
+  }
+}
+
+.search__wrapper {
+  height: 100%;
+
+  @include for-size(phone) {
+    display: none;
+  }
+
+  &.active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 1fr 46px;
+    gap: 20px;
+    width: 100%;
+    padding: .625rem 1.25rem;
+    background: $color-white;
   }
 }
 
@@ -116,17 +137,28 @@
   }
 }
 
-.menu__icon {
+.icon {
+  width: 100%;
+  height: 100%;
+}
+
+.icon__logo {
+  width: 100%;
+  max-width: 46px;
+  height: 100%;
+  max-height: 46px;
+}
+
+.search__icon {
   position: absolute;
   top: 0;
   left: 0.75rem;
   display: flex;
   align-items: center;
-  max-width: 46px;
+  max-width: 25px;
   fill: $color-shade;
 
   @include for-size(phone) {
-    position: relative;
     justify-content: center;
     border-radius: 50%;
   }
@@ -136,6 +168,31 @@
   max-width: 29px;
   max-height: 21px;
 }
+
+.menu__input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 2.5rem;
+  padding: 0.625rem 0.75rem 0.625rem 3rem;
+  color: $color-regular;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  background: $bg-input;
+  border-radius: 0.313rem;
+
+  @include for-size(phone) {
+    box-shadow: inset 0 0 0 2px $color-shade-2;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px $color-shade-2;
+  }
+}
+
+
+// Счетчик
 
 .counter-wrapper {
   display: flex;
@@ -160,6 +217,6 @@
   }
 
   &:hover {
-    background: rgba(104, 104, 104, 0.13);
+    box-shadow: 0 6px 12px  $bg-input, 0 2px 6px $color-shade;
   }
 }

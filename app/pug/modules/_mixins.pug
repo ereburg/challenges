@@ -1,5 +1,5 @@
-mixin challenge(title)
-  article(class="challenges__item challenge" tabindex="0")
+mixin challenge(title, filterClass)
+  article(class="challenges__item challenge challenge--" + filterClass, tabindex="0")
     div(class="challenge__inner")
       p(class="challenge__text type") Task
       h2(class="challenge__title")= title

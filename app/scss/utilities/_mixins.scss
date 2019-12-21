@@ -42,17 +42,23 @@
     }
   }
 
+  @else if $size == tablets {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+
   @else if $size == medium {
     @media (min-width: 768px) {
       @content;
     }
   }
 
-  // @else if $size == tablet-landscape {
-  //   @media (min-width: 980px) {
-  //     @content;
-  //   }
-  // }
+  @else if $size == laptop {
+    @media (max-width: 980px) {
+      @content;
+    }
+  }
 
   @else if $size == desktop {
     @media (min-width: 980px) {
