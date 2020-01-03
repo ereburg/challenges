@@ -1,9 +1,29 @@
 mixin challenge(title, filterClass)
-  article(class="challenges__item challenge challenge--" + filterClass, tabindex="0")
-    div(class="challenge__inner")
+  article(class="challenges__item challenge challenge--" + filterClass)
+    div(class="challenge__inner" tabindex="0", aria-label=title+" task challenge")
       p(class="challenge__text type") Task
       h2(class="challenge__title")= title
       ul(class="challenge__tag-list tag")
         li(class="tag__item")
           span(class="tag__badge") #JS
       p(class="challenge__text author") Ereburg
+    block challengeCode
+      block
+
+mixin code(title, classname)
+  article(class="challenge__code code " + classname)
+    div(class="container")
+      h3(class="visually-hidden")= title + " hidden text"
+      div(class="code__container")
+        div(class="code__header")
+          h3(class="code__title")= title
+          button(class="close" type="button")
+            span(class="close__item")
+            span(class="close__item")
+        div(class="code__body")
+          block code
+            block
+
+        
+
+

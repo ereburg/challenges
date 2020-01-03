@@ -1,21 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
-	// Плавный скролл
-	window.scrollTo({
-		behavior: "smooth"
-	});
+
+	// Добавляем класс scroll в шапку
+	const header = document.querySelector('.header');
+	// Общее количество challenges в шапке
+	const wrapperChallenges = document.querySelector('.challenges__container');
+	const challenge = document.querySelectorAll('.challenge');
+	const totalCounter = document.querySelector('.counter__total');
+	// Переключение элементов
+	const filterButton = document.querySelectorAll('.filter__button');
+	// Фильтрация по ключевым словам в поиске
+	const input = document.querySelector('#search');
+	// Поиск для мобильных устройств
+	const searchButtonMobile = document.querySelector('.search__button--search');
+	const closeButtonMobile = document.querySelector('.search__button--close');
+	const searchWrapper = document.querySelector('.search__wrapper');
+	const searchInput = document.querySelector('.menu__input');
 
 
 
 	// Общее количество challenges в шапке
-	const challenge = document.querySelectorAll('.challenge');
-	const totalCounter = document.querySelector('.counter__total');
 	totalCounter.textContent = `Challenges total:  ${challenge.length}`;
 
 
 
 	// Добавляем класс scroll в шапку
-	const header = document.querySelector('.header');
-
 	window.addEventListener('scroll', () => {
 		let y = window.pageYOffset;
 
@@ -26,9 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
+	// Плавный скролл
+	window.scrollTo({
+		behavior: "smooth"
+	});
 
 
-	// Меняем содержимое сайда при различных величинах ширины экрана
+	// Меняем содержимое сайта при различных величинах ширины экрана
 	let viewportWidth;
 
 	// Set/update the viewportWidth value
@@ -59,8 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	// Переключение элементов
-	const filterButton = document.querySelectorAll('.filter__button');
-
 	filterButton.forEach(target => {
 		target.addEventListener('click', () => {
 			const ANIMATIONS = target.classList.contains('filter__button--animations');
@@ -71,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const filterChallengeByClass = className => {
 				challenge.forEach(target => {
 					target.classList.add('challenge--hidden');
-		
+
 					if (target.classList.contains(className)) {
 						target.classList.remove('challenge--hidden');
 					}
@@ -112,35 +122,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	// Фильтрация по ключевым словам в поиске
-	const input = document.querySelector('#search');
+	function CheckSearchValidity() {
+		let COUNTER = 0;
+		let P = document.createElement('p');
+		P.classList.add('search__text--invalid');
+		P.textContent = `Hmm, probably you are looking for something that doesn't exist...  But you can ask <a class="search__link--invalid" href="mailto:eugene.kotsarev@gmail.com">@ereburg</a> about your question!`;
+
+		challenge.forEach(e => {
+			if (e.hasAttribute('hidden', '')) {
+				COUNTER++;
+			}
+		});
+
+		let newSearchElement = document.querySelector('.search__text--invalid');
+
+		if (COUNTER < challenge.length && wrapperChallenges.contains(newSearchElement)) {
+			newSearchElement.remove();
+		}
+		else if (COUNTER >= challenge.length && !wrapperChallenges.contains(newSearchElement)) {
+			wrapperChallenges.append(P);
+		}
+	}
 
 	input.addEventListener('keyup', () => {
-		let filter, challengeTitle, badges, isChallengeTitle, isBadge;
-		filter = input.value.toUpperCase();
-		
+		let filter, challengeTitle, badges, isChallengeTitle, isBadge, filterConditionChallenge;
+		filter = input.value.trim().toUpperCase();
+
 		for (let i = 0; i < challenge.length; i++) {
-			challengeTitle = challenge[i].querySelectorAll(".challenge__title")[0];
-			badges = challenge[i].querySelectorAll(".tag__badge")[0]; 
+			challengeTitle = challenge[i].querySelector(".challenge__title");
+			badges = challenge[i].querySelector(".tag__badge");
 			isChallengeTitle = challengeTitle.textContent || challengeTitle.innerText;
 			isBadge = badges.textContent || badges.innerText;
+			filterConditionChallenge = isChallengeTitle.trim().toUpperCase().indexOf(filter) > -1;
+			filterConditionBadge = isBadge.trim().toUpperCase().indexOf(filter) > -1;
 
-			if (isChallengeTitle.toUpperCase().indexOf(filter) > -1) {
-				challenge[i].style.display = "";
-			} else if (isBadge.toUpperCase().indexOf(filter) > -1) {
-				challenge[i].style.display = "";
+			if (filterConditionChallenge || filterConditionBadge) {
+				challenge[i].removeAttribute('hidden', '');
+				CheckSearchValidity();
 			} else {
-				challenge[i].style.display = "none";
+				challenge[i].setAttribute('hidden', '');
+				CheckSearchValidity();
 			}
 		}
 	});
 
 
-	// 
-	const searchButtonMobile = document.querySelector('.search__button--search');
-	const closeButtonMobile = document.querySelector('.search__button--close');
-	const searchWrapper = document.querySelector('.search__wrapper');
-	const searchInput = document.querySelector('.menu__input');
-
+	// Поиск для мобильных устройств
 	const searchWrapperToggler = () => {
 		searchWrapper.classList.toggle('active');
 	};
@@ -165,7 +192,132 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (!its_header && !its_wrapper && !its_buttonSearch && !its_buttonClose && wrapper_is_active) {
 			searchWrapperToggler();
-			
 		}
+	});
+
+
+	// FizzBuzz Challenge
+
+	const buttonClose = document.querySelector('.close');
+	const fizzbuzzChallengeContainer = document.querySelector('.fizzbuzz');
+	const fizzbuzzChallengeBar = document.querySelector('.challenge--fizzbuzz .challenge__inner');
+	const inputFizz = document.querySelector('#inputFizz');
+	const inputBuzz = document.querySelector('#inputBuzz');
+	const buttonFizzBuzz = document.querySelector('.button-fizzbuzz');
+	const resultContainer = document.querySelector('.result__grid');
+
+	const fizzbuzzChallengeContainerToggler = () => {
+		fizzbuzzChallengeContainer.classList.toggle('active');
+	};
+
+	const fizzbuzzChallengeBarToggler = () => {
+		fizzbuzzChallengeBar.classList.toggle('challenge__inner--hidden');
+	};
+
+	buttonClose.addEventListener('click', e => {
+		fizzbuzzChallengeContainerToggler();
+		fizzbuzzChallengeBarToggler();
+	});
+
+	fizzbuzzChallengeBar.addEventListener('click', e => {
+		fizzbuzzChallengeBarToggler();
+		fizzbuzzChallengeContainerToggler();
+	});
+
+	const FizzBuzz = (fizz, buzz) => {
+		fizz = inputFizz.value;
+		buzz = inputBuzz.value;
+
+		if (fizz < 1 || buzz < 1) {
+			return alert('Enter a number between 1 and 100');
+		} else {
+			const AddFizzBuzzHeader = () => {
+				let create = document.createElement('h2');
+				create.classList.add('result__header');
+				create.textContent = `Results for FizzBuzz Challenge`;
+				resultContainer.append(create);
+			};
+
+			AddFizzBuzzHeader();
+
+			const AddFizzBuzzElement = (item) => {
+				let create = document.createElement('p');
+				create.classList.add('result__item');
+				create.textContent = `${item}`;
+				resultContainer.append(create);
+			};
+
+			let a;
+			for (let i = 1; i <= 100; i++) {
+				a = i;
+
+				if ((i % fizz == 0) && (i % buzz == 0)) {
+					a = 'fizzbuzz';
+				} else if (i % fizz == 0) {
+					a = 'fizz';
+				} else if (i % buzz == 0) {
+					a = 'buzz';
+				}
+
+				AddFizzBuzzElement(a);
+			}
+
+			const checkInnerContent = () => {
+				const resultItem = document.querySelectorAll('.result__item');
+				resultItem.forEach(item => {
+					let itemContent = item.textContent.toLowerCase();
+					if (itemContent == ('Fizz').toLowerCase()) {
+						item.classList.add('result__item--fizz');
+					} else if (itemContent == ('Buzz').toLowerCase()) {
+						item.classList.add('result__item--buzz');
+					} else if (itemContent == ('FizzBuzz').toLowerCase()) {
+						item.classList.add('result__item--fizzbuzz');
+					}
+				});
+			};
+			checkInnerContent();
+		}
+	};
+
+	const CleanResultContainer = () => {
+		while (resultContainer.firstChild) {
+			resultContainer.firstChild.remove();
+		}
+	};
+
+	buttonFizzBuzz.addEventListener('click', e => {
+		e.preventDefault();
+		CleanResultContainer();
+		FizzBuzz();
+	}, false);
+
+
+
+
+
+
+
+
+
+
+
+	// Создание анимаций для фильтрации элементов
+	// получаем координаты элемента в контексте документа
+	function getCoords(elem) {
+		let box = elem.getBoundingClientRect();
+
+		return {
+			top: box.top + pageYOffset,
+			left: box.left + pageXOffset
+		};
+	}
+
+	// Текущие координаты элементов
+	filterButton.forEach(item => {
+		getCoords(item);
+	});
+
+	challenge.forEach(item => {
+		getCoords(item);
 	});
 });
