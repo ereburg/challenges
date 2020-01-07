@@ -176,7 +176,7 @@
   min-height: 2.5rem;
   padding: 0.625rem 0.75rem 0.625rem 3rem;
   color: $color-regular;
-  font-size: 0.875rem;
+  font-size: $font-regular;
   line-height: 1.4;
   background: $bg-input;
   border-radius: 0.313rem;
@@ -193,7 +193,6 @@
 
 
 // Счетчик
-
 .counter-wrapper {
   display: flex;
   align-items: center;

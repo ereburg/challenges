@@ -78,60 +78,76 @@
   }
 
 
-  &:nth-child(odd) {
+  li:nth-child(odd) & {
     background: linear-gradient(-45deg, hsl(207, 79%, 58%) 50%, hsl(207, 90%, 61%) 50%);
   }
 
-  &:nth-child(even) {
+  li:nth-child(even) & {
     background: linear-gradient(-45deg, #e69d30 50%, #f3a633 50%);
   }
 
-  &:nth-child(3n+4) {
+  li:nth-child(3n+4) & {
     background: linear-gradient(-45deg, #e63067 50%, #f33363 50%);
   }
 
-  &:nth-child(5n+4) {
+  li:nth-child(5n+4) & {
     background: linear-gradient(-45deg, #60b163 50%, #66bb69 50%);
   }
 }
 
 
 .challenge {
+  // clip-path: circle(75%);
+  // transform: translate(0);
+  // position: static;
   display: block;
+  transition: all 0.6s ease;
+  // animation: appear 0.6s ease alternate forwards;
 
   &--hidden {
     display: none;
-    // animation: disappear 1s ease alternate forwards;
+    // position: relative;
+    transition: all 0.6s ease;
+    // clip-path: circle(0%);
+    // transform: translate(-10%, -40%);
+    // animation: disappear 0.6s ease alternate forwards;
   }
 }
 
 // @keyframes disappear {
-//   from {
-//     position: relative;
-//   }
-
-//   to {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     // transform: translate(-25px, -50px);
-//   }
-// }
-
-// .animation--delete {
-//   animation: challenge-delete 2s ease forwards;
-//   // clip-path: circle(75%);
-//   // transform: scale(0.1);
-// }
-
-// @keyframes challenge-delete {
 //   0% {
-//     clip-path: circle(75%);
+//     clip-path: circle(750%);
+//     transform: translate(0);
+//   }
+
+//   50% {
+//     clip-path: circle(35%);
+//     transform: translate(-10%, -40%);
+//   }
+
+//   90% {
+//     clip-path: circle(0%);
+//     transform: translate(-10%, -40%);
 //   }
 
 //   100% {
-//     transform: scale(0.1);
+//     transform: translate(-10%, -40%);
+//   }
+// }
+
+// @keyframes appear {
+//   0% {
+//     clip-path: circle(5%);
+//     transform: translate(-10%, -40%);
+//   }
+
+//   50% {
 //     clip-path: circle(35%);
+//   }
+
+//   100% {
+//     clip-path: circle(750%);
+//     transform: translate(0);
 //   }
 // }
 
@@ -147,11 +163,8 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  min-height: 290px;
   padding: 1.25rem;
-
-  &--hidden {
-    pointer-events: none;
-  }
 }
 
 .challenge__title {
@@ -189,4 +202,13 @@
 .tag__badge {
   color: $color-accent;
   font-size: 0.85rem;
+}
+
+.result-search__text {
+  grid-column: -1/1;
+  line-height: 1.5;
+}
+
+.result-search__link {
+  color: $color-selection;
 }

@@ -1,19 +1,17 @@
 .code { // общее поведение окна с кодом для всех?
+  --color-main: linear-gradient(-45deg, #c3d1e4 0%, #dde7f3 53.92%, #d4e0ed 100%);
+  --color-cards: linear-gradient(#f1f5f8 0%, #ebf3fa 0.01%, #dde7f3 53.92%, #e5f0f9 100%);
+  --color-title: #31456a;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
+  display: none;
   width: 100%;
   height: 100%;
   overflow-y: scroll;
-  color: $color-regular;
-  background: $color-white;
+  color: var(--color-title);
   cursor: auto;
-
-  @include for-size(desktop-big) {
-    @include flexbox(center);
-    display: none;
-  }
 
   &::after {
     position: fixed;
@@ -25,13 +23,24 @@
     background-color: rgba(0, 0, 0, 0.3);
     content: "";
   }
+
+  &.active {
+    display: block;
+
+    @include for-size(desktop-big) {
+      @include flexbox(center);
+    }
+  }
 }
 
 .code-container--content {
   position: relative;
   z-index: 100;
+  min-height: 100vh;
   margin: auto;
   background: $bg-regular;
+  background: var(--color-cards);
+
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0), 2px 8px 20px rgba(0, 0, 0, 0.15);
 
   @include for-size(desktop-big) {
@@ -53,7 +62,6 @@
 }
 
 .code__header {
-  @include flexbox(space-between);
   margin-top: -0.5rem;
   margin-bottom: 1.5rem;
   margin-left: -0.187rem;
@@ -61,6 +69,8 @@
   font-size: $font-header;
   line-height: 1;
   letter-spacing: -0.03em;
+
+  @include flexbox(space-between);
 
   @include for-size(phone) {
     font-size: $font-title;
@@ -83,13 +93,13 @@
   font-weight: normal;
   line-height: 1.5;
 
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
   @include for-size(phone) {
     margin-bottom: 1.25rem;
     font-size: $font-regular;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 1rem;
   }
 }
 
@@ -98,25 +108,31 @@
   padding: 1.5rem 2rem;
   font-weight: 300;
   line-height: 1.4;
-  background: #f0f0f0;
+  background: #e3edf7;
   border-radius: 1rem;
+  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
+
+  &--center {
+    align-self: center;
+  }
 
   @include for-size(phone) {
     margin: 1rem 0 2rem;
     padding: 1.5rem;
   }
 
-  &--center {
-    align-self: center;
+  & footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
   }
 }
 
-
 .code__footer {
-  --close-value: 2rem;
   position: absolute;
   top: var(--close-value);
   right: var(--close-value);
+  --close-value: 2rem;
 
   @include for-size(phone) {
     --close-value: 1.5rem;
@@ -127,11 +143,12 @@
   }
 }
 
-.close { // кнопка закрыть
-  @include flexbox(center);
+.close {
   position: relative;
   width: var(--close-value);
-  height: var(--close-value);
+  height: var(--close-value); // кнопка закрыть
+
+  @include flexbox(center);
 }
 
 .close__item {

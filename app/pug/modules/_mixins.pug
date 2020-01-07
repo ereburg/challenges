@@ -8,7 +8,7 @@ mixin challenge(title, filterClass, challengeClass)
           li(class="tag__item")
             span(class="tag__badge") #JS
         p(class="challenge__text author") Ereburg
-    block challengeCode
+    block block
       block
 
 mixin code(title, classname)
@@ -20,7 +20,7 @@ mixin code(title, classname)
           h3(class="code__title")= title
         section(class="code__body")
           h3(class="visually-hidden")= title + " challenge body"
-          block code
+          block block
             block
         footer(class="code__footer")
           button(class="button--code button--close close" type="button")

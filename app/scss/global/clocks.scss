@@ -1,0 +1,14 @@
+#clock {
+  --clock-value: 400px;
+  display: block;
+  width: var(--clock-value);
+  height: var(--clock-value);
+  margin: 3rem auto;
+  border: 5px solid #f1f5f8;
+  border-radius: 50%;
+  box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 7px rgba(136, 165, 191, 0.58), -16px -2px 56px #ffffff, 16px 10px 48px rgba(136, 165, 191, 0.58);
+
+  @include for-size(phone) {
+    --clock-value: 290px;
+  }
+}

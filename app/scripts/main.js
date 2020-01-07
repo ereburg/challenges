@@ -22,13 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Общее количество challenges в шапке
 	totalCounter.textContent = `Challenges total:  ${challenge.length}`;
 
-	challengesLink.forEach(item => {
-		item.addEventListener('click', e => {
-			e.preventDefault();
-			e.stopPropagation();
-		});
-	});
-
 
 	// Добавляем класс scroll в шапку
 	window.addEventListener('scroll', () => {
@@ -131,17 +124,18 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Фильтрация по ключевым словам в поиске
 	function CheckSearchValidity() {
 		let COUNTER = 0;
+		
 		let P = document.createElement('p');
-		P.classList.add('search__text--invalid');
-		P.textContent = `Hmm, probably you are looking for something that doesn't exist...  But you can ask <a class="search__link--invalid" href="mailto:eugene.kotsarev@gmail.com">@ereburg</a> about your question!`;
+		P.classList.add('result-search__text');
+		P.insertAdjacentHTML('beforeend', `Hmm, probably you are looking for something special, but it doesn't exists yet... Well, you can ask me <a class="result-search__link" href="mailto:eugene.kotsarev@gmail.com">(@ereburg)</a> about your question!`);
 
 		challenge.forEach(e => {
-			if (e.hasAttribute('hidden', '')) {
+			if (e.classList.contains('challenge--hidden')) {
 				COUNTER++;
 			}
 		});
 
-		let newSearchElement = document.querySelector('.search__text--invalid');
+		let newSearchElement = document.querySelector('.result-search__text');
 
 		if (COUNTER < challenge.length && wrapperChallenges.contains(newSearchElement)) {
 			newSearchElement.remove();
@@ -163,12 +157,23 @@ document.addEventListener("DOMContentLoaded", () => {
 			filterConditionChallenge = isChallengeTitle.trim().toUpperCase().indexOf(filter) > -1;
 			filterConditionBadge = isBadge.trim().toUpperCase().indexOf(filter) > -1;
 
+			// let disappear = () => {
+			// 	challenge[i].style.display = "none";
+			// };
+
+			// let appear = () => {
+			// 	challenge[i].style.display = "block";
+			// };
+
 			if (filterConditionChallenge || filterConditionBadge) {
-				challenge[i].removeAttribute('hidden', '');
+				challenge[i].classList.remove('challenge--hidden');
 				CheckSearchValidity();
+				// setTimeout(() => appear(), 0);
 			} else {
-				challenge[i].setAttribute('hidden', '');
+				challenge[i].classList.add('challenge--hidden');
 				CheckSearchValidity();
+				// setTimeout(() => disappear(), 0);
+
 			}
 		}
 	});
@@ -205,37 +210,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// FizzBuzz Challenge
 
-	const buttonClose = document.querySelector('.close');
-	const fizzbuzzChallengeContainer = document.querySelector('.fizzbuzz');
-	const fizzbuzzChallengeBar = document.querySelector('.challenge--fizzbuzz .challenge__inner');
+	const challengesList = document.querySelector('.challenges__container');
+
+	challengesList.addEventListener('click', e => {
+		let target = e.target, LINK, MODAL, CLOSE, MODAL_CONTAINER;
+
+		const pageToggler = () => {
+			page.classList.toggle('scroll');
+		};
+
+		for (let i = 0; i < challenge.length; i++) {
+			LINK = challenge[i].querySelector(".challenges__link");
+			MODAL = challenge[i].querySelector(".challenge__code");
+			MODAL_CONTAINER = challenge[i].querySelector('.code-container--content');
+			CLOSE = MODAL.querySelector('.close');
+
+			let its_link = target == LINK || LINK.contains(target),
+				its_modal = target == MODAL.classList.contains('active') || MODAL.contains(target),
+				its_modal_container= target == MODAL_CONTAINER || MODAL_CONTAINER.contains(target),
+				its_close = target == CLOSE || CLOSE.contains(target);
+
+
+			if (its_link) {
+				MODAL.classList.add('active');
+				pageToggler();
+			}
+
+			if (its_close) {
+				MODAL.classList.remove('active');
+				pageToggler();
+			}
+
+			if (its_modal && !its_modal_container) {
+				MODAL.classList.remove('active');
+				pageToggler();
+			}
+		}
+	});
+
+	challengesLink.forEach(item => {
+		item.addEventListener('click', e => {
+			e.preventDefault();
+		});
+	});
+
+
+	// FizzBuzz challenge code
 	const inputFizz = document.querySelector('#inputFizz');
 	const inputBuzz = document.querySelector('#inputBuzz');
 	const buttonFizzBuzz = document.querySelector('.button-fizzbuzz');
 	const resultContainer = document.querySelector('.result__grid');
 
-	const fizzbuzzChallengeContainerToggler = () => {
-		fizzbuzzChallengeContainer.classList.toggle('active');
-	};
-
-	const fizzbuzzChallengeBarToggler = () => {
-		fizzbuzzChallengeBar.classList.toggle('challenge__inner--hidden');
-	};
-
-	const pageToggler = () => {
-		page.classList.toggle('scroll');
-	};
-
-	buttonClose.addEventListener('click', e => {
-		fizzbuzzChallengeContainerToggler();
-		fizzbuzzChallengeBarToggler();
-		pageToggler();
-	});
-
-	fizzbuzzChallengeBar.addEventListener('click', e => {
-		fizzbuzzChallengeBarToggler();
-		fizzbuzzChallengeContainerToggler();
-		pageToggler();
-	});
 
 	const FizzBuzz = (fizz, buzz) => {
 		fizz = inputFizz.value;
@@ -307,6 +332,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+	// Canvas Clocks
+
+	function setTime() {
+
+		var canvas = document.getElementById("clock");
+		var context = canvas.getContext("2d");
+		var clockRadius = canvas.width / 2;
+
+		context.beginPath();
+
+		context.fillStyle = "#E3EDF7";
+		context.arc(clockRadius, clockRadius, clockRadius, 0, 2 * Math.PI);
+		context.fill();
+
+		context.fillStyle = "#383F46";
+
+		context.beginPath();
+		context.arc(clockRadius, clockRadius, 5, 0, 2 * Math.PI);
+		context.fill();
+
+		context.font = clockRadius / 10 + "px ubuntu";
+		context.textAlign = "center";
+		context.textBaseline = "middle";
+
+		for (var i = 1; i <= 12; i++) {
+
+			context.fillText(i, clockRadius + clockRadius * 0.875 * Math.sin(i * 2 * Math.PI / 12), clockRadius - (clockRadius * 0.875 * Math.cos(i * 2 * Math.PI / 12)));
+
+		}
+
+
+		var hours = new Date().getHours();
+		var minutes = new Date().getMinutes();
+		var seconds = new Date().getSeconds();
+
+		var fullHours = hours % 12 + minutes / 60 + seconds / 3600;
+
+		var hoursAngle = fullHours * 2 * Math.PI / 12;
+		var minutesAngle = minutes * 2 * Math.PI / 60;
+		var secondsAngle = seconds * 2 * Math.PI / 60;
+
+		context.strokeStyle = "#383F46";
+		context.moveTo(clockRadius, clockRadius);
+		context.lineTo(clockRadius + clockRadius * 0.6 * Math.sin(hoursAngle), clockRadius - (clockRadius * 0.6 * Math.cos(hoursAngle)));
+		context.lineWidth = 5;
+		context.stroke();
+
+		context.moveTo(clockRadius, clockRadius);
+		context.lineTo(clockRadius + clockRadius * 0.8 * Math.sin(minutesAngle), clockRadius - (clockRadius * 0.8 * Math.cos(minutesAngle)));
+		context.lineWidth = 3;
+		context.stroke();
+
+		context.moveTo(clockRadius, clockRadius);
+		context.lineTo(clockRadius + clockRadius * 0.9 * Math.sin(secondsAngle), clockRadius - (clockRadius * 0.9 * Math.cos(secondsAngle)));
+		context.lineWidth = 2;
+		context.stroke();
+
+	}
+
+	setInterval(setTime, 1000);
 
 
 
