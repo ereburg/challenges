@@ -24,7 +24,13 @@
 
 // медиа-выражения
 @mixin for-size($size) {
-  @if $size == phone-small {
+  @if $size == phone-mini {
+    @media (max-width: 429px) {
+      @content;
+    }
+  }
+
+  @else if $size == phone-small {
     @media (min-width: 430px) and (max-width: 599px) {
       @content;
     }
@@ -67,7 +73,7 @@
   }
 
   @else if $size == desktop-big {
-    @media (min-width: 1200px) {
+    @media (min-width: 1300px) {
       @content;
     }
   }

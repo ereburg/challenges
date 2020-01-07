@@ -1,11 +1,11 @@
 {
-  "name": "html5-template",
-  "version": "1.1.0",
-  "description": "HTML5 Template - starter template for HTML5 development. Made by Ereburg",
+  "name": "challenges",
+  "version": "1.0.2",
+  "description": "Challenges - a repository for various code challenges that I've done before at interviews or on courses. Made by Ereburg",
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
-    "url": "https//github.com/Ereburg/templateHTML5"
+    "url": "https//github.com/Ereburg/challenges"
   },
   "scripts": {
     "style:lint": "stylelint 'app/scss/**/*.scss' --syntax scss",

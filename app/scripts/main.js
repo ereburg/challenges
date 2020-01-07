@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 	// Добавляем класс scroll в шапку
+	const page = document.querySelector('.page');
 	const header = document.querySelector('.header');
 	// Общее количество challenges в шапке
 	const wrapperChallenges = document.querySelector('.challenges__container');
 	const challenge = document.querySelectorAll('.challenge');
+	const challengesLink = document.querySelectorAll('.challenges__link');
 	const totalCounter = document.querySelector('.counter__total');
 	// Переключение элементов
 	const filterButton = document.querySelectorAll('.filter__button');
@@ -17,10 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	const searchInput = document.querySelector('.menu__input');
 
 
-
 	// Общее количество challenges в шапке
 	totalCounter.textContent = `Challenges total:  ${challenge.length}`;
 
+	challengesLink.forEach(item => {
+		item.addEventListener('click', e => {
+			e.preventDefault();
+			e.stopPropagation();
+		});
+	});
 
 
 	// Добавляем класс scroll в шапку
@@ -214,14 +221,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		fizzbuzzChallengeBar.classList.toggle('challenge__inner--hidden');
 	};
 
+	const pageToggler = () => {
+		page.classList.toggle('scroll');
+	};
+
 	buttonClose.addEventListener('click', e => {
 		fizzbuzzChallengeContainerToggler();
 		fizzbuzzChallengeBarToggler();
+		pageToggler();
 	});
 
 	fizzbuzzChallengeBar.addEventListener('click', e => {
 		fizzbuzzChallengeBarToggler();
 		fizzbuzzChallengeContainerToggler();
+		pageToggler();
 	});
 
 	const FizzBuzz = (fizz, buzz) => {

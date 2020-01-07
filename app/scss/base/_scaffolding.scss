@@ -6,7 +6,7 @@
   padding: 0;
   color: inherit;
   font-family: "Ubuntu", sans-serif;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 html {
@@ -21,6 +21,10 @@ html {
   font-size: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   background: $bg-regular;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 p {
@@ -63,6 +67,10 @@ picture {
 
 ul {
   list-style-type: none;
+}
+
+abbr[title] {
+  text-decoration: none;
 }
 
 .visually-hidden {

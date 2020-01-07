@@ -1,2 +1,6 @@
 # Challenges
-This is a store of personal code challenges that I've already done.
+This test Project - a repository for various code challenges that I've done before at interviews or on courses. (
+Stack: Pug, SCSS, JS.
+
+## Links
+- [Link to GitHub Pages.](https://ereburg.github.io/challenges/build)

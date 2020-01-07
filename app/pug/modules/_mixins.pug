@@ -1,28 +1,32 @@
-mixin challenge(title, filterClass)
-  article(class="challenges__item challenge challenge--" + filterClass)
-    div(class="challenge__inner" tabindex="0", aria-label=title+" task challenge")
-      p(class="challenge__text type") Task
-      h2(class="challenge__title")= title
-      ul(class="challenge__tag-list tag")
-        li(class="tag__item")
-          span(class="tag__badge") #JS
-      p(class="challenge__text author") Ereburg
+mixin challenge(title, filterClass, challengeClass)
+  li(class=`challenges__item challenge challenge--${filterClass} challenge--${challengeClass}`)
+    a(class="challenges__link" href=`${challengeClass}.html` aria-label=title+" task challenge")
+      section(class="challenge__inner")
+        p(class="challenge__text type") Task
+        h2(class="challenge__title")= title
+        ul(class="challenge__tag-list tag")
+          li(class="tag__item")
+            span(class="tag__badge") #JS
+        p(class="challenge__text author") Ereburg
     block challengeCode
       block
 
 mixin code(title, classname)
-  article(class="challenge__code code " + classname)
-    div(class="container")
-      h3(class="visually-hidden")= title + " hidden text"
-      div(class="code__container")
-        div(class="code__header")
+  div(class="challenge__code code " + classname)
+    div(class="container code-container--content")
+      article(class="code__content")
+        h3(class="visually-hidden")= title + " challenge"
+        header(class="code__header")
           h3(class="code__title")= title
-          button(class="close" type="button")
-            span(class="close__item")
-            span(class="close__item")
-        div(class="code__body")
+        section(class="code__body")
+          h3(class="visually-hidden")= title + " challenge body"
           block code
             block
+        footer(class="code__footer")
+          button(class="button--code button--close close" type="button")
+            span(class="close__item")
+            span(class="close__item")
+
 
         
 

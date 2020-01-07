@@ -11,19 +11,18 @@ block content
                 div(class="hero__description")
                     h1(class="page__title") Code Challenges
                     p(class="hero__text") Explore various front-end coding challenges that were made by me and my coder friends. 
-                    p(class="hero__text") The major goal was to create solutions to the most common tasks at JS interviews. And in addition, I decided to share with you some of personal code tasks, gists and snippets for HTML and CSS that I constantly use. Also there are a lot of CSS animations, effects and styling components.
+                    p(class="hero__text") The major goal was to create solutions to the most common tasks at <abbr title="JavaScript">JS</abbr> interviews. And in addition, I decided to share with you some of personal code tasks, gists and snippets for <abbr title="HyperText Markup Language">HTML</abbr> and <abbr title="Cascading Style Sheets">CSS</abbr> that I constantly use. Also there are a lot of <abbr title="Cascading Style Sheets">CSS</abbr> animations, effects and styling components.
                     p(class="hero__text") Hope you'll enjoy this stuff, lets go!
-                
-                    
+
             section(class="challenges")
                 h2(class="visually-hidden") Challenges List
-                div(class="challenges__description")
+                header(class="challenges__description")
                     ul(class="hero__list filter")
-                        li(class="filter__item"): button(class="filter__button filter__button--all active") All
-                        li(class="filter__item"): button(class="filter__button filter__button--javascript") JavaScript                    
-                        li(class="filter__item"): button(class="filter__button filter__button--animations") HTML & CSS
-                div(class="challenges__container")
-                    +challenge("FizzBuzz", "javascript challenge--fizzbuzz")
+                        li(class="filter__item"): button(class="filter__button filter__button--all active" type="button") All
+                        li(class="filter__item"): button(class="filter__button filter__button--javascript" type="button") JavaScript                    
+                        li(class="filter__item"): button(class="filter__button filter__button--animations" type="button") <abbr title="HyperText Markup Language">HTML</abbr> & <abbr title="Cascading Style Sheets">CSS</abbr>
+                ul(class="challenges__container")
+                    +challenge("FizzBuzz", "javascript", "fizzbuzz")
                         block challengeCode
                             +code("FizzBuzz", "fizzbuzz")
                                 block code
@@ -43,11 +42,11 @@ block content
                                     div(class="code__form")
                                         p(class="code__row code__row--grid")
                                             label(class="code__label" for="inputFizz") Enter «Fizz» number:
-                                            input(class="code__input code__input--fizz" id="inputFizz" type="number" name="fizz" value="3" autocomplete="off")
+                                            input(class="code__input code__input--fizz" id="inputFizz" type="number" name="fizz" value="3" min="1" max="100" autocomplete="off")
                                             
                                         p(class="code__row code__row--grid")
                                             label(class="code__label" for="inputBuzz") Enter «Buzz» number:
-                                            input(class="code__input code__input--buzz" id="inputBuzz" type="number" name="buzz" value="5" autocomplete="off")
+                                            input(class="code__input code__input--buzz" id="inputBuzz" type="number" name="buzz" value="5" min="1" max="100" autocomplete="off")
                                         p(class="code__row")
                                             button(class="button-fizzbuzz" type="button" aria-label="Click me if you are ready to start the code") FizzBuzz it!
 
