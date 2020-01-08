@@ -39,6 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
 		behavior: "smooth"
 	});
 
+	// Остановить скролл при открытии модального окна
+	function disableScrolling() {
+		var x = window.scrollX;
+		var y = window.scrollY;
+		window.onscroll = function () { window.scrollTo(x, y); };
+	}
+
+	function enableScrolling() {
+		window.onscroll = function () { };
+	}
+
+
 
 	// Меняем содержимое сайта при различных величинах ширины экрана
 	let viewportWidth;
@@ -70,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-	// Переключение элементов
+	// Переключение элементов, табы (вкладки)
 	filterButton.forEach(target => {
 		target.addEventListener('click', () => {
 			const ANIMATIONS = target.classList.contains('filter__button--animations');
@@ -124,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Фильтрация по ключевым словам в поиске
 	function CheckSearchValidity() {
 		let COUNTER = 0;
-		
+
 		let P = document.createElement('p');
 		P.classList.add('result-search__text');
 		P.insertAdjacentHTML('beforeend', `Hmm, probably you are looking for something special, but it doesn't exists yet... Well, you can ask me <a class="result-search__link" href="mailto:eugene.kotsarev@gmail.com">(@ereburg)</a> about your question!`);
@@ -208,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 
-	// FizzBuzz Challenge
+	// Event Challenge
 
 	const challengesList = document.querySelector('.challenges__container');
 
@@ -227,23 +239,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			let its_link = target == LINK || LINK.contains(target),
 				its_modal = target == MODAL.classList.contains('active') || MODAL.contains(target),
-				its_modal_container= target == MODAL_CONTAINER || MODAL_CONTAINER.contains(target),
+				its_modal_container = target == MODAL_CONTAINER || MODAL_CONTAINER.contains(target),
 				its_close = target == CLOSE || CLOSE.contains(target);
 
 
 			if (its_link) {
 				MODAL.classList.add('active');
 				pageToggler();
+				disableScrolling();
 			}
 
 			if (its_close) {
 				MODAL.classList.remove('active');
 				pageToggler();
+				enableScrolling();
 			}
 
 			if (its_modal && !its_modal_container) {
 				MODAL.classList.remove('active');
 				pageToggler();
+				enableScrolling();
 			}
 		}
 	});
@@ -336,54 +351,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function setTime() {
 
-		var canvas = document.getElementById("clock");
-		var context = canvas.getContext("2d");
-		var clockRadius = canvas.width / 2;
+		let canvas = document.getElementById("clock");
+		let context = canvas.getContext("2d");
+		let clockRadius = canvas.width / 2;
 
 		context.beginPath();
 
-		context.fillStyle = "#E3EDF7";
+		context.fillStyle = "#E3EDF7"; // * фоновый цвет
 		context.arc(clockRadius, clockRadius, clockRadius, 0, 2 * Math.PI);
 		context.fill();
 
-		context.fillStyle = "#383F46";
+		context.fillStyle = "#31456a"; // * цвет текста
 
 		context.beginPath();
-		context.arc(clockRadius, clockRadius, 5, 0, 2 * Math.PI);
+		context.arc(clockRadius, clockRadius, 5, 0, 2 * Math.PI); // * размер текста
 		context.fill();
 
 		context.font = clockRadius / 10 + "px ubuntu";
 		context.textAlign = "center";
 		context.textBaseline = "middle";
 
-		for (var i = 1; i <= 12; i++) {
+		for (let i = 1; i <= 12; i++) {
 
 			context.fillText(i, clockRadius + clockRadius * 0.875 * Math.sin(i * 2 * Math.PI / 12), clockRadius - (clockRadius * 0.875 * Math.cos(i * 2 * Math.PI / 12)));
 
 		}
 
 
-		var hours = new Date().getHours();
-		var minutes = new Date().getMinutes();
-		var seconds = new Date().getSeconds();
+		let hours = new Date().getHours();
+		let minutes = new Date().getMinutes();
+		let seconds = new Date().getSeconds();
 
-		var fullHours = hours % 12 + minutes / 60 + seconds / 3600;
+		let fullHours = hours % 12 + minutes / 60 + seconds / 3600;
 
-		var hoursAngle = fullHours * 2 * Math.PI / 12;
-		var minutesAngle = minutes * 2 * Math.PI / 60;
-		var secondsAngle = seconds * 2 * Math.PI / 60;
+		let hoursAngle = fullHours * 2 * Math.PI / 12;
+		let minutesAngle = minutes * 2 * Math.PI / 60;
+		let secondsAngle = seconds * 2 * Math.PI / 60;
 
-		context.strokeStyle = "#383F46";
+		context.strokeStyle = "#31456a"; // * цвет стрелок
+		// * Часовая стрелка
 		context.moveTo(clockRadius, clockRadius);
 		context.lineTo(clockRadius + clockRadius * 0.6 * Math.sin(hoursAngle), clockRadius - (clockRadius * 0.6 * Math.cos(hoursAngle)));
 		context.lineWidth = 5;
 		context.stroke();
 
+		// * Минутная стрелка
 		context.moveTo(clockRadius, clockRadius);
 		context.lineTo(clockRadius + clockRadius * 0.8 * Math.sin(minutesAngle), clockRadius - (clockRadius * 0.8 * Math.cos(minutesAngle)));
 		context.lineWidth = 3;
 		context.stroke();
 
+		// * Секундная стрелка
 		context.moveTo(clockRadius, clockRadius);
 		context.lineTo(clockRadius + clockRadius * 0.9 * Math.sin(secondsAngle), clockRadius - (clockRadius * 0.9 * Math.cos(secondsAngle)));
 		context.lineWidth = 2;
@@ -392,8 +410,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	setInterval(setTime, 1000);
-
-
 
 
 

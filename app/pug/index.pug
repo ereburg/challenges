@@ -27,9 +27,9 @@ block content
                             +code("FizzBuzz", "fizzbuzz")
                                 block codeFizzBuzz
                                     div(class="code__info") 
-                                        p(class="code__text") The "FizzBuzz test" is an interview question designed to help filter out the 99.5% of programming job candidates who can't seem to program their way out of a wet paper bag. The text of the programming assignment is as follows:
-                                        blockquote(class="blockquote") "Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”." <footer><cite>&copy; Some tech specialist at interview</cite></footer>
-                                        p(class="code__text") I think FizzBuzz is "hard" for some programmers because (#1) it doesn't fit into any of the patterns that were given to them in school assignments, and (#2) it isn't possible to directly and simply represent the necessary tests, without duplication, in just about any commonly-used modern programming language.
+                                        p(class="code__text") The «FizzBuzz test» is an interview question designed to help filter out the 99.5% of programming job candidates who can't seem to program their way out of a wet paper bag. The text of the programming assignment is as follows:
+                                        blockquote(class="blockquote") "Write a program that prints the numbers from 1 to 100. But for multiples of three print «Fizz» instead of the number and for the multiples of five print «Buzz». For numbers which are multiples of both three and five print «FizzBuzz»." <footer><cite>&copy; Some tech specialist at interview</cite></footer>
+                                        p(class="code__text") I think FizzBuzz is «hard» for some programmers because (#1) it doesn't fit into any of the patterns that were given to them in school assignments, and (#2) it isn't possible to directly and simply represent the necessary tests, without duplication, in just about any commonly-used modern programming language.
                                         p(class="code__text") On #1, that it doesn't match the patterns they memorized from lectures and class assignments: I think this makes it a good discriminator, because employer wishes to hire candidates who can think for themselves -- not those who are limited to copying solutions from others.
                                         p(class="code__text") On #2, that it's hard to directly code it: FizzBuzz does not fall into the common pattern of
                                         p(class="blockquote blockquote--center")
@@ -37,7 +37,7 @@ block content
                                                 <br> else if 2 then B
                                                 <br> else if 3 then C
                                                 <br> else/otherwise D
-                                        p(class="code__text") Maybe there's no simple and satisfying solution to the code structuring issue, but let me introduce my own solution in JavaScript. You can choose "Fizz" and "Buzz" numbers manualy.
+                                        p(class="code__text") Maybe there's no simple and satisfying solution to the code structuring issue, but let me introduce my own solution in JavaScript. You can choose «Fizz» and «Buzz» numbers manualy.
 
                                     div(class="code__form")
                                         p(class="code__row code__row--grid")
@@ -53,11 +53,14 @@ block content
                                     div(class="code__result result")
                                         div(class="result__grid")
 
-                    +challenge("Canvas Clocks", "javascript", "clocks")
+                    +challenge("Canvas Clock", "javascript", "clocks")
                         block challengeClocks
-                            +code("Clocks", "clocks")
+                            +code("Canvas Clock", "clocks")
                                 block codeClocks
-                                    canvas(id="clock" width="300px" height="300px") Please upgrade your browser. 
+                                    div(class="code__info") 
+                                        p(class="code__text") The «Canvas Clock» is an course project designed to help students to gain expierence with canvas API. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. This can, for instance, be used to draw graphs, combine photos, or create different animations. The «clock» below on this page shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
+                                    div(class="code__container") 
+                                        canvas(id="clock" width="300px" height="300px" aria-label="Clock built with canvas JS.") Please upgrade your browser. 
       
                    
 
