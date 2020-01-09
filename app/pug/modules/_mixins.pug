@@ -27,7 +27,8 @@ mixin code(title, classname)
             span(class="close__item")
             span(class="close__item")
 
-
+mixin socialButton(className, path)
+  li(class="social-button__list-item"): a(class=`social-button__link social-button__link--${className}` aria-label=`${className} social media button` href="" tabindex="0"): svg(class="icon icon--social-button"): use(xlink:href=`images/sprite.svg#sp-${path}`)
         
 
 

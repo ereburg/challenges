@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const searchWrapper = document.querySelector('.search__wrapper');
 	const searchInput = document.querySelector('.menu__input');
 
-
 	// Общее количество challenges в шапке
 	totalCounter.textContent = `Challenges total:  ${challenge.length}`;
 
@@ -63,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Log the viewport width into the console
 	const onWidthChange = function () {
 		if (viewportWidth > 768) {
-			totalCounter.textContent = `Challenges total:  ${challenge.length}`;
+			totalCounter.textContent = `Challenges total:  ${challenge.length} units`;
 		} else {
 			totalCounter.textContent = `${challenge.length}`;
 		}
@@ -410,6 +409,17 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	setInterval(setTime, 1000);
+
+
+
+
+	// Social Buttons Challenge
+	const sbList = document.querySelector('.social-buttons__list');
+	const sbListCloned = sbList.cloneNode(true);
+	sbListCloned.classList.add('neumorph');
+	const sbContent = document.querySelector('.social-buttons .code__content');
+	sbContent.appendChild(sbListCloned);
+	console.log(sbListCloned);
 
 
 

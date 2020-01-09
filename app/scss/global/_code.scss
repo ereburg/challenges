@@ -42,6 +42,7 @@
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0), 2px 8px 20px rgba(0, 0, 0, 0.15);
 
   @include for-size(desktop-big) {
+    min-height: unset;
     margin: 3.25rem auto;
     border-radius: 2rem;
   }
