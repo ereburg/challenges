@@ -420,18 +420,60 @@ document.addEventListener("DOMContentLoaded", () => {
 	sbListCloned.setAttribute('data-text', 'Neumorphism design');
 	const sbContent = document.querySelector('.social-buttons .code__body .code__content');
 	sbContent.append(sbListCloned);
-	console.log(sbListCloned);
-	console.log(sbList);
 
 
 
 
 	// Canvas Ball Animation
-	const canvasBall = document.querySelector('.challenge--canvas-ball');
+	const challengeCB = document.querySelector('.challenge--canvas-ball');
+	const cbContent = document.querySelector('.code__content--canvas-ball');
 
-	canvasBall.addEventListener('click', e => {
+	const createCanvasTemplate = (parent, id, classname) => {
+		let newCanvas = document.createElement('canvas');
+		newCanvas.id = `${id}`;
+		newCanvas.setAttribute('width', '400px');
+		newCanvas.setAttribute('height', '400px');
+		newCanvas.setAttribute('aria-label', `${id} animation built with canvas API.`);
+		newCanvas.textContent = 'Please upgrade your browser.';
+		let newButton = document.createElement('button');
+		newButton.classList.add(`button--canvas`);
+		newButton.setAttribute('type', 'button');
+		newButton.textContent = 'Start animation';
+		if (classname) {
+			newButton.classList.add(`button--canvas-${classname}`);
+		}
+		parent.append(newCanvas);
+		parent.append(newButton);
+	};
+
+	const removeCanvasTemplate = parent => {
+		while (parent.firstChild) {
+			parent.firstChild.remove();
+		}
+	};
+
+	// const canvasBall = document.querySelector('.challenge--canvas-ball');
+
+	challengeCB.addEventListener('click', e => {
 		let target = e.target;
-		let its_container = canvasBall || canvasBall.contains(target);
+		let its_container = target == challengeCB || challengeCB.contains(target);
+		let is_canvas = challengeCB.querySelector('canvas');
+		let cbContainer = challengeCB.querySelector('.container');
+		let its_wrapper = target == cbContainer || cbContainer.contains(target);
+
+
+		if (!is_canvas) {
+			createCanvasTemplate(cbContent, 'ball', 'ball');
+		} else if (its_wrapper) {
+			console.log('wrong');
+			return;
+		} else {
+			cancelAnimationFrame(update);
+			removeCanvasTemplate(cbContent);
+		}
+
+
+		if (its_container) { console.log('container'); }
 
 		const canvas = document.getElementById('ball');
 		const ctx = canvas.getContext('2d');
@@ -456,31 +498,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			drawCircle();
 
-			// change position
+			// моеняем координаты
 			circle.x += circle.dx;
 			circle.y += circle.dy;
 
-			// Detect side walls
+			// Определяем боковые границы
 			if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
 				circle.dx *= -1;
 			}
 
-			// Detect top and bottom walls
+			// Определяем нижнюю и верхнюю границу
 			if (circle.y + circle.size > canvas.height || circle.y - circle.size < 0) {
 				circle.dy *= -1;
 			}
 
 			requestAnimationFrame(update);
+			// console.log('hit');
 		}
+		
 
-		update();
+		// console.log(cancelAnimationFrame(update))
 
-		if (its_container) {
-			return;
-		}
-	});
+		const buttonCanvas = document.querySelector('.button--canvas-ball');
+		let counter = 0;
+		buttonCanvas.addEventListener('click', e => {
+			
+			counter += 1;
 
-	// canvasBall.removeEventListener('click', e =>{});
+			if (counter <= 1) {
+				update();
+			}
+			
+		}, false);
+
+	}, false);
+
+
+	// const canvas = document.getElementById('ball');
+	// const ctx = canvas.getContext('2d');
+
+	// const circle = {
+	// 	x: 200,
+	// 	y: 200,
+	// 	size: 20,
+	// 	dx: 5,
+	// 	dy: 4
+	// };
+
+	// function drawCircle() {
+	// 	ctx.beginPath();
+	// 	ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
+	// 	ctx.fillStyle = 'teal';
+	// 	ctx.fill();
+	// }
+
+	// function update() {
+	// 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// 	drawCircle();
+
+	// 	// change position
+	// 	circle.x += circle.dx;
+	// 	circle.y += circle.dy;
+
+	// 	// Detect side walls
+	// 	if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
+	// 		circle.dx *= -1;
+	// 	}
+
+	// 	// Detect top and bottom walls
+	// 	if (circle.y + circle.size > canvas.height || circle.y - circle.size < 0) {
+	// 		circle.dy *= -1;
+	// 	}
+
+	// 	requestAnimationFrame(update);
+	// 	console.log('hit');
+
+	// }
+
+	// update();
+
+
+
+
+
 
 	// Создание анимаций для фильтрации элементов
 	// получаем координаты элемента в контексте документа

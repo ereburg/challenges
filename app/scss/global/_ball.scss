@@ -1,16 +1,35 @@
-.center-flex {
+.code__content--canvas-ball {
   @include flexbox(center);
+  flex-direction: column;
+
+  & :not(:last-child) {
+    margin-bottom: 5rem;
+  }
 }
 
 #ball {
   $canvas-ball-value: 40rem;
   --canvas-ball-value: $canvas-ball-value;
+  width: 60%;
   max-width: var(--canvas-ball-value);
   max-height: var(--canvas-ball-value);
-  width: 60%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 
   @include for-size(phone) {
     width: 100%;
+  }
+}
+
+.button--canvas {
+  padding: 1rem 2rem;
+  color: $color-white;
+  background: #3e9ce8;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+  &:hover,
+  &:focus {
+    background: #42a5f5;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
   }
 }

@@ -9,8 +9,19 @@ module.exports = function () {
             .on('error', console.error.bind(console))
             .pipe($.plugins.purgecss({
                 content: ['./build/**/*.html'],
-                whitelistPatterns: [/open$/, /mobile$/, /hidden$/, /scroll/, /active/, /^result[a-zA-Z]*/, /^social[a-zA-Z]*/, /result$/, /neumorph/]  // здесь указываешь список селекторов, которые содержат значение
-            })) // а этот плагин удаляет ненужные селекторы, если их нет в html файлах отслеживаемой директории
+                whitelistPatterns: [
+                    /open$/, 
+                    /mobile$/, 
+                    /hidden$/, 
+                    /scroll/, 
+                    /active/, 
+                    /^result[a-zA-Z]*/, 
+                    /^social[a-zA-Z]*/, 
+                    /result$/, 
+                    /neumorph/,
+                    /^button[a-zA-Z]*/
+                ]
+            })) 
             .pipe($.plugins.autoprefixer({
                 cascade: true
             })) // прописываем вендорные префиксы
