@@ -68,8 +68,8 @@ block content
                                 block codeClocks
                                     div(class="code__info") 
                                         p(class="code__text") "CSS Inspiration" is a mini cycle of challenges, in which I'll create various design elements of the user interface. Examples include original animations, unusual transformations, creative elements and etc. All elements can be used for inspiration and modified by yourself. We constantly faced with social media elements on websites and apps, so I decided to create this challenge. The «Social Media Buttons» is a set of various hover effects in different design patterns that implemented on a list of social media links. 
-                                    div(class="code__content") 
-                                        ul(class="social-buttons__list")
+                                    div(class="code__content")
+                                        ul(class="social-buttons__list" data-text="Colored design")
                                             +socialButton("facebook", "facebook")
                                             +socialButton("twitter", "twitter")
                                             +socialButton("youtube", "youtube")
@@ -77,6 +77,8 @@ block content
                                             +socialButton("instagram", "instagram")
                                             +socialButton("telegram", "telegram")
                                             +socialButton("github", "github")
+                                            +socialButton("linkedin", "linkedin")
+                                            +socialButton("behance", "behance")
 
 block scripts
     script(src="scripts/scripts.min.js")

@@ -39,7 +39,7 @@
 .menu {
   display: grid;
   grid-template-rows: max-content;
-  grid-template-columns: max-content 1fr minmax(max-content, 10rem);
+  grid-template-columns: max-content 1fr minmax(max-content, 12rem);
   gap: 2.5rem;
   padding: 0.625rem 1.25rem;
 
@@ -152,11 +152,12 @@
 
 .search__icon {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0.75rem;
   display: flex;
   align-items: center;
   max-width: 25px;
+  transform: translateY(-50%);
   fill: $color-shade;
 
   @include for-size(phone) {

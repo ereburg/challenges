@@ -415,11 +415,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Social Buttons Challenge
 	const sbList = document.querySelector('.social-buttons__list');
-	const sbListCloned = sbList.cloneNode(true);
+	let sbListCloned = sbList.cloneNode(true);
 	sbListCloned.classList.add('neumorph');
-	const sbContent = document.querySelector('.social-buttons .code__content');
-	sbContent.appendChild(sbListCloned);
+	sbListCloned.setAttribute('data-text', 'Neumorphism design');
+	const sbContent = document.querySelector('.social-buttons .code__body .code__content');
+	sbContent.append(sbListCloned);
 	console.log(sbListCloned);
+	console.log(sbList);
 
 
 
