@@ -6,22 +6,22 @@
   gap: 1.25rem;
   justify-content: center;
 
-  &:not(:last-child) {
-    margin-bottom: 5rem;
-  }
-
   &::before {
-    content: attr(data-text);
     display: block;
     grid-column: -1/1;
     margin-bottom: $font-title;
-    text-align: center;
-    font-size: $font-title;
     font-weight: 500;
+    font-size: $font-title;
+    text-align: center;
+    content: attr(data-text);
 
     @include for-size(phone) {
       font-size: $font-title - 0.5rem;
     }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 5rem;
   }
 
   a {
@@ -64,7 +64,7 @@
   --color-gh: #333333;
   --color-tg: #0088cc;
   --color-be: #053eff;
-  --color-ln: #0e76a8;  
+  --color-ln: #0e76a8;
   --color-sb-modern: #fffdfd;
 
   @include flexbox(center);
@@ -74,7 +74,7 @@
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 5px 15px -5px #00000070;
-  appearance: button;
+  // appearance: button;
 
   &:hover .icon--social-button,
   &:focus .icon--social-button {

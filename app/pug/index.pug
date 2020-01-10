@@ -63,9 +63,9 @@ block content
                                         canvas(id="clock" width="300px" height="300px" aria-label="Clock built with canvas JS.") Please upgrade your browser. 
                     
                     +challenge("Social Buttons", "animations", "social-buttons")
-                        block challengeClocks
+                        block challengeSocials
                             +code("Social Buttons", "social-buttons")
-                                block codeClocks
+                                block codeSocials
                                     div(class="code__info") 
                                         p(class="code__text") "CSS Inspiration" is a mini cycle of challenges, in which I'll create various design elements of the user interface. Examples include original animations, unusual transformations, creative elements and etc. All elements can be used for inspiration and modified by yourself. We constantly faced with social media elements on websites and apps, so I decided to create this challenge. The «Social Media Buttons» is a set of various hover effects in different design patterns that implemented on a list of social media links. 
                                     div(class="code__content")
@@ -80,5 +80,13 @@ block content
                                             +socialButton("linkedin", "linkedin")
                                             +socialButton("behance", "behance")
 
+                    +challenge("Canvas ball animation", "animations", "canvas-ball")
+                        block challengeWizard
+                            +code("Canvas ball animation", "canvas-ball")
+                                block codeWizard
+                                    div(class="code__info")
+                                        p(class="code__text") The «Canvas ball animation» is course project designed to help students to gain expierence with canvas API. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the «clock» shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
+                                    div(class="code__content center-flex") 
+                                        canvas(id="ball" width="400px" height="400px" aria-label="Ball animation built with canvas JS.") Please upgrade your browser. 
 block scripts
     script(src="scripts/scripts.min.js")
