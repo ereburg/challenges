@@ -157,16 +157,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	input.addEventListener('keyup', () => {
-		let filter, challengeTitle, badges, isChallengeTitle, isBadge, filterConditionChallenge;
+		let filter, challengeTitle, badges, type, isChallengeTitle, isBadge, filterConditionChallenge;
 		filter = input.value.trim().toUpperCase();
 
 		for (let i = 0; i < challenge.length; i++) {
 			challengeTitle = challenge[i].querySelector(".challenge__title");
 			badges = challenge[i].querySelector(".tag__badge");
+			type = challenge[i].querySelector(".type");
 			isChallengeTitle = challengeTitle.textContent || challengeTitle.innerText;
 			isBadge = badges.textContent || badges.innerText;
+			isType = type.textContent || type.innerText;
 			filterConditionChallenge = isChallengeTitle.trim().toUpperCase().indexOf(filter) > -1;
 			filterConditionBadge = isBadge.trim().toUpperCase().indexOf(filter) > -1;
+			filterConditionType = isType.trim().toUpperCase().indexOf(filter) > -1;
 
 			// let disappear = () => {
 			// 	challenge[i].style.display = "none";
@@ -176,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			// 	challenge[i].style.display = "block";
 			// };
 
-			if (filterConditionChallenge || filterConditionBadge) {
+			if (filterConditionChallenge || filterConditionBadge || filterConditionType) {
 				challenge[i].classList.remove('challenge--hidden');
 				CheckSearchValidity();
 				// setTimeout(() => appear(), 0);
@@ -425,13 +428,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	// Canvas Ball Animation
+	const challengeCanvas = document.querySelectorAll('.challenge--canvas');
 	const challengeCB = document.querySelector('.challenge--canvas-ball');
 	const cbContent = document.querySelector('.code__content--canvas-ball');
+	const challengeWizard = document.querySelector('.challenge--canvas-wizard');
+	const challengeWizardContent = document.querySelector('.code__content--canvas-wizard');
 
 	function createCanvasTemplate(parent, id, classname) {
 		let newCanvas = document.createElement('canvas');
 		newCanvas.id = `${id}`;
-		newCanvas.setAttribute('width', '400px');
+		newCanvas.setAttribute('width', '600px');
 		newCanvas.setAttribute('height', '400px');
 		newCanvas.setAttribute('aria-label', `${id} animation built with canvas API.`);
 		newCanvas.textContent = 'Please upgrade your browser.';
@@ -442,11 +448,19 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (classname) {
 			newButton.classList.add(`button--canvas-${classname}`);
 		}
+		if (id == 'wizard') {
+			let newImage = document.createElement('img');
+			newImage.setAttribute('src', 'https://i.ibb.co/HHBFJdH/char.png');
+			newImage.setAttribute('alt', 'Little wizard');
+			newImage.classList.add('wizard-image');
+			newImage.style.display = 'none';
+			parent.append(newImage);
+		}
 		parent.append(newCanvas);
 		parent.append(newButton);
 	}
 
-	function removeCanvasTemplate (parent) {
+	function removeCanvasTemplate(parent) {
 		while (parent.firstChild) {
 			parent.firstChild.remove();
 		}
@@ -455,82 +469,289 @@ document.addEventListener("DOMContentLoaded", () => {
 	let counter = 0;
 	let continueAnimating, isOpened;
 
-	challengeCB.addEventListener('click', e => {
-		let target = e.target;
-		let cbContainer = challengeCB.querySelector('.container');
-		let its_wrapper = target == cbContainer || cbContainer.contains(target);
-		continueAnimating = true;
-		isOpened = true;
-
-		if (counter < 1) {
-			createCanvasTemplate(cbContent, 'ball', 'ball');
-			counter++;
-		} else if (its_wrapper) {
-			return;
-		} else {
-			continueAnimating = false;
-			counter--;
-			removeCanvasTemplate(cbContent);
-		}
-
-		const canvas = document.getElementById('ball');
-		const ctx = canvas.getContext('2d');
-
-		const circle = {
-			x: 200,
-			y: 200,
-			size: 20,
-			dx: 5,
-			dy: 4
-		};
-
-		function drawCircle() {
-			ctx.beginPath();
-			ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
-			ctx.fillStyle = 'teal';
-			ctx.fill();
-		}
-
-		drawCircle();
-
-		function update() {
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-			drawCircle();
-
-			// моеняем координаты
-			circle.x += circle.dx;
-			circle.y += circle.dy;
-
-			// Определяем боковые границы
-			if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
-				circle.dx *= -1;
-			}
-
-			// Определяем нижнюю и верхнюю границу
-			if (circle.y + circle.size > canvas.height || circle.y - circle.size < 0) {
-				circle.dy *= -1;
-			}
-
-			if (continueAnimating) {
-				animationBall = requestAnimationFrame(update);
-			}
-			console.log('ball');
-		}
-
-		const buttonCanvas = document.querySelector('.button--canvas-ball');
-		let i = 0;
-		buttonCanvas.addEventListener('click', e => {
+	challengeCanvas.forEach(item => {
+		item.addEventListener('click', e => {
+			let target = e.target;
+			let canvasContainer = item.querySelector('.container');
+			let its_wrapper = target == canvasContainer || canvasContainer.contains(target);
 			continueAnimating = true;
-			
-			if (i < 1) {
-				update();
-				i++;
-			}
-			
-		}, false);
+			isOpened = true;
 
-	}, false);
+			if (counter < 1) {
+				if (challengeCB) {
+					createCanvasTemplate(cbContent, 'ball', 'ball');
+				}
+
+				if (challengeWizard) {
+					createCanvasTemplate(challengeWizardContent, 'wizard', 'wizard');
+				}
+				counter++;
+			} else if (its_wrapper) {
+				return;
+			} else {
+				continueAnimating = false;
+				counter--;
+				
+				if (challengeCB) {
+					removeCanvasTemplate(cbContent);
+				}
+
+				if (challengeWizard) {
+					removeCanvasTemplate(challengeWizardContent);
+				}
+			}
+
+			if (challengeCB) {
+				const canvas = document.getElementById('ball');
+				const ctx = canvas.getContext('2d');
+
+				const circle = {
+					x: 200,
+					y: 200,
+					size: 20,
+					dx: 5,
+					dy: 4
+				};
+
+				function drawCircle() {
+					ctx.beginPath();
+					ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
+					ctx.fillStyle = 'teal';
+					ctx.fill();
+				}
+
+				drawCircle();
+
+				function update() {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+					drawCircle();
+
+					// моеняем координаты
+					circle.x += circle.dx;
+					circle.y += circle.dy;
+
+					// Определяем боковые границы
+					if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
+						circle.dx *= -1;
+					}
+
+					// Определяем нижнюю и верхнюю границу
+					if (circle.y + circle.size > canvas.height || circle.y - circle.size < 0) {
+						circle.dy *= -1;
+					}
+
+					if (continueAnimating) {
+						animationBall = requestAnimationFrame(update);
+					}
+				}
+
+				const buttonCanvas = document.querySelector('.button--canvas-ball');
+				let i = 0;
+				buttonCanvas.addEventListener('click', e => {
+					continueAnimating = true;
+
+					if (i < 1) {
+						update();
+						i++;
+					}
+
+				}, false);
+			}
+
+			if (challengeWizard) {
+				const canvas = document.getElementById('wizard');
+				const ctx = canvas.getContext('2d');
+
+
+				const image = document.querySelector('.wizard-image');
+
+				const player = {
+					w: 50,
+					h: 70,
+					x: 20,
+					y: 200,
+					speed: 10,
+					dx: 0,
+					dy: 0
+				};
+
+				function drawPlayer() {
+					ctx.drawImage(image, player.x, player.y, player.w, player.h);
+				}
+
+				function clear() {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+				}
+
+				function newPos() {
+					player.x += player.dx;
+					player.y += player.dy;
+
+					detectWalls();
+				}
+
+				function detectWalls() {
+					// Left wall
+					if (player.x < 0) {
+						player.x = 0;
+					}
+
+					// Right Wall
+					if (player.x + player.w > canvas.width) {
+						player.x = canvas.width - player.w;
+					}
+
+					// Top wall
+					if (player.y < 0) {
+						player.y = 0;
+					}
+
+					// Bottom Wall
+					if (player.y + player.h > canvas.height) {
+						player.y = canvas.height - player.h;
+					}
+				}
+
+				function updateWizard() {
+					clear();
+
+					drawPlayer();
+
+					newPos();
+
+					requestAnimationFrame(update);
+				}
+
+				function moveUp() {
+					player.dy = -player.speed;
+				}
+
+				function moveDown() {
+					player.dy = player.speed;
+				}
+
+				function moveRight() {
+					player.dx = player.speed;
+				}
+
+				function moveLeft() {
+					player.dx = -player.speed;
+				}
+
+				function keyDown(e) {
+					if (e.key === 'ArrowRight' || e.key === 'Right') {
+						moveRight();
+					} else if (e.key === 'ArrowLeft' || e.key === 'Left') {
+						moveLeft();
+					} else if (e.key === 'ArrowUp' || e.key === 'Up') {
+						moveUp();
+					} else if (e.key === 'ArrowDown' || e.key === 'Down') {
+						moveDown();
+					}
+				}
+
+				function keyUp(e) {
+					if (
+						e.key == 'Right' ||
+						e.key == 'ArrowRight' ||
+						e.key == 'Left' ||
+						e.key == 'ArrowLeft' ||
+						e.key == 'Up' ||
+						e.key == 'ArrowUp' ||
+						e.key == 'Down' ||
+						e.key == 'ArrowDown'
+					) {
+						player.dx = 0;
+						player.dy = 0;
+					}
+				}
+
+				updateWizard();
+
+				document.addEventListener('keydown', keyDown);
+				document.addEventListener('keyup', keyUp);
+			}
+
+		}, false);
+	});
+
+	// challengeCB.addEventListener('click', e => {
+	// 	let target = e.target;
+	// 	let cbContainer = challengeCB.querySelector('.container');
+	// 	let its_wrapper = target == cbContainer || cbContainer.contains(target);
+	// 	continueAnimating = true;
+	// 	isOpened = true;
+
+	// 	if (counter < 1) {
+	// 		createCanvasTemplate(cbContent, 'ball', 'ball');
+	// 		counter++;
+	// 	} else if (its_wrapper) {
+	// 		return;
+	// 	} else {
+	// 		continueAnimating = false;
+	// 		counter--;
+	// 		removeCanvasTemplate(cbContent);
+	// 	}
+
+	// 	const canvas = document.getElementById('ball');
+	// 	const ctx = canvas.getContext('2d');
+
+	// 	const circle = {
+	// 		x: 200,
+	// 		y: 200,
+	// 		size: 20,
+	// 		dx: 5,
+	// 		dy: 4
+	// 	};
+
+	// 	function drawCircle() {
+	// 		ctx.beginPath();
+	// 		ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
+	// 		ctx.fillStyle = 'teal';
+	// 		ctx.fill();
+	// 	}
+
+	// 	drawCircle();
+
+	// 	function update() {
+	// 		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// 		drawCircle();
+
+	// 		// моеняем координаты
+	// 		circle.x += circle.dx;
+	// 		circle.y += circle.dy;
+
+	// 		// Определяем боковые границы
+	// 		if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
+	// 			circle.dx *= -1;
+	// 		}
+
+	// 		// Определяем нижнюю и верхнюю границу
+	// 		if (circle.y + circle.size > canvas.height || circle.y - circle.size < 0) {
+	// 			circle.dy *= -1;
+	// 		}
+
+	// 		if (continueAnimating) {
+	// 			animationBall = requestAnimationFrame(update);
+	// 		}
+	// 		console.log('ball');
+	// 	}
+
+	// 	const buttonCanvas = document.querySelector('.button--canvas-ball');
+	// 	let i = 0;
+	// 	buttonCanvas.addEventListener('click', e => {
+	// 		continueAnimating = true;
+
+	// 		if (i < 1) {
+	// 			update();
+	// 			i++;
+	// 		}
+
+	// 	}, false);
+
+	// }, false);
 
 
 

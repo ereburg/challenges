@@ -1,15 +1,19 @@
-mixin challenge(title, filterClass, challengeClass)
+mixin challenge(title, filterClass, challengeClass, task, tag)
   li(class=`challenges__item challenge challenge--${filterClass} challenge--${challengeClass}`)
     a(class="challenges__link" href=`${challengeClass}.html` aria-label=title+" task challenge")
       section(class="challenge__inner")
-        p(class="challenge__text type") Task
+        p(class="challenge__text type")= task
         h2(class="challenge__title")= title
         ul(class="challenge__tag-list tag")
           li(class="tag__item")
-            span(class="tag__badge") #JS
+            span(class="tag__badge")= tag
         p(class="challenge__text author") Ereburg
     block block
       block
+
+mixin tag(title)
+  span(class="tag__badge")= title
+
 
 mixin code(title, classname)
   div(class="challenge__code code " + classname)

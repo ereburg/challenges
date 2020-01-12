@@ -1,4 +1,5 @@
-.code__content--canvas-ball {
+.code__content--canvas-ball,
+.code__content--canvas-wizard {
   @include flexbox(center);
   flex-direction: column;
 
@@ -7,7 +8,7 @@
   }
 }
 
-#ball {
+.challenge--canvas canvas {
   $canvas-ball-value: 40rem;
   --canvas-ball-value: $canvas-ball-value;
   width: 60%;
