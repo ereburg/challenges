@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Log the viewport width into the console
 	const onWidthChange = function () {
 		if (viewportWidth > 768) {
-			totalCounter.textContent = `Challenges total:  ${challenge.length} units`;
+			totalCounter.textContent = `Challenges:  ${challenge.length} units`;
 		} else {
 			totalCounter.textContent = `${challenge.length}`;
 		}
@@ -227,15 +227,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	const challengesList = document.querySelector('.challenges__container');
 
 	challengesList.addEventListener('click', e => {
-		let target = e.target, LINK, MODAL, CLOSE, MODAL_CONTAINER;
+		let target = e.target, LINK, MODAL, CLOSE, MODAL_CONTAINER, CANVAS;
 
 		const pageToggler = () => {
 			page.classList.toggle('scroll');
 		};
 
 		for (let i = 0; i < challenge.length; i++) {
-			LINK = challenge[i].querySelector(".challenges__link");
-			MODAL = challenge[i].querySelector(".challenge__code");
+			LINK = challenge[i].querySelector('.challenges__link');
+			MODAL = challenge[i].querySelector('.challenge__code');
+			CANVAS = challenge[i].querySelector('.challenge--canvas');
 			MODAL_CONTAINER = challenge[i].querySelector('.code-container--content');
 			CLOSE = MODAL.querySelector('.close');
 
@@ -243,7 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				its_modal = target == MODAL.classList.contains('active') || MODAL.contains(target),
 				its_modal_container = target == MODAL_CONTAINER || MODAL_CONTAINER.contains(target),
 				its_close = target == CLOSE || CLOSE.contains(target);
-
 
 			if (its_link) {
 				MODAL.classList.add('active');
@@ -421,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let sbListCloned = sbList.cloneNode(true);
 	sbListCloned.classList.add('neumorph');
 	sbListCloned.setAttribute('data-text', 'Neumorphism design');
-	const sbContent = document.querySelector('.social-buttons .code__body .code__content');
+	const sbContent = document.querySelector('.code__content--social-buttons');
 	sbContent.append(sbListCloned);
 
 
@@ -441,23 +441,58 @@ document.addEventListener("DOMContentLoaded", () => {
 		newCanvas.setAttribute('height', '400px');
 		newCanvas.setAttribute('aria-label', `${id} animation built with canvas API.`);
 		newCanvas.textContent = 'Please upgrade your browser.';
-		let newButton = document.createElement('button');
-		newButton.classList.add(`button--canvas`);
-		newButton.setAttribute('type', 'button');
-		newButton.textContent = 'Start animation';
-		if (classname) {
-			newButton.classList.add(`button--canvas-${classname}`);
-		}
+		
+		
 		if (id == 'wizard') {
 			let newImage = document.createElement('img');
 			newImage.setAttribute('src', 'https://i.ibb.co/HHBFJdH/char.png');
 			newImage.setAttribute('alt', 'Little wizard');
 			newImage.classList.add('wizard-image');
 			newImage.style.display = 'none';
+			const newWrapper = document.createElement('div');
+			newWrapper.classList.add(`button--move-controls`);
+			let buttonUp = document.createElement('button');
+			buttonUp.classList.add(`button--move`);
+			buttonUp.classList.add(`button--up`);
+			buttonUp.setAttribute('data-text', '↑');
+			buttonUp.setAttribute('type', 'button');
+			let buttonRight = document.createElement('button');
+			buttonRight.classList.add(`button--move`);
+			buttonRight.classList.add(`button--right`);
+			buttonRight.setAttribute('data-text', '→');
+			buttonRight.setAttribute('type', 'button');
+			let buttonDown = document.createElement('button');
+			buttonDown.classList.add(`button--move`);
+			buttonDown.classList.add(`button--down`);
+			buttonDown.setAttribute('type', 'button');
+			buttonDown.setAttribute('data-text', '↓');
+			let buttonLeft = document.createElement('button');
+			buttonLeft.classList.add(`button--move`);
+			buttonLeft.classList.add(`button--left`);
+			buttonLeft.setAttribute('data-text', '←');
+			buttonLeft.setAttribute('type', 'button');
+	
+
 			parent.append(newImage);
+			parent.append(newCanvas);
+			parent.append(newWrapper);
+			newWrapper.append(buttonUp);
+			newWrapper.append(buttonRight);
+			newWrapper.append(buttonDown);
+			newWrapper.append(buttonLeft);
 		}
-		parent.append(newCanvas);
-		parent.append(newButton);
+		if (id == 'ball') {
+			let newButton = document.createElement('button');
+			newButton.classList.add(`button--canvas`);
+			newButton.setAttribute('type', 'button');
+			newButton.textContent = 'Start animation';
+			if (classname) {
+				newButton.classList.add(`button--canvas-${classname}`);
+			}
+
+			parent.append(newCanvas);
+			parent.append(newButton);
+		}
 	}
 
 	function removeCanvasTemplate(parent) {
@@ -467,17 +502,35 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	let counter = 0;
+	
 	let continueAnimating, isOpened;
 
 	challengeCanvas.forEach(item => {
 		item.addEventListener('click', e => {
 			let target = e.target;
 			let canvasContainer = item.querySelector('.container');
+			let closeButton = item.querySelector('.close');
 			let its_wrapper = target == canvasContainer || canvasContainer.contains(target);
+			let its_closeButton = target == closeButton || closeButton.contains(target);
 			continueAnimating = true;
 			isOpened = true;
+			
+			if (its_closeButton) {
+				counter = 0;
 
-			if (counter < 1) {
+				if (challengeCB) {
+					continueAnimating = false;
+					removeCanvasTemplate(cbContent);
+					}
+
+				if (challengeWizard) {
+					removeCanvasTemplate(challengeWizardContent);
+				}
+
+			} else if (counter < 1) {
+				counter++;
+
+
 				if (challengeCB) {
 					createCanvasTemplate(cbContent, 'ball', 'ball');
 				}
@@ -485,15 +538,14 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (challengeWizard) {
 					createCanvasTemplate(challengeWizardContent, 'wizard', 'wizard');
 				}
-				counter++;
 			} else if (its_wrapper) {
 				return;
 			} else {
-				continueAnimating = false;
 				counter--;
 				
 				if (challengeCB) {
-					removeCanvasTemplate(cbContent);
+				continueAnimating = false;
+				removeCanvasTemplate(cbContent);
 				}
 
 				if (challengeWizard) {
@@ -522,7 +574,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 				drawCircle();
 
-				function update() {
+				function updateBall() {
 					ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 					drawCircle();
@@ -542,7 +594,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					}
 
 					if (continueAnimating) {
-						animationBall = requestAnimationFrame(update);
+						animationBall = requestAnimationFrame(updateBall);
 					}
 				}
 
@@ -552,7 +604,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					continueAnimating = true;
 
 					if (i < 1) {
-						update();
+						updateBall();
 						i++;
 					}
 
@@ -620,7 +672,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 					newPos();
 
-					requestAnimationFrame(update);
+					requestAnimationFrame(updateWizard);
 				}
 
 				function moveUp() {
@@ -676,82 +728,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}, false);
 	});
 
-	// challengeCB.addEventListener('click', e => {
-	// 	let target = e.target;
-	// 	let cbContainer = challengeCB.querySelector('.container');
-	// 	let its_wrapper = target == cbContainer || cbContainer.contains(target);
-	// 	continueAnimating = true;
-	// 	isOpened = true;
-
-	// 	if (counter < 1) {
-	// 		createCanvasTemplate(cbContent, 'ball', 'ball');
-	// 		counter++;
-	// 	} else if (its_wrapper) {
-	// 		return;
-	// 	} else {
-	// 		continueAnimating = false;
-	// 		counter--;
-	// 		removeCanvasTemplate(cbContent);
-	// 	}
-
-	// 	const canvas = document.getElementById('ball');
-	// 	const ctx = canvas.getContext('2d');
-
-	// 	const circle = {
-	// 		x: 200,
-	// 		y: 200,
-	// 		size: 20,
-	// 		dx: 5,
-	// 		dy: 4
-	// 	};
-
-	// 	function drawCircle() {
-	// 		ctx.beginPath();
-	// 		ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
-	// 		ctx.fillStyle = 'teal';
-	// 		ctx.fill();
-	// 	}
-
-	// 	drawCircle();
-
-	// 	function update() {
-	// 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-	// 		drawCircle();
-
-	// 		// моеняем координаты
-	// 		circle.x += circle.dx;
-	// 		circle.y += circle.dy;
-
-	// 		// Определяем боковые границы
-	// 		if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
-	// 			circle.dx *= -1;
-	// 		}
-
-	// 		// Определяем нижнюю и верхнюю границу
-	// 		if (circle.y + circle.size > canvas.height || circle.y - circle.size < 0) {
-	// 			circle.dy *= -1;
-	// 		}
-
-	// 		if (continueAnimating) {
-	// 			animationBall = requestAnimationFrame(update);
-	// 		}
-	// 		console.log('ball');
-	// 	}
-
-	// 	const buttonCanvas = document.querySelector('.button--canvas-ball');
-	// 	let i = 0;
-	// 	buttonCanvas.addEventListener('click', e => {
-	// 		continueAnimating = true;
-
-	// 		if (i < 1) {
-	// 			update();
-	// 			i++;
-	// 		}
-
-	// 	}, false);
-
-	// }, false);
+	
 
 
 

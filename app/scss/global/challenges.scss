@@ -21,6 +21,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20px, max-content));
   gap: 1.25rem;
+
+  @include for-size(iphone-5s) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
 
 .filter__item {

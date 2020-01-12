@@ -1,6 +1,6 @@
 mixin challenge(title, filterClass, challengeClass, task, tag)
   li(class=`challenges__item challenge challenge--${filterClass} challenge--${challengeClass}`)
-    a(class="challenges__link" href=`${challengeClass}.html` aria-label=title+" task challenge")
+    a(class="challenges__link" href=`${challengeClass}.html` aria-label=title+" code challenge")
       section(class="challenge__inner")
         p(class="challenge__text type")= task
         h2(class="challenge__title")= title
@@ -16,7 +16,7 @@ mixin tag(title)
 
 
 mixin code(title, classname)
-  div(class="challenge__code code " + classname)
+  div(class="challenge__code code code--" + classname)
     div(class="container code-container--content")
       article(class="code__content")
         h3(class="visually-hidden")= title + " challenge"

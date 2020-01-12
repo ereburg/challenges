@@ -3,7 +3,7 @@
   @include flexbox(center);
   flex-direction: column;
 
-  & :not(:last-child) {
+  & > :not(:last-child) {
     margin-bottom: 5rem;
   }
 }
