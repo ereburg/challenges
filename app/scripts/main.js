@@ -428,7 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const challengeCB = document.querySelector('.challenge--canvas-ball');
 	const cbContent = document.querySelector('.code__content--canvas-ball');
 
-	const createCanvasTemplate = (parent, id, classname) => {
+	function createCanvasTemplate(parent, id, classname) {
 		let newCanvas = document.createElement('canvas');
 		newCanvas.id = `${id}`;
 		newCanvas.setAttribute('width', '400px');
@@ -444,36 +444,34 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		parent.append(newCanvas);
 		parent.append(newButton);
-	};
+	}
 
-	const removeCanvasTemplate = parent => {
+	function removeCanvasTemplate (parent) {
 		while (parent.firstChild) {
 			parent.firstChild.remove();
 		}
-	};
+	}
 
-	// const canvasBall = document.querySelector('.challenge--canvas-ball');
+	let counter = 0;
+	let continueAnimating, isOpened;
 
 	challengeCB.addEventListener('click', e => {
 		let target = e.target;
-		let its_container = target == challengeCB || challengeCB.contains(target);
-		let is_canvas = challengeCB.querySelector('canvas');
 		let cbContainer = challengeCB.querySelector('.container');
 		let its_wrapper = target == cbContainer || cbContainer.contains(target);
+		continueAnimating = true;
+		isOpened = true;
 
-
-		if (!is_canvas) {
+		if (counter < 1) {
 			createCanvasTemplate(cbContent, 'ball', 'ball');
+			counter++;
 		} else if (its_wrapper) {
-			console.log('wrong');
 			return;
 		} else {
-			cancelAnimationFrame(update);
+			continueAnimating = false;
+			counter--;
 			removeCanvasTemplate(cbContent);
 		}
-
-
-		if (its_container) { console.log('container'); }
 
 		const canvas = document.getElementById('ball');
 		const ctx = canvas.getContext('2d');
@@ -492,6 +490,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			ctx.fillStyle = 'teal';
 			ctx.fill();
 		}
+
+		drawCircle();
 
 		function update() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -512,21 +512,20 @@ document.addEventListener("DOMContentLoaded", () => {
 				circle.dy *= -1;
 			}
 
-			requestAnimationFrame(update);
-			// console.log('hit');
+			if (continueAnimating) {
+				animationBall = requestAnimationFrame(update);
+			}
+			console.log('ball');
 		}
-		
-
-		// console.log(cancelAnimationFrame(update))
 
 		const buttonCanvas = document.querySelector('.button--canvas-ball');
-		let counter = 0;
+		let i = 0;
 		buttonCanvas.addEventListener('click', e => {
+			continueAnimating = true;
 			
-			counter += 1;
-
-			if (counter <= 1) {
+			if (i < 1) {
 				update();
+				i++;
 			}
 			
 		}, false);
@@ -534,49 +533,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	}, false);
 
 
-	// const canvas = document.getElementById('ball');
-	// const ctx = canvas.getContext('2d');
-
-	// const circle = {
-	// 	x: 200,
-	// 	y: 200,
-	// 	size: 20,
-	// 	dx: 5,
-	// 	dy: 4
-	// };
-
-	// function drawCircle() {
-	// 	ctx.beginPath();
-	// 	ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
-	// 	ctx.fillStyle = 'teal';
-	// 	ctx.fill();
-	// }
-
-	// function update() {
-	// 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-	// 	drawCircle();
-
-	// 	// change position
-	// 	circle.x += circle.dx;
-	// 	circle.y += circle.dy;
-
-	// 	// Detect side walls
-	// 	if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
-	// 		circle.dx *= -1;
-	// 	}
-
-	// 	// Detect top and bottom walls
-	// 	if (circle.y + circle.size > canvas.height || circle.y - circle.size < 0) {
-	// 		circle.dy *= -1;
-	// 	}
-
-	// 	requestAnimationFrame(update);
-	// 	console.log('hit');
-
-	// }
-
-	// update();
 
 
 
