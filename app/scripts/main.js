@@ -441,8 +441,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		newCanvas.setAttribute('height', '400px');
 		newCanvas.setAttribute('aria-label', `${id} animation built with canvas API.`);
 		newCanvas.textContent = 'Please upgrade your browser.';
-		
-		
+
+
 		if (id == 'wizard') {
 			let newImage = document.createElement('img');
 			newImage.setAttribute('src', 'https://i.ibb.co/HHBFJdH/char.png');
@@ -471,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			buttonLeft.classList.add(`button--left`);
 			buttonLeft.setAttribute('data-text', '←');
 			buttonLeft.setAttribute('type', 'button');
-	
+
 
 			parent.append(newImage);
 			parent.append(newCanvas);
@@ -502,7 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	let counter = 0;
-	
+
 	let continueAnimating, isOpened;
 
 	challengeCanvas.forEach(item => {
@@ -514,14 +514,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			let its_closeButton = target == closeButton || closeButton.contains(target);
 			continueAnimating = true;
 			isOpened = true;
-			
+
 			if (its_closeButton) {
 				counter = 0;
 
 				if (challengeCB) {
 					continueAnimating = false;
 					removeCanvasTemplate(cbContent);
-					}
+				}
 
 				if (challengeWizard) {
 					removeCanvasTemplate(challengeWizardContent);
@@ -542,10 +542,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				return;
 			} else {
 				counter--;
-				
+
 				if (challengeCB) {
-				continueAnimating = false;
-				removeCanvasTemplate(cbContent);
+					continueAnimating = false;
+					removeCanvasTemplate(cbContent);
 				}
 
 				if (challengeWizard) {
@@ -728,10 +728,98 @@ document.addEventListener("DOMContentLoaded", () => {
 		}, false);
 	});
 
-	
+
+
+	// Reversing a String challenge
+	const strReverseTemplate = document.getElementById('reverse__template').content;
+	const reverseInput1 = document.getElementById('reverse__input--first');
+	const reverseInput2 = document.getElementById('reverse__input--second');
+	const reverseInput3 = document.getElementById('reverse__input--third');
+	const reverseButtons = document.querySelectorAll('.button--reverse');
+	const reverseForms = document.querySelectorAll('.reverse__form');
+	const reverseList1 = document.querySelector('.reverse__list--first');
+	const reverseList2 = document.querySelector('.reverse__list--second');
+	const reverseList3 = document.querySelector('.reverse__list--third');
 
 
 
+
+	// Создаем новый элемент и определяем способ преобразования
+	function reverseString(inputString, parent, item) {
+		let newEl = strReverseTemplate.cloneNode(true);
+		let input_value = newEl.querySelector('.result__value');
+		let output_value = newEl.querySelector('.result__output');
+		input_value.textContent = inputString;
+
+		if (item == 'first') {
+			let result = inputString.split('').reverse().join('');
+			output_value.textContent = result;
+		} else if (item == 'second') {
+			let result = "";
+			for (let i = inputString.length - 1; i >= 0; i--) {
+				result += inputString[i];
+			}
+			output_value.textContent = result;
+		} else if (item == 'third') {
+			output_value.textContent = reverseString(inputString);
+		}
+
+		function reverseString(str) {
+			return (str === '') ? '' : reverseString(str.substr(1)) + str.charAt(0);
+		}
+
+		// Получаем ссылку на первый дочерний элемент
+		let theFirstChild = parent.firstChild;
+
+		// Вставляем новый элемент перед первым дочерним элементом
+		parent.insertBefore(newEl, theFirstChild);
+
+		// parent.append(newEl);
+	}
+
+	reverseForms.forEach(item => {
+		item.addEventListener('click', e => {
+			e.preventDefault();
+		});
+	});
+
+	reverseButtons.forEach(item => {
+		item.addEventListener('click', e => {
+			let input_1 = reverseInput1.value;
+			let input_2 = reverseInput2.value;
+			let input_3 = reverseInput3.value;
+
+			if (item.classList.contains('button--reverse-first')) {
+
+				if (input_1 == null || input_1 === '') {
+					alert('Please, don\'t forget to fill in the input before making Reverse!');
+					return;
+				}
+
+				reverseString(input_1, reverseList1, 'first');
+				reverseInput1.value = '';
+
+			} else if (item.classList.contains('button--reverse-second')) {
+
+				if (input_2 == null || input_2 === '') {
+					alert('Please, don\'t forget to fill the input before making magic!');
+					return;
+				}
+
+				reverseString(input_2, reverseList2, 'second');
+				reverseInput2.value = '';
+			} else if (item.classList.contains('button--reverse-third')) {
+
+				if (input_3 == null || input_3 === '') {
+					alert('Please, don\'t forget to fill the input before making magic!');
+					return;
+				}
+
+				reverseString(input_3, reverseList3, 'third');
+				reverseInput3.value = '';
+			}
+		});
+	});
 
 
 

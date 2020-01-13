@@ -37,4 +37,9 @@ mixin socialButton(className, path)
     svg(class="icon icon--social-button"): use(xlink:href=`images/sprite.svg#sp-${path}`)
         
 
-
+mixin reverseMethod(position)
+  div(class="reverse__method reverse__method--" +position)
+    form(class="reverse__form")
+      input(class="reverse__input" id="reverse__input--" +position type="text", name=`${position} method` aria-label=`Reversing a String with ${position} method` placeholder=`Type something to reverse a string with ${position} method` autocomplete="off")
+      button(class="button--reverse button--reverse-"+position, type="submit") Reverse!
+    ul(class="reverse__list reverse__list--"+position)

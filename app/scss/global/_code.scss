@@ -104,12 +104,14 @@
 
 .blockquote {
   margin: 1rem 1.5rem 2rem;
-  padding: 1.5rem 2rem;
+  padding: 2rem;
   font-weight: 300;
   line-height: 1.4;
   background: #e3edf7;
-  border-radius: 1rem;
-  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
+  border-radius: 1.5rem;
+  box-shadow:
+    inset -3px -3px 7px #ffffff,
+    inset 3px 3px 7px rgba(136, 165, 191, 0.58);
 
   &--center {
     align-self: center;

@@ -27,17 +27,17 @@ block content
                             +code("FizzBuzz", "fizzbuzz")
                                 block codeFizzBuzz
                                     div(class="code__info") 
-                                        p(class="code__text") The «FizzBuzz test» is an interview question designed to help filter out the 99.5% of programming job candidates which couldn't handle this task. The text of the programming assignment is as follows:
+                                        p(class="code__text") <strong>The «FizzBuzz test»</strong> is an interview question designed to help filter out the 99.5% of programming job candidates which couldn't handle this task. The text of the programming assignment is as follows:
                                         blockquote(class="blockquote") "Write a program that prints the numbers from 1 to 100. But for multiples of three print «Fizz» instead of the number and for the multiples of five print «Buzz». For numbers which are multiples of both three and five print «FizzBuzz»." <footer><cite>&copy; Some tech specialist at interview</cite></footer>
                                         p(class="code__text") I think FizzBuzz is «hard» for some programmers because (#1) it doesn't fit into any of the patterns that were given to them in school assignments, and (#2) it isn't possible to directly and simply represent the necessary tests, without duplication, in just about any commonly-used modern programming language.
                                         p(class="code__text") On #1, that it doesn't match the patterns they memorized from lectures and class assignments: I think this makes it a good discriminator, because employer wishes to hire candidates who can think for themselves -- not those who are limited to copying solutions from others.
-                                        p(class="code__text") On #2, it's difficult to code directly: FizzBuzz doesn't fit any common pattern of
+                                        p(class="code__text") On #2, it's difficult to code directly: <strong>FizzBuzz</strong> doesn't fit any common pattern of
                                         p(class="blockquote blockquote--center")
                                             code if 1 then A 
                                                 <br> else if 2 then B
                                                 <br> else if 3 then C
                                                 <br> else/otherwise D
-                                        p(class="code__text") Maybe there's no simple and satisfying solution to the code structuring issue, but let me introduce my own solution in JavaScript. You can choose «Fizz» and «Buzz» numbers manualy.
+                                        p(class="code__text") Maybe there's no simple and satisfying solution to the code structuring issue, but let me introduce my own solution in JavaScript. You can choose <strong>«Fizz»</strong> and <strong>«Buzz»</strong> numbers manualy.
 
                                     div(class="code__form")
                                         p(class="code__row code__row--grid")
@@ -58,7 +58,7 @@ block content
                             +code("Canvas Clock", "clocks")
                                 block codeClocks
                                     div(class="code__info")
-                                        p(class="code__text") The «Canvas Clock» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the «clock» shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
+                                        p(class="code__text") <strong>The «Canvas Clock»</strong> is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the «clock» shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
                                     div(class="code__content") 
                                         canvas(id="clock" width="300px" height="300px" aria-label="Clock built with canvas JS.") Please upgrade your browser. 
                     
@@ -67,7 +67,7 @@ block content
                             +code("Social Buttons", "social-buttons")
                                 block codeSocials
                                     div(class="code__info") 
-                                        p(class="code__text") "CSS Inspiration" is a mini cycle of challenges, in which I'll create various design elements of the user interface. Examples include original animations, unusual transformations, creative elements and etc. All elements can be used for inspiration and modified by yourself. We constantly faced with social media elements on websites and apps, so I decided to create this challenge. The «Social Media Buttons» is a set of various hover effects in different design patterns that implemented on a list of social media links. 
+                                        p(class="code__text") <strong>"CSS Inspiration"</strong> is a mini cycle of challenges, in which I'll create various design elements of the user interface. Examples include original animations, unusual transformations, creative elements and etc. All elements can be used for inspiration and modified by yourself. We constantly faced with social media elements on websites and apps, so I decided to create this challenge. <strong>The «Social Media Buttons»</strong> is a set of various hover effects in different design patterns that implemented on a list of social media links. 
                                     div(class="code__content code__content--social-buttons")
                                         ul(class="social-buttons__list" data-text="Colored design")
                                             +socialButton("facebook", "facebook")
@@ -85,7 +85,7 @@ block content
                             +code("Canvas Ball", "canvas-ball")
                                 block codeBall
                                     div(class="code__info")
-                                        p(class="code__text") The «Canvas Ball» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the bouncing ball animation shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
+                                        p(class="code__text") <strong>The «Canvas Ball»</strong> is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the bouncing ball animation shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
                                     div(class="code__content code__content--canvas-ball")
 
                     +challenge("Canvas Wizard", "javascript", "canvas challenge--canvas-wizard", "Course project", "#JS")
@@ -95,5 +95,65 @@ block content
                                     div(class="code__info")
                                         p(class="code__text") The «Canvas Wizard» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. In this challenge you are allowed to control the wizards' movements inside restricted area. For now you can move the Wizard only from desktop.
                                     div(class="code__content code__content--canvas-wizard")
+
+                    +challenge("Reverse a String", "javascript", "str-reverse", "Task", "#JS")
+                        block challengeFizzBuzz
+                            +code("Reverse a String", "str-reverse")
+                                block codeFizzBuzz
+                                    div(class="code__info") 
+                                        p(class="code__text") <strong>Reversing a string</strong> is one of the most frequently asked JavaScript question in the technical round of interview. Interviewers may ask you to write different ways to reverse a string, or they may ask you to reverse a string without using in-built methods, or they may even ask you to reverse a string using recursion.
+                                        p(class="code__text") Below are my three most interesting ways to solve the problem of reversing a string in JavaScript.
+                                        div(class="blockquote")
+                                            p(class="code__text code__text--heading") Provided test cases:
+                                            ul(class="code__content-list")
+                                                li <span class="code__text-function">reverseString</span>("<b>hello</b>") should become «<b>olleh</b>»
+                                                li <span class="code__text-function">reverseString</span>("<b>Howdy</b>") should become «<b>ydwoH</b>»
+                                                li <span class="code__text-function">reverseString</span>("<b>Greetings from Earth</b>") should return «<b>htraE morf sgniteerG</b>»
+                                        h3(class="code__text code__text--heading") 1. Reverse a String With Built-In Functions
+                                        p(class="code__text") For this solution, we will use three methods: the String.prototype.split() method, the Array.prototype.reverse() method and the Array.prototype.join() method. And this looks like:
+                                        pre(class="code__text blockquote"): code.
+                                             <span class="code__text-function-result">function</span> <span class="code__text-function">reverseString</span>(str) {
+                                                <span class="code__text-function-result">return</span> str.<span class="code__text-function">split</span>("").<span class="code__text-function">reverse</span>().<span class="code__text-function">join</span>("");
+                                            }
+                                            <span class="code__text-function">reverseString</span>("hello");
+
+                                        h3(class="code__text code__text--heading") 2. Reverse a String With a Decrementing For Loop
+                                        p(class="code__text") First of all we should create an empty string that will host the new created string. Then create the FOR loop. And finally return the reversed string. And this code looks like:
+                                        pre(class="code__text blockquote"): code.
+
+                                            <span class="code__text-function-result">function</span> <span class="code__text-function">reverseString</span>(str) {
+                                                <span class="code__text-function">var</span> newString = "";
+                                                <span class="code__text-function">for</span> (<span class="code__text-function">var</span> i = str.length - 1; i >= 0; i--) {
+                                                    newString += str[i];
+                                                }
+                                                <span class="code__text-function-result">return</span> newString;
+                                            }
+                                            <span class="code__text-function">reverseString</span>("hello");
+
+                                        h3(class="code__text code__text--heading") 3. Reverse a String With Recursion
+                                        p(class="code__text") For this solution, we will use two methods: the String.prototype.substr() method and the String.prototype.charAt() method.
+                                        pre(class="code__text blockquote"): code.
+                                            <span class="code__text-function-result">function</span> <span class="code__text-function">reverseString</span>(str) {
+                                                <span class="code__text-function-result">return</span> (str === '') ? '' : <span class="code__text-function">reverseString</span>(str.<span class="code__text-function">substr</span>(1)) + str.<span class="code__text-function">charAt</span>(0);
+                                            }
+                                            <span class="code__text-function">reverseString</span>("hello");
+                                        h3(class="code__text code__text--heading") Well, are you ready for reversing strings?
+                                        
+                                    div(class="code__content code__content--str-reverse")
+                                        +reverseMethod("first")
+                                        +reverseMethod("second")
+                                        +reverseMethod("third")
+
+                                    template(id="reverse__template")
+                                        li(class="reverse-list__item")
+                                            p(class="reverse-list__result-text") <span class="code__text-function">reverseString</span> ("<span class="result__value"></span>") <span class="code__text-function-result">becomes</span> «<span class="result__output"></span>»
+                                            
+
+                    //- +challenge("Canvas Wizard", "javascript", "canvas challenge--canvas-wizard", "Course project", "#JS")
+                    //-     block challengeWizard
+                    //-         +code("Canvas Wizard", "canvas-wizard")
+                    //-             block codeWizard
+
+
 block scripts
     script(src="scripts/scripts.min.js")
