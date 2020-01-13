@@ -1,7 +1,7 @@
 .code__content--str-reverse {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 5rem;
+  gap: 7rem;
   line-height: 1.5rem;
 
   & p {
@@ -30,8 +30,26 @@
 }
 
 .reverse__method {
+  &::before {
+    @include pseudo($pos: relative, $content: attr(data-text));
+    margin-bottom: 3rem;
+    font-weight: 500;
+    font-size: 1.875rem;
+    text-align: center;
+    text-transform: capitalize;
+
+    @include for-size(phone) {
+      font-size: 1.5rem;
+    }
+  }
+
+
   & > :not(:last-child) {
     margin-bottom: 2.5rem;
+
+    @include for-size(phone) {
+      margin-bottom: 4rem;
+    }
   }
 }
 
@@ -39,6 +57,11 @@
   display: grid;
   grid-template-columns: 1fr max-content;
   gap: 1rem;
+
+  @include for-size(phone) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 // text
@@ -49,6 +72,7 @@
 .code--str-reverse pre.blockquote {
   margin-top: 2rem;
   margin-bottom: 3rem;
+  overflow-x: scroll;
 }
 
 .code__text-function-result {
@@ -81,6 +105,8 @@
 
 .reverse__input {
   padding: 0 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
   border: 1px solid transparent;
   border-bottom: 1px solid #d3d3d3;
 
@@ -104,11 +130,11 @@
 
   &:hover,
   &:focus {
+    outline: none;
     box-shadow:
       inset -3px -3px 7px #ffffff,
       inset 3px 3px 7px rgba(136, 165, 191, 0.58),
       0 0 0 #ffffff,
       0 0 0 rgba(136, 165, 191, 0.58);
-    outline: none;
   }
 }

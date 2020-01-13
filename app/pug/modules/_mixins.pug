@@ -38,7 +38,7 @@ mixin socialButton(className, path)
         
 
 mixin reverseMethod(position)
-  div(class="reverse__method reverse__method--" +position)
+  div(class="reverse__method reverse__method--" +position data-text=`${position} method`)
     form(class="reverse__form")
       input(class="reverse__input" id="reverse__input--" +position type="text", name=`${position} method` aria-label=`Reversing a String with ${position} method` placeholder=`Type something to reverse a string with ${position} method` autocomplete="off")
       button(class="button--reverse button--reverse-"+position, type="submit") Reverse!

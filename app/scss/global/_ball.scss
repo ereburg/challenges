@@ -11,10 +11,16 @@
 .challenge--canvas canvas {
   $canvas-ball-value: 40rem;
   --canvas-ball-value: $canvas-ball-value;
+  padding: 0.5rem;
   width: 60%;
   max-width: var(--canvas-ball-value);
   max-height: var(--canvas-ball-value);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  border-radius: 1.5rem;
+  box-shadow:
+    inset -3px -3px 7px #ffffff,
+    inset 3px 3px 7px rgba(136, 165, 191, 0.58),
+    -4px -2px 0.5rem #ffffff,
+    4px 2px 0.5rem rgba(136, 165, 191, 0.58);
 
   @include for-size(phone) {
     width: 100%;
