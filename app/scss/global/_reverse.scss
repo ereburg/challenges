@@ -11,6 +11,10 @@
   }
 }
 
+.bold {
+  font-weight: 500;
+}
+
 
 .code__content-list {
   margin-left: 1.5rem;
@@ -23,10 +27,6 @@
   @include for-size(phone) {
     font-size: 1rem;
   }
-}
-
-.code__text--heading {
-  font-weight: bold;
 }
 
 .reverse__method {
@@ -72,7 +72,6 @@
 .code--str-reverse pre.blockquote {
   margin-top: 2rem;
   margin-bottom: 3rem;
-  overflow-x: scroll;
 }
 
 .code__text-function-result {
@@ -93,7 +92,7 @@
   }
 }
 
-.reverse__list {
+.reverse__list:not(:empty) {
   padding: 1rem;
   border-radius: 2rem;
   box-shadow:

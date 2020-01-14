@@ -86,6 +86,22 @@
   @include for-size(phone) {
     padding: 1.25rem 0 0;
   }
+
+  & > :last-child {
+    margin-bottom: 0;
+
+    @include for-size(phone) {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.code-methods__heading {
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: $font-up;
+  line-height: 1.5;
+
 }
 
 .code__text {
@@ -93,17 +109,22 @@
   line-height: 1.5;
 
   &:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   @include for-size(phone) {
     margin-bottom: 1.25rem;
     font-size: $font-regular;
   }
+
+  &--heading {
+    margin-bottom: 0.5rem !important;
+    font-weight: bold;
+  }
 }
 
 .blockquote {
-  margin: 1rem 1.5rem 2rem;
+  margin: 2rem 1.5rem;
   padding: 2rem;
   font-weight: 300;
   line-height: 1.4;
@@ -115,6 +136,10 @@
 
   &--center {
     align-self: center;
+  }
+
+  & ~ & {
+    margin-top: 3rem;
   }
 
   @include for-size(phone) {

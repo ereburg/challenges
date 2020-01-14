@@ -19,7 +19,8 @@ module.exports = function () {
                     /^social[a-zA-Z]*/, 
                     /result$/, 
                     /neumorph/,
-                    /^button[a-zA-Z]*/
+                    /^button[a-zA-Z]*/,
+                    /^code-method[a-zA-Z]*/
                 ]
             })) 
             .pipe($.plugins.autoprefixer({

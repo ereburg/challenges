@@ -131,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 
-
 	// Фильтрация по ключевым словам в поиске
 	function CheckSearchValidity() {
 		let COUNTER = 0;
@@ -483,7 +482,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		if (id == 'ball') {
 			let newButton = document.createElement('button');
-			newButton.classList.add(`button--canvas`);
+			newButton.classList.add(`button`);
+			newButton.classList.add(`button--neumorph`);
 			newButton.setAttribute('type', 'button');
 			newButton.textContent = 'Start animation';
 			if (classname) {
@@ -741,9 +741,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const reverseList2 = document.querySelector('.reverse__list--second');
 	const reverseList3 = document.querySelector('.reverse__list--third');
 
-
-
-
 	// Создаем новый элемент и определяем способ преобразования
 	function reverseString(inputString, parent, item) {
 		let newEl = strReverseTemplate.cloneNode(true);
@@ -823,25 +820,104 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+	// Check a palindrome challenge
+	const palindromeTemplate = document.getElementById('template--palindrome').content;
+	const palindromeWrapper = document.querySelectorAll('.code-method');
+	const palindromeForms = document.querySelectorAll('.code-method__form');
+	
+
+	// Создаем новый элемент и определяем способ преобразования
+	function palindromeElement(string, parent, method) {
+		let clonedElement = palindromeTemplate.cloneNode(true);
+		let input = clonedElement.querySelector('.input-value');
+		let output = clonedElement.querySelector('.output-value');
+		input.textContent = string;
 
 
-	// Создание анимаций для фильтрации элементов
-	// получаем координаты элемента в контексте документа
-	function getCoords(elem) {
-		let box = elem.getBoundingClientRect();
-
-		return {
-			top: box.top + pageYOffset,
-			left: box.left + pageXOffset
+		const firstMethod = (str) => {
+			console.log('first method');
+			const re = /[\W_]/g;
+			let lowRegStr = str.toLowerCase().replace(re, '');
+			let reverseStr = lowRegStr.split('').reverse().join('');
+			return reverseStr === lowRegStr;
 		};
+
+		const secondMethod = (str) => {
+			console.log('second method');
+			const re = /[^A-Za-z0-9]/g;
+			str = str.toLowerCase().replace(re, '');
+			let len = str.length;
+			for (let i = 0; i < len / 2; i++) {
+				if (str[i] !== str[len - 1 - i]) {
+					return false;
+				}
+			}
+			return true;
+		};
+
+		if (method == 'first method') {
+			output.textContent = firstMethod(string);
+		} else if (method == 'second method') {
+			output.textContent = secondMethod(string);
+		}
+
+		let firstChild = parent.firstChild; // Получаем ссылку на первый дочерний элемент
+		parent.insertBefore(clonedElement, firstChild); // Вставляем новый элемент перед первым дочерним элементом
 	}
 
-	// Текущие координаты элементов
-	filterButton.forEach(item => {
-		getCoords(item);
+	// Отменяем отправку форм
+	palindromeForms.forEach(item => {
+		item.addEventListener('submit', e => {
+			e.preventDefault();
+		});
 	});
 
-	challenge.forEach(item => {
-		getCoords(item);
+	// Для каждого контейнера добавляем свой обработчик
+	palindromeWrapper.forEach(item => {
+		item.addEventListener('click', e => {
+			let target = e.target;
+			let attribute = item.getAttribute('data-text');
+			let item_list = item.querySelector('.code-method__list');
+			let item_input = item.querySelector('.code-method__input');
+			let item_button = item.querySelector('.code-method__button');
+			let item_input_value = item_input.value;
+			let its_button = target == item_button || item_button.contains(target);
+
+			if (its_button) {
+				if (item_input_value == null || item_input_value === '') {
+					alert('Please, type something!');
+					return;
+				}
+				palindromeElement(item_input_value, item_list, attribute);
+				item_input.value = '';
+			}
+		});
 	});
+
+
+
+
+
+
+
+
+	// // Создание анимаций для фильтрации элементов
+	// // получаем координаты элемента в контексте документа
+	// function getCoords(elem) {
+	// 	let box = elem.getBoundingClientRect();
+
+	// 	return {
+	// 		top: box.top + pageYOffset,
+	// 		left: box.left + pageXOffset
+	// 	};
+	// }
+
+	// // Текущие координаты элементов
+	// filterButton.forEach(item => {
+	// 	getCoords(item);
+	// });
+
+	// challenge.forEach(item => {
+	// 	getCoords(item);
+	// });
 });

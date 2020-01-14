@@ -6,6 +6,7 @@
   padding: 0;
   color: inherit;
   font-family: "Ubuntu", sans-serif;
+  text-shadow: $text-shadow;
   transition: all 0.3s ease;
 }
 
@@ -54,7 +55,7 @@ input,
 ::selection {
   color: #ffffff;
   text-shadow: none;
-  background: $color-selection;
+  background: $color-regular;
 }
 
 picture {
@@ -67,6 +68,35 @@ picture {
 
 ul {
   list-style-type: none;
+}
+
+dl {
+  margin-bottom: 1.25rem;
+  font-weight: normal;
+  font-size: $font-up;
+  line-height: 1.5;
+
+  @include for-size(phone) {
+    margin-bottom: 1.25rem;
+    font-size: $font-regular;
+  }
+}
+
+dt,
+dd {
+  color: inherit;
+}
+
+dt {
+  float: left;
+  margin-right: 0.3rem;
+}
+
+code {
+  font-weight: 300;
+  white-space: pre-wrap;
+  text-shadow: $text-shadow;
+  overflow-wrap: break-word;
 }
 
 abbr[title] {

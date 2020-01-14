@@ -1,0 +1,98 @@
+
+.code__results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  row-gap: 7rem;
+  padding: 5rem 2rem;
+  line-height: 1.5rem;
+  column-gap: 3.5rem;
+
+  @include for-size(phone) {
+    grid-template-columns: repeat(auto-fit, minmax(calc(320px - 6rem), 1fr));
+    padding: 5rem 1rem;
+  }
+
+  & p {
+    @include for-size(phone) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.code-method {
+  &::before {
+    @include pseudo($pos: relative, $content: attr(data-text));
+    margin-bottom: 3rem;
+    font-weight: 500;
+    font-size: 1.875rem;
+    text-align: center;
+    text-transform: capitalize;
+
+    @include for-size(phone) {
+      font-size: 1.5rem;
+    }
+  }
+
+  & > :not(:last-child) {
+    margin-bottom: 2.5rem;
+
+    @include for-size(phone) {
+      margin-bottom: 4rem;
+    }
+  }
+}
+
+.code-method__form {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: 1rem;
+
+  @include for-size(phone) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.code-method__input {
+  padding: 0 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #d3d3d3;
+
+  &:hover,
+  &:focus {
+    border-bottom-color: rgba(136, 165, 191, 0.58);
+    outline: none;
+  }
+}
+
+.code-method__list:not(:empty) {
+  padding: 1rem;
+  border-radius: 2rem;
+  box-shadow:
+    inset -3px -3px 7px #ffffff,
+    inset 3px 3px 7px rgba(136, 165, 191, 0.58),
+    -4px -2px 0.5rem #ffffff,
+    4px 2px 0.5rem rgba(136, 165, 191, 0.58);
+}
+
+.code-method__item {
+  margin: 1rem;
+
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #d3d3d3;
+  }
+}
+
+
+.code-methods {
+  margin: 2rem 0;
+}
+
+.code-methods__item {
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+}
