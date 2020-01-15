@@ -52,12 +52,12 @@ mixin method(value1, value2)
     span(class="result-color--comments") .prototype.
     span(class="result-color--method")=value2
 
-mixin reverseMethod(position)
+mixin reverseMethod(position, classname)
   div(class="code-method code-method--" +position data-text=`${position} method`)
     form(class="code-method__form")
-      input(class="reverse__input" id="reverse__input--" +position type="text", name=`${position} method` aria-label=`Reversing a String with ${position} method` placeholder=`Type something to reverse a string with ${position} method` autocomplete="off")
-      button(class="button--reverse button--reverse-"+position, type="submit") Reverse!
-    ul(class="reverse__list reverse__list--"+position)
+      input(class="code-method__input code-method__input--"+classname, id=classname+"__input--" +position, type="text", name=`${classname} ${position} method`, aria-label=`Reverse a string with ${position} method`, placeholder=`e.g. "Was it a car or a cat I saw?"`, autocomplete="off")
+      button(class=`code-method__button button button--neumorph button--${classname}`, type="submit") Reverse!
+    ul(class="code-method__list code-method__list--"+position)
 
 mixin palindromeMethod(position, classname)
   div(class="code-method code-method--"+classname, data-text=`${position} method`)

@@ -730,134 +730,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-	// Reversing a String challenge
-	const strReverseTemplate = document.getElementById('reverse__template').content;
-	const reverseInput1 = document.getElementById('reverse__input--first');
-	const reverseInput2 = document.getElementById('reverse__input--second');
-	const reverseInput3 = document.getElementById('reverse__input--third');
-	const reverseButtons = document.querySelectorAll('.button--reverse');
-	const reverseForms = document.querySelectorAll('.reverse__form');
-	const reverseList1 = document.querySelector('.reverse__list--first');
-	const reverseList2 = document.querySelector('.reverse__list--second');
-	const reverseList3 = document.querySelector('.reverse__list--third');
 
-	// Создаем новый элемент и определяем способ преобразования
-	function reverseString(inputString, parent, item) {
-		let newEl = strReverseTemplate.cloneNode(true);
-		let input_value = newEl.querySelector('.result__value');
-		let output_value = newEl.querySelector('.result__output');
-		input_value.textContent = inputString;
-
-		if (item == 'first') {
-			let result = inputString.split('').reverse().join('');
-			output_value.textContent = result;
-		} else if (item == 'second') {
-			let result = "";
-			for (let i = inputString.length - 1; i >= 0; i--) {
-				result += inputString[i];
-			}
-			output_value.textContent = result;
-		} else if (item == 'third') {
-			output_value.textContent = reverseString(inputString);
-		}
-
-		function reverseString(str) {
-			return (str === '') ? '' : reverseString(str.substr(1)) + str.charAt(0);
-		}
-
-		// Получаем ссылку на первый дочерний элемент
-		let theFirstChild = parent.firstChild;
-
-		// Вставляем новый элемент перед первым дочерним элементом
-		parent.insertBefore(newEl, theFirstChild);
-
-		// parent.append(newEl);
-	}
-
-	reverseForms.forEach(item => {
-		item.addEventListener('click', e => {
-			e.preventDefault();
-		});
-	});
-
-	reverseButtons.forEach(item => {
-		item.addEventListener('click', e => {
-			let input_1 = reverseInput1.value;
-			let input_2 = reverseInput2.value;
-			let input_3 = reverseInput3.value;
-
-			if (item.classList.contains('button--reverse-first')) {
-
-				if (input_1 == null || input_1 === '') {
-					alert('Please, don\'t forget to fill in the input before making Reverse!');
-					return;
-				}
-
-				reverseString(input_1, reverseList1, 'first');
-				reverseInput1.value = '';
-
-			} else if (item.classList.contains('button--reverse-second')) {
-
-				if (input_2 == null || input_2 === '') {
-					alert('Please, don\'t forget to fill the input before making magic!');
-					return;
-				}
-
-				reverseString(input_2, reverseList2, 'second');
-				reverseInput2.value = '';
-			} else if (item.classList.contains('button--reverse-third')) {
-
-				if (input_3 == null || input_3 === '') {
-					alert('Please, don\'t forget to fill the input before making magic!');
-					return;
-				}
-
-				reverseString(input_3, reverseList3, 'third');
-				reverseInput3.value = '';
-			}
-		});
-	});
-
-
-
-	// Check a palindrome challenge
+	// Interview task challenges
 	const palindromeTemplate = document.getElementById('template--palindrome').content;
-	const palindromeWrapper = document.querySelectorAll('.code-method');
-	const palindromeForms = document.querySelectorAll('.code-method__form');
-	
+	const reverseStrTemplate = document.getElementById('template--reverse').content;
+	const methodContainers = document.querySelectorAll('.code-method');
+	const methodForms = document.querySelectorAll('.code-method__form');
 
 	// Создаем новый элемент и определяем способ преобразования
-	function palindromeElement(string, parent, method) {
-		let clonedElement = palindromeTemplate.cloneNode(true);
+	function taskChecker(challenge, string, parent, method) {
+		let clonedElement;
+
+		challenge === 'palindrome' ? clonedElement = palindromeTemplate.cloneNode(true) : clonedElement = reverseStrTemplate.cloneNode(true);
+		// (challenge ? 'palindrome' : 'reverse') ? clonedElement = palindromeTemplate.cloneNode(true) : clonedElement = reverseStrTemplate.cloneNode(true);
+
 		let input = clonedElement.querySelector('.input-value');
 		let output = clonedElement.querySelector('.output-value');
 		input.textContent = string;
 		const re = /[^A-Za-zªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶ-ͷͺ-ͽΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԣԱ-Ֆՙա-ևא-תװ-ײء-يٮ-ٯٱ-ۓەۥ-ۦۮ-ۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴ-ߵߺऄ-हऽॐक़-ॡॱ-ॲॻ-ॿঅ-ঌএ-ঐও-নপ-রলশ-হঽৎড়-ঢ়য়-ৡৰ-ৱਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હઽૐૠ-ૡଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହଽଡ଼-ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-ళవ-హఽౘ-ౙౠ-ౡಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠ-ೡഅ-ഌഎ-ഐഒ-നപ-ഹഽൠ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะา-ำเ-ๆກ-ຂຄງ-ຈຊຍດ-ທນ-ຟມ-ຣລວສ-ຫອ-ະາ-ຳຽເ-ໄໆໜ-ໝༀཀ-ཇཉ-ཬྈ-ྋက-ဪဿၐ-ၕၚ-ၝၡၥ-ၦၮ-ၰၵ-ႁႎႠ-Ⴥა-ჺჼᄀ-ᅙᅟ-ᆢᆨ-ᇹሀ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏼᐁ-ᙬᙯ-ᙶᚁ-ᚚᚠ-ᛪᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢨᢪᤀ-ᤜᥐ-ᥭᥰ-ᥴᦀ-ᦩᧁ-ᧇᨀ-ᨖᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮ-ᮯᰀ-ᰣᱍ-ᱏᱚ-ᱽᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₔℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℼ-ℿⅅ-ⅉⅎↃ-ↄⰀ-Ⱞⰰ-ⱞⱠ-Ɐⱱ-ⱽⲀ-ⳤⴀ-ⴥⴰ-ⵥⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々-〆〱-〵〻-〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆷㇰ-ㇿ㐀-䶵一-鿃ꀀ-ꒌꔀ-ꘌꘐ-ꘟꘪ-ꘫꙀ-ꙟꙢ-ꙮꙿ-ꚗꜗ-ꜟꜢ-ꞈꞋ-ꞌꟻ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꤊ-ꤥꤰ-ꥆꨀ-ꨨꩀ-ꩂꩄ-ꩋ가-힣豈-鶴侮-頻並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּ-סּףּ-פּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ]|[\ud840-\ud868][\udc00-\udfff]|\ud800[\udc00-\udc0b\udc0d-\udc26\udc28-\udc3a\udc3c-\udc3d\udc3f-\udc4d\udc50-\udc5d\udc80-\udcfa\ude80-\ude9c\udea0-\uded0\udf00-\udf1e\udf30-\udf40\udf42-\udf49\udf80-\udf9d\udfa0-\udfc3\udfc8-\udfcf]|\ud801[\udc00-\udc9d]|\ud802[\udc00-\udc05\udc08\udc0a-\udc35\udc37-\udc38\udc3c\udc3f\udd00-\udd15\udd20-\udd39\ude00\ude10-\ude13\ude15-\ude17\ude19-\ude33]|\ud808[\udc00-\udf6e]|\ud835[\udc00-\udc54\udc56-\udc9c\udc9e-\udc9f\udca2\udca5-\udca6\udca9-\udcac\udcae-\udcb9\udcbb\udcbd-\udcc3\udcc5-\udd05\udd07-\udd0a\udd0d-\udd14\udd16-\udd1c\udd1e-\udd39\udd3b-\udd3e\udd40-\udd44\udd46\udd4a-\udd50\udd52-\udea5\udea8-\udec0\udec2-\udeda\udedc-\udefa\udefc-\udf14\udf16-\udf34\udf36-\udf4e\udf50-\udf6e\udf70-\udf88\udf8a-\udfa8\udfaa-\udfc2\udfc4-\udfcb]|\ud869[\udc00-\uded6]|\ud87e[\udc00-\ude1d]/ug;
 
 
-		const firstMethod = (str) => {
-			console.log('first method');
-			let lowRegStr = str.toLowerCase().replace(re, '');
-			let reverseStr = lowRegStr.split('').reverse().join('');
-			return reverseStr === lowRegStr;
-		};
+		if (challenge === 'palindrome') {
+			const firstMethod = (str) => {
+				// console.log('first method');
+				let lowRegStr = str.toLowerCase().replace(re, '');
+				let reverseStr = lowRegStr.split('').reverse().join('');
+				return reverseStr === lowRegStr;
+			};
 
-		const secondMethod = (str) => {
-			console.log('second method');
-			str = str.toLowerCase().replace(re, '');
-			let len = str.length;
-			for (let i = 0; i < len / 2; i++) {
-				if (str[i] !== str[len - 1 - i]) {
-					return false;
+			const secondMethod = (str) => {
+				// console.log('second method');
+				str = str.toLowerCase().replace(re, '');
+				let len = str.length;
+				for (let i = 0; i < len / 2; i++) {
+					if (str[i] !== str[len - 1 - i]) {
+						return false;
+					}
 				}
-			}
-			return true;
-		};
+				return true;
+			};
 
-		if (method == 'first method') {
-			output.textContent = firstMethod(string);
-		} else if (method == 'second method') {
-			output.textContent = secondMethod(string);
+			if (method == 'first method') {
+				output.textContent = firstMethod(string);
+			} else if (method == 'second method') {
+				output.textContent = secondMethod(string);
+			}
+		} 
+		if (challenge === 'reverse') {
+			const firstMethod = (str) => {
+				// console.log('first method');
+				let result = str.split('').reverse().join('');
+				return result;
+			};
+
+			const secondMethod = (str) => {
+				// console.log('second method');
+				let result = "";
+				for (let i = str.length - 1; i >= 0; i--) {
+					result += str[i];
+				}
+				return result;
+			};
+
+			const thirdMethod = (str) => {
+				// console.log('third method');
+				return (str === '') ? '' : thirdMethod(str.substr(1)) + str.charAt(0);
+			};
+
+			if (method == 'first method') {
+				output.textContent = firstMethod(string);
+			} else if (method == 'second method') {
+				output.textContent = secondMethod(string);
+			} else if (method == 'third method') {
+				output.textContent = thirdMethod(string);
+			} 
 		}
 
 		let firstChild = parent.firstChild; // Получаем ссылку на первый дочерний элемент
@@ -865,14 +811,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	// Отменяем отправку форм
-	palindromeForms.forEach(item => {
+	methodForms.forEach(item => {
 		item.addEventListener('submit', e => {
 			e.preventDefault();
 		});
 	});
 
 	// Для каждого контейнера добавляем свой обработчик
-	palindromeWrapper.forEach(item => {
+	methodContainers.forEach(item => {
 		item.addEventListener('click', e => {
 			let target = e.target;
 			let attribute = item.getAttribute('data-text');
@@ -881,13 +827,17 @@ document.addEventListener("DOMContentLoaded", () => {
 			let item_button = item.querySelector('.code-method__button');
 			let item_input_value = item_input.value;
 			let its_button = target == item_button || item_button.contains(target);
-
+			let is_palindrome = item.classList.contains('code-method--palindrome');
+			let name_challenge;
+			
+			is_palindrome ? name_challenge = 'palindrome' : name_challenge = 'reverse';
+		
 			if (its_button) {
 				if (item_input_value == null || item_input_value === '') {
 					alert('Please, type something!');
 					return;
 				}
-				palindromeElement(item_input_value, item_list, attribute);
+				taskChecker(name_challenge, item_input_value, item_list, attribute);
 				item_input.value = '';
 			}
 		});
