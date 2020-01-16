@@ -1,3 +1,26 @@
+:root {
+  --color-comments: #a0a1a7;
+  --color-function: #429ef5;
+  --color-f-name: #f81143;
+  --color-string: rgb(80, 165, 77);
+  --color-method: rgb(228, 137, 0);
+  --color-apex: rgb(106, 0, 228);
+  --color-main: linear-gradient(-45deg, #c3d1e4 0%, #dde7f3 53.92%, #d4e0ed 100%);
+  --color-cards: linear-gradient(to bottom, #f1f5f8 0%, #ebf3fa 0.01%, #dde7f3 53.92%, #e5f0f9 100%);
+  --color-title: #31456a;
+  --bg-color-element: #e3edf7;
+  --box-inner-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 7px rgba(136, 165, 191, 0.58);
+  --box-outer-shadow: -4px -2px 0.5rem #ffffff, 4px 2px 0.5rem rgba(136, 165, 191, 0.58);
+  --box-inner-shadow-light: inset -3px -3px 7px #ffffff;
+  --box-outer-shadow-light: -4px -2px 0.5rem #ffffff;
+  --box-inner-shadow-dark: inset 3px 3px 7px rgba(136, 165, 191, 0.58);
+  --box-outer-shadow-dark: 4px 2px 0.5rem rgba(136, 165, 191, 0.58);
+  --shade: #d5dee7;
+  --shade-2: #bfc7cf;
+  --bg-input: #eaf5ff;
+  --color-active: #f0f8ff;
+}
+
 *,
 *::after,
 *::before {
@@ -18,10 +41,10 @@ html {
 }
 
 .page {
-  color: $color-regular;
+  color: var(--color-title);
   font-size: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  background: $bg-regular;
+  background: var(--bg-color-element);
 
   &::-webkit-scrollbar {
     display: none;
@@ -53,9 +76,9 @@ input,
 }
 
 ::selection {
-  color: #ffffff;
+  // color: #ffffff;
   text-shadow: none;
-  background: $color-regular;
+  background: #5a606836;
 }
 
 picture {

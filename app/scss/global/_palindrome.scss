@@ -22,7 +22,6 @@
 .code-method {
   &::before {
     @include pseudo($pos: relative, $content: attr(data-text));
-    margin-bottom: 3rem;
     font-weight: 500;
     font-size: 1.875rem;
     text-align: center;
@@ -34,10 +33,10 @@
   }
 
   & > :not(:last-child) {
-    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
 
     @include for-size(phone) {
-      margin-bottom: 4rem;
+      margin-top: 4rem;
     }
   }
 }
@@ -67,15 +66,44 @@
   }
 }
 
-.code-method__list:not(:empty) {
-  padding: 1rem;
-  border-radius: 2rem;
-  box-shadow:
-    inset -3px -3px 7px #ffffff,
-    inset 3px 3px 7px rgba(136, 165, 191, 0.58),
-    -4px -2px 0.5rem #ffffff,
-    4px 2px 0.5rem rgba(136, 165, 191, 0.58);
+
+.code-method__list {
+  &:empty {
+    display: none;
+  }
+
+  &:not(:empty) {
+    margin-top: 3.5rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    box-shadow:
+      inset -3px -3px 7px #ffffff,
+      inset 3px 3px 7px rgba(136, 165, 191, 0.58),
+      -4px -2px 0.5rem #ffffff,
+      4px 2px 0.5rem rgba(136, 165, 191, 0.58);
+  }
+
+  &--fizzbuzz {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+
+    .code-method__item {
+      margin: 0;
+      padding: 0 !important;
+      text-align: center;
+    }
+
+    @include for-size(phone) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include for-size(iphone-5s) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 }
+
 
 .code-method__item {
   margin: 1rem;

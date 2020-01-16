@@ -10,13 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const totalCounter = document.querySelector('.counter__total');
 	// Переключение элементов
 	const filterButton = document.querySelectorAll('.filter__button');
-	// Фильтрация по ключевым словам в поиске
-	const input = document.querySelector('#search');
-	// Поиск для мобильных устройств
-	const searchButtonMobile = document.querySelector('.search__button--search');
-	const closeButtonMobile = document.querySelector('.search__button--close');
-	const searchWrapper = document.querySelector('.search__wrapper');
-	const searchInput = document.querySelector('.menu__input');
+	
 
 	// Общее количество challenges в шапке
 	totalCounter.textContent = `Challenges total:  ${challenge.length}`;
@@ -132,6 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	// Фильтрация по ключевым словам в поиске
+	const input = document.querySelector('#search');
+	
 	function CheckSearchValidity() {
 		let COUNTER = 0;
 
@@ -191,7 +187,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-
+	// Поиск для мобильных устройств
+	const searchButtonMobile = document.querySelector('.search__button--search');
+	const closeButtonMobile = document.querySelector('.search__button--close');
+	const searchWrapper = document.querySelector('.search__wrapper');
+	const searchInput = document.querySelector('.menu__input');
 	// Поиск для мобильных устройств
 	const searchWrapperToggler = () => {
 		searchWrapper.classList.toggle('active');
@@ -205,20 +205,28 @@ document.addEventListener("DOMContentLoaded", () => {
 	closeButtonMobile.addEventListener('click', () => {
 		searchWrapperToggler();
 		searchInput.removeAttribute('autofocus');
-	});
+		searchInput.value = '';
 
-	document.addEventListener('click', e => {
-		let target = e.target;
-		let its_header = target == header || header.contains(target);
-		let its_wrapper = target == searchWrapper || searchWrapper.contains(target);
-		let its_buttonClose = target == closeButtonMobile;
-		let its_buttonSearch = target == searchButtonMobile;
-		let wrapper_is_active = searchWrapper.classList.contains('active');
-
-		if (!its_header && !its_wrapper && !its_buttonSearch && !its_buttonClose && wrapper_is_active) {
-			searchWrapperToggler();
+		if(input.value === '') {
+			challenge.forEach(item => {
+				item.classList.remove('challenge--hidden');
+			});
+			document.querySelector('.result-search__text').remove();
 		}
 	});
+
+	// document.addEventListener('click', e => {
+	// 	let target = e.target;
+	// 	let its_header = target == header || header.contains(target);
+	// 	let its_wrapper = target == searchWrapper || searchWrapper.contains(target);
+	// 	let its_buttonClose = target == closeButtonMobile;
+	// 	let its_buttonSearch = target == searchButtonMobile;
+	// 	let wrapper_is_active = searchWrapper.classList.contains('active');
+
+	// 	// if (!its_header && !its_wrapper && !its_buttonSearch && !its_buttonClose && wrapper_is_active) {
+	// 	// 	searchWrapperToggler();
+	// 	// }
+	// });
 
 
 	// Event Challenge
@@ -269,6 +277,193 @@ document.addEventListener("DOMContentLoaded", () => {
 			e.preventDefault();
 		});
 	});
+
+
+
+
+
+
+
+	// Interview task challenges
+	const palindromeTemplate = document.getElementById('template--palindrome').content;
+	const reverseStrTemplate = document.getElementById('template--reverse').content;
+	const fizzbuzzTemplate = document.getElementById('template--fizzbuzz').content;
+	const methodContainers = document.querySelectorAll('.code-method');
+	const methodForms = document.querySelectorAll('.code-method__form');
+
+	// Создаем новый элемент и определяем способ преобразования
+	function taskChecker(challengeName, string, parent, method) {
+		let clonedElement;
+
+		if (challengeName === 'palindrome') {
+			clonedElement = palindromeTemplate.cloneNode(true);
+		} else if (challengeName === 'reverse') {
+			clonedElement = reverseStrTemplate.cloneNode(true);
+		} else {
+			return;
+		}
+
+		let input = clonedElement.querySelector('.input-value');
+		let output = clonedElement.querySelector('.output-value');
+		input.textContent = string;
+		const re = /[^A-Za-zªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶ-ͷͺ-ͽΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԣԱ-Ֆՙա-ևא-תװ-ײء-يٮ-ٯٱ-ۓەۥ-ۦۮ-ۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴ-ߵߺऄ-हऽॐक़-ॡॱ-ॲॻ-ॿঅ-ঌএ-ঐও-নপ-রলশ-হঽৎড়-ঢ়য়-ৡৰ-ৱਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હઽૐૠ-ૡଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହଽଡ଼-ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-ళవ-హఽౘ-ౙౠ-ౡಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠ-ೡഅ-ഌഎ-ഐഒ-നപ-ഹഽൠ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะา-ำเ-ๆກ-ຂຄງ-ຈຊຍດ-ທນ-ຟມ-ຣລວສ-ຫອ-ະາ-ຳຽເ-ໄໆໜ-ໝༀཀ-ཇཉ-ཬྈ-ྋက-ဪဿၐ-ၕၚ-ၝၡၥ-ၦၮ-ၰၵ-ႁႎႠ-Ⴥა-ჺჼᄀ-ᅙᅟ-ᆢᆨ-ᇹሀ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏼᐁ-ᙬᙯ-ᙶᚁ-ᚚᚠ-ᛪᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢨᢪᤀ-ᤜᥐ-ᥭᥰ-ᥴᦀ-ᦩᧁ-ᧇᨀ-ᨖᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮ-ᮯᰀ-ᰣᱍ-ᱏᱚ-ᱽᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₔℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℼ-ℿⅅ-ⅉⅎↃ-ↄⰀ-Ⱞⰰ-ⱞⱠ-Ɐⱱ-ⱽⲀ-ⳤⴀ-ⴥⴰ-ⵥⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々-〆〱-〵〻-〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆷㇰ-ㇿ㐀-䶵一-鿃ꀀ-ꒌꔀ-ꘌꘐ-ꘟꘪ-ꘫꙀ-ꙟꙢ-ꙮꙿ-ꚗꜗ-ꜟꜢ-ꞈꞋ-ꞌꟻ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꤊ-ꤥꤰ-ꥆꨀ-ꨨꩀ-ꩂꩄ-ꩋ가-힣豈-鶴侮-頻並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּ-סּףּ-פּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ]|[\ud840-\ud868][\udc00-\udfff]|\ud800[\udc00-\udc0b\udc0d-\udc26\udc28-\udc3a\udc3c-\udc3d\udc3f-\udc4d\udc50-\udc5d\udc80-\udcfa\ude80-\ude9c\udea0-\uded0\udf00-\udf1e\udf30-\udf40\udf42-\udf49\udf80-\udf9d\udfa0-\udfc3\udfc8-\udfcf]|\ud801[\udc00-\udc9d]|\ud802[\udc00-\udc05\udc08\udc0a-\udc35\udc37-\udc38\udc3c\udc3f\udd00-\udd15\udd20-\udd39\ude00\ude10-\ude13\ude15-\ude17\ude19-\ude33]|\ud808[\udc00-\udf6e]|\ud835[\udc00-\udc54\udc56-\udc9c\udc9e-\udc9f\udca2\udca5-\udca6\udca9-\udcac\udcae-\udcb9\udcbb\udcbd-\udcc3\udcc5-\udd05\udd07-\udd0a\udd0d-\udd14\udd16-\udd1c\udd1e-\udd39\udd3b-\udd3e\udd40-\udd44\udd46\udd4a-\udd50\udd52-\udea5\udea8-\udec0\udec2-\udeda\udedc-\udefa\udefc-\udf14\udf16-\udf34\udf36-\udf4e\udf50-\udf6e\udf70-\udf88\udf8a-\udfa8\udfaa-\udfc2\udfc4-\udfcb]|\ud869[\udc00-\uded6]|\ud87e[\udc00-\ude1d]/ug;
+
+
+		if (challengeName === 'palindrome') {
+			const firstMethod = (str) => {
+				let lowRegStr = str.toLowerCase().replace(re, '');
+				let reverseStr = lowRegStr.split('').reverse().join('');
+				return reverseStr === lowRegStr;
+			};
+
+			const secondMethod = (str) => {
+				str = str.toLowerCase().replace(re, '');
+				let len = str.length;
+				for (let i = 0; i < len / 2; i++) {
+					if (str[i] !== str[len - 1 - i]) {
+						return false;
+					}
+				}
+				return true;
+			};
+
+			if (method == 'first method') {
+				output.textContent = firstMethod(string);
+			} else if (method == 'second method') {
+				output.textContent = secondMethod(string);
+			}
+		}
+		if (challengeName === 'reverse') {
+			const firstMethod = (str) => {
+				// console.log('first method');
+				let result = str.split('').reverse().join('');
+				return result;
+			};
+
+			const secondMethod = (str) => {
+				// console.log('second method');
+				let result = "";
+				for (let i = str.length - 1; i >= 0; i--) {
+					result += str[i];
+				}
+				return result;
+			};
+
+			const thirdMethod = (str) => {
+				// console.log('third method');
+				return (str === '') ? '' : thirdMethod(str.substr(1)) + str.charAt(0);
+			};
+
+			if (method == 'first method') {
+				output.textContent = firstMethod(string);
+			} else if (method == 'second method') {
+				output.textContent = secondMethod(string);
+			} else if (method == 'third method') {
+				output.textContent = thirdMethod(string);
+			}
+		}
+
+		let firstChild = parent.firstChild; // Получаем ссылку на первый дочерний элемент
+		parent.insertBefore(clonedElement, firstChild); // Вставляем новый элемент перед первым дочерним элементом
+	}
+
+	function fizzbuzz(challengeName, fizz, buzz, parent) {
+		console.log(challengeName);
+
+		if (fizz < 1 || buzz < 1) {
+			return alert('Enter a number between 1 and 100');
+		} else {
+			const cleansing = () => {
+				while (parent.firstChild) {
+					parent.firstChild.remove();
+				}
+			};
+	
+			cleansing();
+
+			const addElement = (item) => {
+				let clonedElement = fizzbuzzTemplate.cloneNode(true);
+				let resultWrap = clonedElement.querySelector('.code-method__result-text');
+				resultWrap.textContent = `${item}`; // присваиваем содержимому параграфа получившееся значение 
+				if (resultWrap.textContent === `Fizz` || resultWrap.textContent === `Buzz`) {
+					resultWrap.classList.add('result-text__result-1');
+				} else if (resultWrap.textContent === `FizzBuzz`) {
+					resultWrap.classList.add('result-text__result-2');
+				}
+				parent.append(clonedElement);
+			};
+
+			let a;
+			for (let i = 1; i <= 100; i++) {
+				a = i;
+
+				if ((i % fizz == 0) && (i % buzz == 0)) {
+					a = 'FizzBuzz';
+				} else if (i % fizz == 0) {
+					a = 'Fizz';
+				} else if (i % buzz == 0) {
+					a = 'Buzz';
+				}
+
+				addElement(a);
+			}
+		}
+	}
+
+	// Отменяем отправку форм
+	methodForms.forEach(item => {
+		item.addEventListener('submit', e => {
+			e.preventDefault();
+		});
+	});
+
+	// Для каждого контейнера добавляем свой обработчик
+	methodContainers.forEach(item => {
+		item.addEventListener('click', e => {
+			let target = e.target;
+			let attribute = item.getAttribute('data-text');
+			let item_list = item.querySelector('.code-method__list');
+			let item_input = item.querySelector('.code-method__input');
+			let item_button = item.querySelector('.code-method__button');
+			let its_button = target == item_button || item_button.contains(target);
+			let its_button_fizzbuzz = item_button.classList.contains('button--fizzbuzz');
+			let is_palindrome = item.classList.contains('code-method--palindrome');
+			let is_fizzbuzz = item.classList.contains('code-method--fizzbuzz');
+			let name_challenge;
+
+			is_palindrome ? name_challenge = 'palindrome' : name_challenge = 'reverse';
+			is_fizzbuzz ? name_challenge = 'fizzbuzz' : '';
+
+			if (its_button && !its_button_fizzbuzz) {
+				let item_input_value = item_input.value;
+				if (item_input_value == null || item_input_value === '') {
+					alert('Please, type something!');
+					return;
+				}
+				taskChecker(name_challenge, item_input_value, item_list, attribute);
+				item_input.value = '';
+			} else if (its_button_fizzbuzz) {
+				let inputFizz = item.querySelector('.code-method__input--fizz');
+				let inputBuzz = item.querySelector('.code-method__input--buzz');
+				let inputFizz_value = inputFizz.value;
+				let inputBuzz_value = inputBuzz.value;
+
+				fizzbuzz(name_challenge, inputFizz_value, inputBuzz_value, item_list);
+			}
+		});
+	});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	// FizzBuzz challenge code
@@ -727,123 +922,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		}, false);
 	});
-
-
-
-
-	// Interview task challenges
-	const palindromeTemplate = document.getElementById('template--palindrome').content;
-	const reverseStrTemplate = document.getElementById('template--reverse').content;
-	const methodContainers = document.querySelectorAll('.code-method');
-	const methodForms = document.querySelectorAll('.code-method__form');
-
-	// Создаем новый элемент и определяем способ преобразования
-	function taskChecker(challenge, string, parent, method) {
-		let clonedElement;
-
-		challenge === 'palindrome' ? clonedElement = palindromeTemplate.cloneNode(true) : clonedElement = reverseStrTemplate.cloneNode(true);
-		// (challenge ? 'palindrome' : 'reverse') ? clonedElement = palindromeTemplate.cloneNode(true) : clonedElement = reverseStrTemplate.cloneNode(true);
-
-		let input = clonedElement.querySelector('.input-value');
-		let output = clonedElement.querySelector('.output-value');
-		input.textContent = string;
-		const re = /[^A-Za-zªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶ-ͷͺ-ͽΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԣԱ-Ֆՙա-ևא-תװ-ײء-يٮ-ٯٱ-ۓەۥ-ۦۮ-ۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴ-ߵߺऄ-हऽॐक़-ॡॱ-ॲॻ-ॿঅ-ঌএ-ঐও-নপ-রলশ-হঽৎড়-ঢ়য়-ৡৰ-ৱਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હઽૐૠ-ૡଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହଽଡ଼-ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-ళవ-హఽౘ-ౙౠ-ౡಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠ-ೡഅ-ഌഎ-ഐഒ-നപ-ഹഽൠ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะา-ำเ-ๆກ-ຂຄງ-ຈຊຍດ-ທນ-ຟມ-ຣລວສ-ຫອ-ະາ-ຳຽເ-ໄໆໜ-ໝༀཀ-ཇཉ-ཬྈ-ྋက-ဪဿၐ-ၕၚ-ၝၡၥ-ၦၮ-ၰၵ-ႁႎႠ-Ⴥა-ჺჼᄀ-ᅙᅟ-ᆢᆨ-ᇹሀ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏼᐁ-ᙬᙯ-ᙶᚁ-ᚚᚠ-ᛪᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢨᢪᤀ-ᤜᥐ-ᥭᥰ-ᥴᦀ-ᦩᧁ-ᧇᨀ-ᨖᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮ-ᮯᰀ-ᰣᱍ-ᱏᱚ-ᱽᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₔℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℼ-ℿⅅ-ⅉⅎↃ-ↄⰀ-Ⱞⰰ-ⱞⱠ-Ɐⱱ-ⱽⲀ-ⳤⴀ-ⴥⴰ-ⵥⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々-〆〱-〵〻-〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆷㇰ-ㇿ㐀-䶵一-鿃ꀀ-ꒌꔀ-ꘌꘐ-ꘟꘪ-ꘫꙀ-ꙟꙢ-ꙮꙿ-ꚗꜗ-ꜟꜢ-ꞈꞋ-ꞌꟻ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꤊ-ꤥꤰ-ꥆꨀ-ꨨꩀ-ꩂꩄ-ꩋ가-힣豈-鶴侮-頻並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּ-סּףּ-פּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ]|[\ud840-\ud868][\udc00-\udfff]|\ud800[\udc00-\udc0b\udc0d-\udc26\udc28-\udc3a\udc3c-\udc3d\udc3f-\udc4d\udc50-\udc5d\udc80-\udcfa\ude80-\ude9c\udea0-\uded0\udf00-\udf1e\udf30-\udf40\udf42-\udf49\udf80-\udf9d\udfa0-\udfc3\udfc8-\udfcf]|\ud801[\udc00-\udc9d]|\ud802[\udc00-\udc05\udc08\udc0a-\udc35\udc37-\udc38\udc3c\udc3f\udd00-\udd15\udd20-\udd39\ude00\ude10-\ude13\ude15-\ude17\ude19-\ude33]|\ud808[\udc00-\udf6e]|\ud835[\udc00-\udc54\udc56-\udc9c\udc9e-\udc9f\udca2\udca5-\udca6\udca9-\udcac\udcae-\udcb9\udcbb\udcbd-\udcc3\udcc5-\udd05\udd07-\udd0a\udd0d-\udd14\udd16-\udd1c\udd1e-\udd39\udd3b-\udd3e\udd40-\udd44\udd46\udd4a-\udd50\udd52-\udea5\udea8-\udec0\udec2-\udeda\udedc-\udefa\udefc-\udf14\udf16-\udf34\udf36-\udf4e\udf50-\udf6e\udf70-\udf88\udf8a-\udfa8\udfaa-\udfc2\udfc4-\udfcb]|\ud869[\udc00-\uded6]|\ud87e[\udc00-\ude1d]/ug;
-
-
-		if (challenge === 'palindrome') {
-			const firstMethod = (str) => {
-				// console.log('first method');
-				let lowRegStr = str.toLowerCase().replace(re, '');
-				let reverseStr = lowRegStr.split('').reverse().join('');
-				return reverseStr === lowRegStr;
-			};
-
-			const secondMethod = (str) => {
-				// console.log('second method');
-				str = str.toLowerCase().replace(re, '');
-				let len = str.length;
-				for (let i = 0; i < len / 2; i++) {
-					if (str[i] !== str[len - 1 - i]) {
-						return false;
-					}
-				}
-				return true;
-			};
-
-			if (method == 'first method') {
-				output.textContent = firstMethod(string);
-			} else if (method == 'second method') {
-				output.textContent = secondMethod(string);
-			}
-		} 
-		if (challenge === 'reverse') {
-			const firstMethod = (str) => {
-				// console.log('first method');
-				let result = str.split('').reverse().join('');
-				return result;
-			};
-
-			const secondMethod = (str) => {
-				// console.log('second method');
-				let result = "";
-				for (let i = str.length - 1; i >= 0; i--) {
-					result += str[i];
-				}
-				return result;
-			};
-
-			const thirdMethod = (str) => {
-				// console.log('third method');
-				return (str === '') ? '' : thirdMethod(str.substr(1)) + str.charAt(0);
-			};
-
-			if (method == 'first method') {
-				output.textContent = firstMethod(string);
-			} else if (method == 'second method') {
-				output.textContent = secondMethod(string);
-			} else if (method == 'third method') {
-				output.textContent = thirdMethod(string);
-			} 
-		}
-
-		let firstChild = parent.firstChild; // Получаем ссылку на первый дочерний элемент
-		parent.insertBefore(clonedElement, firstChild); // Вставляем новый элемент перед первым дочерним элементом
-	}
-
-	// Отменяем отправку форм
-	methodForms.forEach(item => {
-		item.addEventListener('submit', e => {
-			e.preventDefault();
-		});
-	});
-
-	// Для каждого контейнера добавляем свой обработчик
-	methodContainers.forEach(item => {
-		item.addEventListener('click', e => {
-			let target = e.target;
-			let attribute = item.getAttribute('data-text');
-			let item_list = item.querySelector('.code-method__list');
-			let item_input = item.querySelector('.code-method__input');
-			let item_button = item.querySelector('.code-method__button');
-			let item_input_value = item_input.value;
-			let its_button = target == item_button || item_button.contains(target);
-			let is_palindrome = item.classList.contains('code-method--palindrome');
-			let name_challenge;
-			
-			is_palindrome ? name_challenge = 'palindrome' : name_challenge = 'reverse';
-		
-			if (its_button) {
-				if (item_input_value == null || item_input_value === '') {
-					alert('Please, type something!');
-					return;
-				}
-				taskChecker(name_challenge, item_input_value, item_list, attribute);
-				item_input.value = '';
-			}
-		});
-	});
-
-
 
 
 

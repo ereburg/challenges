@@ -65,3 +65,17 @@ mixin palindromeMethod(position, classname)
       input(class="code-method__input code-method__input--"+classname, id=classname+"__input--" +position, type="text", name=`${classname} ${position} method` aria-label=`Check a ${classname} with ${position} method` placeholder=`e.g. "Was it a car or a cat I saw?"` autocomplete="off")
       button(class=`code-method__button button button--neumorph button--${classname}` , type="submit") Check!
     ul(class="code-method__list code-method__list--"+position)
+
+mixin fizzbuzzMethod(position, classname)
+  div(class="code-method code-method--"+classname, data-text=`FizzBuzz ${position} method`)
+    form(class="code-method__form code-method__form--"+classname)
+      p(class="code-method__row")
+        label(class="code-method__label" for="inputFizz") Enter «Fizz» number:
+        input(class="code-method__input--fizz" id="fizz--"+position, type="number" name="fizz-"+position value="3" min="1" max="100" autocomplete="off")
+      p(class="code-method__row")
+        label(class="code-method__label" for="inputBuzz") Enter «Buzz» number:
+        input(class="code-method__input--buzz" id="buzz--"+position, type="number" name="buzz-"+position value="5" min="1" max="100" autocomplete="off")
+      button(class="code-method__button button button--neumorph button--fizzbuzz" type="submit" aria-label="Click me if you are ready to FizzBuzz!"): span(class="code-method__button-text") FizzBuzz it!
+    //- div(class="code-method__results-wrapper")
+    //-   h3(class="code-method__results-header") And now what we've got!
+    ul(class=`code-method__list code-method__list--${position} code-method__list--${classname}`)

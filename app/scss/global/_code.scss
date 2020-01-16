@@ -1,7 +1,4 @@
 .code { // общее поведение окна с кодом для всех
-  --color-main: linear-gradient(-45deg, #c3d1e4 0%, #dde7f3 53.92%, #d4e0ed 100%);
-  --color-cards: linear-gradient(#f1f5f8 0%, #ebf3fa 0.01%, #dde7f3 53.92%, #e5f0f9 100%);
-  --color-title: #31456a;
   position: fixed;
   top: 0;
   left: 0;
@@ -20,7 +17,7 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.425);
     content: "";
   }
 
@@ -39,7 +36,8 @@
   min-height: 100vh;
   margin: auto;
   background: var(--color-cards);
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0), 2px 8px 20px rgba(0, 0, 0, 0.15);
+  // background: linear-gradient(318.32deg, #C3D1E4 -0.02%, #DDE7F3 54.14%, #D4E0ED 100.43%);
+  box-shadow: inset 0 0 1px rgba(64, 64, 65, 0.507), 4.5rem 7rem 9rem rgba(89, 90, 92, 0.671);
 
   @include for-size(desktop-big) {
     min-height: unset;
@@ -126,12 +124,11 @@
   margin: 2rem 1.5rem;
   padding: 2rem;
   font-weight: 300;
+  font-style: italic;
   line-height: 1.4;
-  background: #e3edf7;
+  background: var(--bg-color-element);
   border-radius: 1.5rem;
-  box-shadow:
-    inset -3px -3px 7px #ffffff,
-    inset 3px 3px 7px rgba(136, 165, 191, 0.58);
+  box-shadow: var(--box-inner-shadow);
 
   &--center {
     align-self: center;

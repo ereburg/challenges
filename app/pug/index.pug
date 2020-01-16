@@ -10,9 +10,8 @@ block content
             section(class="hero")
                 div(class="hero__description")
                     h1(class="page__title") Code Challenges
-                    p(class="hero__text") Explore various front-end coding challenges made by me and my coder friends. 
-                    p(class="hero__text") The major goal is to create solutions to the most common tasks at <abbr title="JavaScript">JS</abbr> interviews. In addition, I decided to share some of personal code tasks, gists and snippets for <abbr title="HyperText Markup Language">HTML</abbr> and <abbr title="Cascading Style Sheets">CSS</abbr> that I constantly use. Also you can find there different <abbr title="Cascading Style Sheets">CSS</abbr> animations, effects and styling components.
-                    p(class="hero__text") Hope you'll enjoy this stuff, let's go!
+                    p(class="hero__text") Every company has a different interview process, but one thing that is common among most employers is <em>giving a coding challenge</em>. Also known as <i>code katas</i>, these challenges are used to evaluate both your problem-solving skills as well as your knowledge of the language you are writing it in. There are many common challenges out there and I decided to create a project, where I could <em>collect</em> and <em>solve</em> one of the most well-known code katas. Well, as you guessed, the name of this special project is <em>Challenges</em>. 
+                    p(class="hero__text") You can explore various front-end code katas made by me or by my friends, and, in addition, I decided to share some of personal code tasks, gists and snippets, design patterns and solutions for <abbr title="HyperText Markup Language">HTML</abbr> and <abbr title="Cascading Style Sheets">CSS</abbr> that I used to during my studying. Hope you'll enjoy this stuff, let's go!
 
             section(class="challenges")
                 h2(class="visually-hidden") Challenges List
@@ -20,7 +19,7 @@ block content
                     ul(class="hero__list filter")
                         li(class="filter__item"): button(class="filter__button filter__button--all active" type="button") All
                         li(class="filter__item"): button(class="filter__button filter__button--javascript" type="button") JavaScript                    
-                        li(class="filter__item"): button(class="filter__button filter__button--animations" type="button") <abbr title="Cascading Style Sheets">CSS Inspiration</abbr>
+                        li(class="filter__item"): button(class="filter__button filter__button--animations" type="button") <abbr title="Cascading Style Sheets">CSS</abbr> Inspiration
                 ul(class="challenges__container")
                     +challenge("Reverse a String", "javascript", "str-reverse", "Task", "#JS")
                         block challengeReverse
@@ -45,7 +44,7 @@ block content
                                                         +method("Array", "join()")
                                                 div(class="blockquote")
                                                     p(class="code__text code__text--heading") And the final code is:
-                                                    pre(class="code__text"): code.
+                                                    pre(class="code__text" translate="no"): code.
                                                         <span class="result-color--function">function</span> <span class="result-color--function-name">reverseString</span>(str) {
                                                             <span class="result-color--apex">return</span> str.<span class="result-color--method">split(<span class="result-color--string">""</span>)</span>.<span class="result-color--method">reverse()</span>.<span class="result-color--method">join(<span class="result-color--string">""</span>)</span>;
                                                         }
@@ -56,7 +55,7 @@ block content
                                                 p(class="code__text") First of all we should create an empty string that will host the new created string. Then create the <strong>FOR</strong> loop. And finally return the reversed string. And this code looks like:
                                                 div(class="blockquote")
                                                     p(class="code__text code__text--heading") And the final code is:
-                                                    pre(class="code__text"): code.
+                                                    pre(class="code__text" translate="no"): code.
                                                         <span class="result-color--function">function</span> <span class="result-color--function-name">reverseString</span>(str) {
                                                             <span class="result-color--function">var</span> newString = <span class="result-color--string">""</span>;
                                                             <span class="result-color--apex">for</span> (<span class="code__text-function">var</span> i = str.<span class="result-color--method">length</span> - 1; i >= 0; i<span class="result-color--method">--</span>) {
@@ -66,7 +65,7 @@ block content
                                                         }
                                                         <span class="result-color--function-name">reverseString</span>("<span class="result-color--string">hello</span>");
                                             
-                                            i(class="code-methods__item")
+                                            li(class="code-methods__item")
                                                 h3(class="code-methods__heading") 3. Reverse a String With Recursion
                                                 div(class="blockquote")
                                                     p(class="code__text code__text--heading") For this solution, we will use two methods:
@@ -75,7 +74,7 @@ block content
                                                         +method("String", "charAt()")
                                                 div(class="blockquote")
                                                     p(class="code__text code__text--heading") And the final code is:
-                                                    pre(class="code__text"): code.
+                                                    pre(class="code__text" translate="no"): code.
                                                         <span class="result-color--function">function</span> <span class="result-color--function-name">reverseString</span>(str) {
                                                             <span class="result-color--apex">return</span> (str === <span class="result-color--string">' '</span>) <span class="result-color--apex">?</span> <span class="result-color--string">' '</span> <span class="result-color--apex">:</span>  <span class="result-color--function-name">reverseString</span>(str.<span class="result-color--method">substr(<span class="text-regular">1</span>)</span>) + str.<span class="result-color--method">charAt(<span class="text-regular">0</span>)</span>;
                                                         }
@@ -124,7 +123,7 @@ block content
                                                         +method("Array", "join()")
                                                 div(class="blockquote")
                                                     p(class="code__text code__text--heading") And the final code is:
-                                                    pre(class="code__text"): code.
+                                                    pre(class="code__text" translate="no"): code.
                                                         <span class="result-color--function">function</span> <span class="result-color--function-name">palindrome</span>(str) {
                                                             <span class="result-color--function">const</span> re = <span class="result-color--string">/[\W_]/g</span>;
                                                             <span class="result-color--function">let</span> lowRegStr = str.<span class="result-color--method">toLowerCase</span>().<span class="result-color--method">replace</span>(re, <span class="result-color--string">' '</span>);
@@ -137,7 +136,7 @@ block content
                                                 p(class="code__text") Half-indexing (len/2) has benefits when processing <strong>large</strong>  strings. We check the end from each part and divide the number of iterations inside the <strong>FOR</strong> loop by two.
                                                 div(class="blockquote")
                                                     p(class="code__text code__text--heading") And the final code is:
-                                                    pre(class="code__text"): code.
+                                                    pre(class="code__text" translate="no"): code.
                                                         <span class="result-color--function">function</span> <span class="result-color--function-name">palindrome</span>(str) {
                                                             <span class="result-color--function">const</span> re = <span class="result-color--string">/[^A-Za-z0-9]/g</span>;
                                                             str = str.<span class="result-color--method">toLowerCase</span>().<span class="result-color--method">replace</span>(re, <span class="result-color--string">' '</span>);
@@ -164,31 +163,23 @@ block content
                             +code("FizzBuzz", "fizzbuzz")
                                 block codeFizzBuzz
                                     div(class="code__info") 
-                                        p(class="code__text") <strong>The «FizzBuzz test»</strong> is an interview question designed to help filter out the 99.5% of programming job candidates which couldn't handle this task. The text of the programming assignment is as follows:
-                                        blockquote(class="blockquote") "Write a program that prints the numbers from 1 to 100. But for multiples of three print «Fizz» instead of the number and for the multiples of five print «Buzz». For numbers which are multiples of both three and five print «FizzBuzz»." <footer><cite>&copy; Some tech specialist at interview</cite></footer>
-                                        p(class="code__text") I think FizzBuzz is «hard» for some programmers because (#1) it doesn't fit into any of the patterns that were given to them in school assignments, and (#2) it isn't possible to directly and simply represent the necessary tests, without duplication, in just about any commonly-used modern programming language.
-                                        p(class="code__text") On #1, that it doesn't match the patterns they memorized from lectures and class assignments: I think this makes it a good discriminator, because employer wishes to hire candidates who can think for themselves -- not those who are limited to copying solutions from others.
-                                        p(class="code__text") On #2, it's difficult to code directly: <strong>FizzBuzz</strong> doesn't fit any common pattern of
-                                        p(class="blockquote blockquote--center")
-                                            code if 1 then A 
-                                                <br> else if 2 then B
-                                                <br> else if 3 then C
-                                                <br> else/otherwise D
-                                        p(class="code__text") Maybe there's no simple and satisfying solution to the code structuring issue, but let me introduce my own solution in JavaScript. You can choose <strong>«Fizz»</strong> and <strong>«Buzz»</strong> numbers manualy.
+                                        p(class="code__text") The «<strong>FizzBuzz</strong>» test is an interview question designed to help filter out the 99.5% of programming job candidates which couldn't handle this task. There are many variations of this challenge, but they all typically go something like this: <q>Write a program that prints the numbers from 1 to 100. But for multiples of three print «Fizz» instead of the number and for the multiples of five print «Buzz». For numbers which are multiples of both three and five print «FizzBuzz».</q> <cite> &mdash; <small>&copy;</small> Some tech specialist at interview.</cite>
+                                        div(class="float-wrapper")
+                                            p(class="code__text") I think FizzBuzz is <i>difficult</i> for major programmers for two reasons. First one, because it doesn't match any patterns which are studying on courses from scratch and, the second one, because there's no simple way to solve the code kata with build-in methods and display necessary tests without duplication in any commonly used modern programming languages &mdash; <em>FizzBuzz</em> doesn't fit any common pattern of coding structure below. 
+                                            div(class="blockquote blockquote--center")
+                                                pre: code.
+                                                    <span class="result-color--apex">if</span> 1 <span class="result-color--method">then</span> A 
+                                                    <span class="result-color--apex">else if</span> 2 <span class="result-color--method">then</span> B
+                                                    <span class="result-color--apex">else if</span> 3 <span class="result-color--method">then</span> C
+                                                    <span class="result-color--apex">else</span>/<span class="result-color--method">otherwise</span> D
+                                        p(class="code__text") That's why I think this makes it a good discriminator, because employer wishes to hire candidates who can think for themselves &mdash; not those who are limited to copying solutions from others. Maybe there's no simple and satisfying way out to the code structuring issue, but let me introduce my own solution in JavaScript. You can choose <i>«Fizz»</i> and <i>«Buzz»</i> numbers manualy.
 
-                                    div(class="code__form")
-                                        p(class="code__row code__row--grid")
-                                            label(class="code__label" for="inputFizz") Enter «Fizz» number:
-                                            input(class="code__input code__input--fizz" id="inputFizz" type="number" name="fizz" value="3" min="1" max="100" autocomplete="off")
-                                            
-                                        p(class="code__row code__row--grid")
-                                            label(class="code__label" for="inputBuzz") Enter «Buzz» number:
-                                            input(class="code__input code__input--buzz" id="inputBuzz" type="number" name="buzz" value="5" min="1" max="100" autocomplete="off")
-                                        p(class="code__row")
-                                            button(class="button-fizzbuzz" type="button" aria-label="Click me if you are ready to start the code") FizzBuzz it!
+                                    div(class="code__results code__results--fizzbuzz")
+                                        +fizzbuzzMethod("first", "fizzbuzz")
 
-                                    div(class="code__result result")
-                                        div(class="result__grid")
+                                        template(id="template--fizzbuzz")
+                                            li(class="code-method__item")
+                                                span(class="code-method__result-text")
 
                     +challenge("Canvas Clock", "javascript", "clocks", "Course project", "#JS")
                         block challengeClocks
