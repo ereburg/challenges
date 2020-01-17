@@ -196,3 +196,154 @@
   padding: 0 0.25rem;
   font-size: inherit;
 }
+
+.code__results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  row-gap: 7rem;
+  padding: 5rem 2rem;
+  line-height: 1.5rem;
+  column-gap: 3.5rem;
+
+  @include for-size(phone) {
+    grid-template-columns: repeat(auto-fit, minmax(calc(320px - 6rem), 1fr));
+    padding: 5rem 1rem;
+  }
+
+  & p {
+    @include for-size(phone) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.code-method {
+  &::before {
+    @include pseudo($pos: relative, $content: attr(data-text));
+    font-weight: 500;
+    font-size: 1.875rem;
+    text-align: center;
+    text-transform: capitalize;
+
+    @include for-size(phone) {
+      font-size: 1.5rem;
+    }
+  }
+
+  & > :not(:last-child) {
+    margin-top: 2.5rem;
+
+    @include for-size(phone) {
+      margin-top: 4rem;
+    }
+  }
+}
+
+.code-method__form {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: 1rem;
+
+  @include for-size(phone) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.code-method__input {
+  padding: 0 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #d3d3d3;
+
+  &:hover,
+  &:focus {
+    border-bottom-color: rgba(136, 165, 191, 0.58);
+    outline: none;
+  }
+}
+
+.code-method__list {
+  &:empty {
+    display: none;
+  }
+
+  &:not(:empty) {
+    margin-top: 3.5rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    box-shadow:
+      inset -3px -3px 7px #ffffff,
+      inset 3px 3px 7px rgba(136, 165, 191, 0.58),
+      -4px -2px 0.5rem #ffffff,
+      4px 2px 0.5rem rgba(136, 165, 191, 0.58);
+  }
+
+  &--fizzbuzz {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    padding: 2rem !important;
+
+    .code-method__item {
+      margin: 0;
+      padding: 0.5rem 0.4rem !important;
+      text-align: center;
+      border: none !important;
+      border-radius: 0.5rem;
+      box-shadow:
+        inset -1px -1px 3px #ffffff,
+        inset 1px 1px 3px rgba(136, 165, 191, 0.58),
+        -2px -1px 0.5rem #ffffff,
+        2px 1px 0.5rem rgba(136, 165, 191, 0.58);
+
+      &--result-1 {
+        color: #d6e1ef;
+        background: linear-gradient(-45deg, #8c60b1, #9266bb);
+        box-shadow:
+          2px 2px 0.6rem rgba(185, 84, 231, 0.288),
+          2px 2px 0.6rem rgba(192, 23, 244, 0.185);
+      }
+
+      &--result-2 {
+        color: rgb(239, 245, 252);
+        background: linear-gradient(-45deg, #e63067, #f33363);
+        box-shadow:
+          2px 2px 0.6rem rgba(231, 84, 140, 0.356),
+          2px 2px 0.6rem rgba(244, 23, 78, 0.397);
+      }
+    }
+
+    @include for-size(phone) {
+      grid-template-columns: repeat(4, 1fr);
+      margin: 0 -1rem;
+      font-size: 13px;
+    }
+
+    @include for-size(iphone-5s) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+
+.code-method__item {
+  margin: 1rem;
+
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #d3d3d3;
+  }
+}
+
+
+.code-methods {
+  margin: 2rem 0;
+}
+
+.code-methods__item {
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+}

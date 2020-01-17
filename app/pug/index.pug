@@ -21,7 +21,7 @@ block content
                         li(class="filter__item"): button(class="filter__button filter__button--javascript" type="button") JavaScript                    
                         li(class="filter__item"): button(class="filter__button filter__button--animations" type="button") <abbr title="Cascading Style Sheets">CSS</abbr> Inspiration
                 ul(class="challenges__container")
-                    +challenge("Reverse a String", "javascript", "str-reverse", "Task", "#JS")
+                    +challenge("Reverse a String", "javascript", "str-reverse", "Task", "#JS", "interview")
                         block challengeReverse
                             +code("Reverse a String", "str-reverse")
                                 block codeReverse
@@ -89,7 +89,7 @@ block content
                                         li(class="code-method__item")
                                             p(class="code-method__result-text") <span class="result-color--function-name">reverseString</span> ("<span class="input-value result-color--string"></span>") returned next result: «<span class="output-value result-color--apex"></span>»
 
-                    +challenge("Palindrome", "javascript", "palindrome", "Task", "#JS")
+                    +challenge("Palindrome", "javascript", "palindrome", "Task", "#JS", "interview")
                         block challengePalindrom
                             +code("Check for Palindromes", "palindrome")
                                 block codePalindrom
@@ -158,13 +158,13 @@ block content
                                         li(class="code-method__item")
                                             p(class="code-method__result-text") <span class="result-color--function-name">palindrome</span> ("<span class="input-value result-color--string"></span>") function passed the check with result: <span class="output-value result-color--apex"></span>
                          
-                    +challenge("FizzBuzz", "javascript", "fizzbuzz", "Task", "#JS")
+                    +challenge("FizzBuzz", "javascript", "fizzbuzz", "Task", "#JS", "interview")
                         block challengeFizzBuzz
                             +code("FizzBuzz", "fizzbuzz")
                                 block codeFizzBuzz
                                     div(class="code__info") 
                                         p(class="code__text") The «<strong>FizzBuzz</strong>» test is an interview question designed to help filter out the 99.5% of programming job candidates which couldn't handle this task. There are many variations of this challenge, but they all typically go something like this: <q>Write a program that prints the numbers from 1 to 100. But for multiples of three print «Fizz» instead of the number and for the multiples of five print «Buzz». For numbers which are multiples of both three and five print «FizzBuzz».</q> <cite> &mdash; <small>&copy;</small> Some tech specialist at interview.</cite>
-                                        div(class="float-wrapper")
+                                        div(class="grid-text-wrapper")
                                             p(class="code__text") I think FizzBuzz is <i>difficult</i> for major programmers for two reasons. First one, because it doesn't match any patterns which are studying on courses from scratch and, the second one, because there's no simple way to solve the code kata with build-in methods and display necessary tests without duplication in any commonly used modern programming languages &mdash; <em>FizzBuzz</em> doesn't fit any common pattern of coding structure below. 
                                             div(class="blockquote blockquote--center")
                                                 pre: code.
@@ -181,32 +181,32 @@ block content
                                             li(class="code-method__item")
                                                 span(class="code-method__result-text")
 
-                    +challenge("Canvas Clock", "javascript", "clocks", "Course project", "#JS")
+                    +challenge("Canvas Clock", "javascript", "clocks", "Course project", "#JS", "course")
                         block challengeClocks
-                            +code("Canvas Clock", "clocks")
+                            +code("Canvas Clock", "clocks", "canvas")
                                 block codeClocks
                                     div(class="code__info")
                                         p(class="code__text") The «<strong>Canvas Clock</strong>» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the «clock» shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
                                     div(class="code__content") 
                                         canvas(id="clock" width="300px" height="300px" aria-label="Clock built with canvas JS.") Please upgrade your browser. 
                     
-                    +challenge("Canvas Ball", "javascript", "canvas challenge--canvas-ball", "Course project", "#JS")
+                    +challenge("Canvas Ball", "javascript", "canvas challenge--canvas-ball", "Course project", "#JS", "course")
                         block challengeBall
-                            +code("Canvas Ball", "canvas-ball")
+                            +code("Canvas Ball", "canvas-ball", "canvas")
                                 block codeBall
                                     div(class="code__info")
                                         p(class="code__text") <strong>The «Canvas Ball»</strong> is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the bouncing ball animation shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
                                     div(class="code__content code__content--canvas-ball")
 
-                    +challenge("Canvas Wizard", "javascript", "canvas challenge--canvas-wizard", "Course project", "#JS")
+                    +challenge("Canvas Wizard", "javascript", "canvas challenge--canvas-wizard", "Course project", "#JS", "course")
                         block challengeWizard
-                            +code("Canvas Wizard", "canvas-wizard")
+                            +code("Canvas Wizard", "canvas-wizard", "canvas")
                                 block codeWizard
                                     div(class="code__info")
                                         p(class="code__text") The «<strong>Canvas Wizard</strong>» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. In this challenge you are allowed to control the wizards' movements inside restricted area. For now you can move the Wizard <strong>only from desktop</strong>.
                                     div(class="code__content code__content--canvas-wizard")
 
-                    +challenge("Social Media Buttons", "animations", "social-buttons", "Inspiration", "#CSS")
+                    +challenge("Social Media Buttons", "animations", "social-buttons", "Inspiration", "#CSS", "inspiration")
                         block challengeSocials
                             +code("Social Media Buttons", "social-buttons")
                                 block codeSocials

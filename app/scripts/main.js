@@ -215,19 +215,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	// document.addEventListener('click', e => {
-	// 	let target = e.target;
-	// 	let its_header = target == header || header.contains(target);
-	// 	let its_wrapper = target == searchWrapper || searchWrapper.contains(target);
-	// 	let its_buttonClose = target == closeButtonMobile;
-	// 	let its_buttonSearch = target == searchButtonMobile;
-	// 	let wrapper_is_active = searchWrapper.classList.contains('active');
-
-	// 	// if (!its_header && !its_wrapper && !its_buttonSearch && !its_buttonClose && wrapper_is_active) {
-	// 	// 	searchWrapperToggler();
-	// 	// }
-	// });
-
 
 	// Event Challenge
 
@@ -280,11 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
-
-	// Interview task challenges
+	// Интервью task challenges
 	const palindromeTemplate = document.getElementById('template--palindrome').content;
 	const reverseStrTemplate = document.getElementById('template--reverse').content;
 	const fizzbuzzTemplate = document.getElementById('template--fizzbuzz').content;
@@ -368,7 +351,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function fizzbuzz(challengeName, fizz, buzz, parent) {
-		console.log(challengeName);
 
 		if (fizz < 1 || buzz < 1) {
 			return alert('Enter a number between 1 and 100');
@@ -383,12 +365,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			const addElement = (item) => {
 				let clonedElement = fizzbuzzTemplate.cloneNode(true);
+				let clonedListItem = clonedElement.querySelector('.code-method__item');
 				let resultWrap = clonedElement.querySelector('.code-method__result-text');
 				resultWrap.textContent = `${item}`; // присваиваем содержимому параграфа получившееся значение 
 				if (resultWrap.textContent === `Fizz` || resultWrap.textContent === `Buzz`) {
-					resultWrap.classList.add('result-text__result-1');
+					clonedListItem.classList.add('code-method__item--result-1');
 				} else if (resultWrap.textContent === `FizzBuzz`) {
-					resultWrap.classList.add('result-text__result-2');
+					clonedListItem.classList.add('code-method__item--result-2');
 				}
 				parent.append(clonedElement);
 			};
@@ -452,93 +435,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// FizzBuzz challenge code
-	const inputFizz = document.querySelector('#inputFizz');
-	const inputBuzz = document.querySelector('#inputBuzz');
-	const buttonFizzBuzz = document.querySelector('.button-fizzbuzz');
-	const resultContainer = document.querySelector('.result__grid');
-
-
-	const FizzBuzz = (fizz, buzz) => {
-		fizz = inputFizz.value;
-		buzz = inputBuzz.value;
-
-		if (fizz < 1 || buzz < 1) {
-			return alert('Enter a number between 1 and 100');
-		} else {
-			const AddFizzBuzzHeader = () => {
-				let create = document.createElement('h2');
-				create.classList.add('result__header');
-				create.textContent = `Results for FizzBuzz Challenge`;
-				resultContainer.append(create);
-			};
-
-			AddFizzBuzzHeader();
-
-			const AddFizzBuzzElement = (item) => {
-				let create = document.createElement('p');
-				create.classList.add('result__item');
-				create.textContent = `${item}`;
-				resultContainer.append(create);
-			};
-
-			let a;
-			for (let i = 1; i <= 100; i++) {
-				a = i;
-
-				if ((i % fizz == 0) && (i % buzz == 0)) {
-					a = 'fizzbuzz';
-				} else if (i % fizz == 0) {
-					a = 'fizz';
-				} else if (i % buzz == 0) {
-					a = 'buzz';
-				}
-
-				AddFizzBuzzElement(a);
-			}
-
-			const checkInnerContent = () => {
-				const resultItem = document.querySelectorAll('.result__item');
-				resultItem.forEach(item => {
-					let itemContent = item.textContent.toLowerCase();
-					if (itemContent == ('Fizz').toLowerCase()) {
-						item.classList.add('result__item--fizz');
-					} else if (itemContent == ('Buzz').toLowerCase()) {
-						item.classList.add('result__item--buzz');
-					} else if (itemContent == ('FizzBuzz').toLowerCase()) {
-						item.classList.add('result__item--fizzbuzz');
-					}
-				});
-			};
-			checkInnerContent();
-		}
-	};
-
-	const CleanResultContainer = () => {
-		while (resultContainer.firstChild) {
-			resultContainer.firstChild.remove();
-		}
-	};
-
-	buttonFizzBuzz.addEventListener('click', e => {
-		e.preventDefault();
-		CleanResultContainer();
-		FizzBuzz();
-	}, false);
 
 
 
