@@ -25,7 +25,7 @@
 // медиа-выражения
 @mixin for-size($size) {
   @if $size == iphone-5s {
-    @media (max-width: 390px) {
+    @media (max-width: 395px) {
       @content;
     }
   }
