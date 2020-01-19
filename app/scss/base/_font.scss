@@ -108,6 +108,21 @@
       margin-top: 4rem;
     }
   }
+
+  &--move {
+    @include flexbox(center);
+    --arrow-width: 2px;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+
+    &::before {
+      content: attr(data-text);
+    }
+
+    @include for-size(phone) {
+      margin: 0;
+    }
+  }
 }
 
 .code-method__button-text {

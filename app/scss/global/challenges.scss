@@ -75,9 +75,9 @@
   width: 100%;
   height: 100%;
   font-weight: 500;
-  background: linear-gradient(-45deg, #e5f0f9 50%, #f1f5f8  50%);
+  background: linear-gradient(-45deg, hsl(207, 32%, 94%) 50%, #f5f8fa  50%);
   // background: linear-gradient(-45deg, hsl(220, 47%, 96%) 50%, hsl(209, 53%, 90%) 50%);
-  // --color-cards: linear-gradient(to bottom, #f1f5f8 0%, #ebf3fa 0.01%, #dde7f3 53.92%, #e5f0f9 100%);
+  // --color-cards: linear-gradient(to bottom, #f1f5f8 0%, #ebf3fa 0.01%, #dde7f3 53.92%, #e5f0f9 100%); #deecf8 #e5f0f9
   // background: linear-gradient(-45deg, #f1f5f8 50%, #e5f0f9  50%);
   background-position: 100% 100%;
   background-size: 200% 200%;
@@ -120,9 +120,9 @@
     }
   }
 
-  // .challenge--inspiration & {
+  // .challenge--previous & {
   //   color: white;
-  //   background: linear-gradient(-45deg, #e69d30 50%, #f3a633 50%);
+  //   background: linear-gradient(-45deg, #30e6e6 50%, #f3a633 50%);
   //   background-position: 100% 100%;
   //   background-size: 200% 200%;
 

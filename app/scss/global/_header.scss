@@ -115,20 +115,22 @@
   height: 100%;
 
   @include for-size(phone) {
-    display: none;
-  }
-
-  &.active {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: -1;
     display: grid;
     grid-template-columns: 1fr 46px;
     gap: 20px;
     width: 100%;
     padding: 0.625rem 1.25rem;
     background: var(--bg-color-element);
+    clip-path: circle(0 at calc(2rem + 90px) 33px);
+  }
+
+  &.active {
+    z-index: 100;
+    clip-path: circle(100% at calc(2rem + 90px) 33px);
   }
 }
 

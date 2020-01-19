@@ -195,8 +195,12 @@ block content
                             +code("Canvas Ball", "canvas-ball", "canvas")
                                 block codeBall
                                     div(class="code__info")
-                                        p(class="code__text") <strong>The «Canvas Ball»</strong> is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the bouncing ball animation shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
+                                        p(class="code__text") The «<strong>Canvas Ball</strong>» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. On this page the bouncing ball animation shows the example of <code class="code-container"> &lt;canvas&gt; </code> implementation which I learned at courses. 
                                     div(class="code__content code__content--canvas-ball")
+                                        canvas(id="ball" width="600px" height="400px" aria-label="Canvas Ball bouncing animation built with canvas API.") Please upgrade your browser.
+                                        div(class="button--controls")
+                                            button(class="button button--neumorph button--canvas-ball button--play" type="button") Play
+                                            button(class="button button--neumorph button--canvas-ball button--stop" type="button") Stop
 
                     +challenge("Canvas Wizard", "javascript", "canvas challenge--canvas-wizard", "Course project", "#JS", "course")
                         block challengeWizard
@@ -205,6 +209,14 @@ block content
                                     div(class="code__info")
                                         p(class="code__text") The «<strong>Canvas Wizard</strong>» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. In this challenge you are allowed to control the wizards' movements inside restricted area. For now you can move the Wizard <strong>only from desktop</strong>.
                                     div(class="code__content code__content--canvas-wizard")
+                                        img(class="wizard-image", src="https://i.ibb.co/HHBFJdH/char.png", alt="Little wizard")
+                                        canvas(id="wizard" width="600px" height="400px" aria-label="Canvas Wizard animation built with canvas API.") Please upgrade your browser.
+                                        div(class="button--move-controls")
+                                            button(class="button button--neumorph button--move button--up" type="button" data-text="↑") 
+                                            button(class="button button--neumorph button--move button--right" type="button" data-text="→") 
+                                            button(class="button button--neumorph button--move button--down" type="button" data-text="↓") 
+                                            button(class="button button--neumorph button--move button--left" type="button" data-text="←") 
+
 
                     +challenge("Social Media Buttons", "animations", "social-buttons", "Inspiration", "#CSS", "inspiration")
                         block challengeSocials
@@ -224,9 +236,7 @@ block content
                                             +socialButton("linkedin", "linkedin")
                                             +socialButton("behance", "behance")
 
-                    
-                    
-                    +challenge("To-Do List App", "javascript", "previous", "Side project", "#JS")
+                    +challenge("To-Do List App", "javascript", "previous", "Side project", "#JS", "previous")
                         block challengeWizard
                             +code("To-Do List App", "previous")
                                 block codeWizard
@@ -235,7 +245,8 @@ block content
                                     div(class="code__content code__content--previous")
                                         iframe(class="code__frame code__frame--todo" src="https://ereburg.github.io/todo-list/build" width="400" height="400" align="center").
                                             Upgrade your browser, it doesn't support iframes!
-                    +challenge("Weather App", "javascript", "previous", "Side project", "#JS")
+                    
+                    +challenge("Weather App", "javascript", "previous", "Side project", "#JS", "previous")
                         block challengeWizard
                             +code("Weather App", "previous")
                                 block codeWizard
@@ -244,9 +255,10 @@ block content
                                     div(class="code__content code__content--previous")
                                         iframe(class="code__frame code__frame--weather" src="https://ereburg.github.io/weather-ow/" width="400" height="400" align="center").
                                             Upgrade your browser, it doesn't support iframes!
+                    
                     +challenge("Currency Convertor App", "javascript", "previous", "Side project", "#JS")
                         block challengeWizard
-                            +code("Currency Convertor App", "previous")
+                            +code("Currency Convertor App", "previous", "previous")
                                 block codeWizard
                                     div(class="code__info")
                                         p(class="code__text") «<strong>Currency Convertor App</strong>» is project designed to help me to gain expierence with Fetch <abbr title="application programming interface">API</abbr>. 

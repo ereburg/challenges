@@ -92,6 +92,12 @@
       margin-bottom: 2rem;
     }
   }
+
+  .code--canvas & {
+    @include for-size(desktop-big) {
+      border-bottom: none;
+    }
+  }
 }
 
 .code-methods__heading {
