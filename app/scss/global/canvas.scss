@@ -52,7 +52,15 @@
     -4px -2px 0.5rem #ffffff,
     4px 2px 0.5rem rgba(136, 165, 191, 0.58);
 
+  @include for-size(medium) {
+    width: 55%;
+  }
+
   @include for-size(phone) {
+    width: 100%;
+  }
+
+  @include for-size(desktop-big) {
     width: 100%;
   }
 }

@@ -629,8 +629,47 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 
 		canvasWizardButtons.forEach(item => {
+			item.addEventListener('touchstart', () => {
+				let up_button = item.classList.contains('button--up');
+				let right_button = item.classList.contains('button--right');
+				let down_button = item.classList.contains('button--down');
+				let left_button = item.classList.contains('button--left');
+	
+				if (up_button) {
+					moveUp();
+				}
+
+				if (right_button) {
+					moveRight();
+				}
+
+				if (down_button) {
+					moveDown();
+				}
+
+				if (left_button) {
+					moveLeft();
+				}
+	
+			}, false);
+		});
+
+		canvasWizardButtons.forEach(item => {
+			item.addEventListener('touchend', () => {
+				let up_button = item.classList.contains('button--up');
+				let right_button = item.classList.contains('button--right');
+				let down_button = item.classList.contains('button--down');
+				let left_button = item.classList.contains('button--left');
+	
+				if (up_button || right_button || down_button || left_button) {
+					player.dx = 0;
+					player.dy = 0;
+				}
+			}, false);
+		});
+
+		canvasWizardButtons.forEach(item => {
 			item.addEventListener('mouseup', () => {
-				console.log('up')
 				let up_button = item.classList.contains('button--up');
 				let right_button = item.classList.contains('button--right');
 				let down_button = item.classList.contains('button--down');
