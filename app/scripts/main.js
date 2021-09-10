@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	// Фильтрация по ключевым словам в поиске
-	const input = document.getElementById('search');
+	const inputSearch = document.getElementById('search');
 
 	function CheckSearchValidity() {
 		let COUNTER = 0;
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 
-		let newSearchElement = document.querySelector('.result-search__text');
+		const newSearchElement = document.querySelector('.result-search__text');
 
 		if (COUNTER < challenge.length && wrapperChallenges.contains(newSearchElement)) {
 			newSearchElement.remove();
@@ -151,9 +151,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	input.addEventListener('keyup', () => {
+	inputSearch.addEventListener('keyup', () => {
 		let filter, challengeTitle, badges, type, isChallengeTitle, isBadge, filterConditionChallenge;
-		filter = input.value.trim().toUpperCase();
+		filter = inputSearch.value.trim().toUpperCase();
 
 		for (let i = 0; i < challenge.length; i++) {
 			challengeTitle = challenge[i].querySelector(".challenge__title");
@@ -406,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			let item_list = item.querySelector('.code-method__list');
 			let item_input = item.querySelector('.code-method__input');
 			let item_button = item.querySelector('.code-method__button');
-			let its_button = target == item_button || item_button.contains(target);
+			let its_button = target === item_button || item_button.contains(target);
 			let its_button_fizzbuzz = item_button.classList.contains('button--fizzbuzz');
 			let is_palindrome = item.classList.contains('code-method--palindrome');
 			let is_fizzbuzz = item.classList.contains('code-method--fizzbuzz');

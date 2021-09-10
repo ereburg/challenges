@@ -8,3 +8,15 @@ npm-debug.*
 node_modules/
 .sass-cache/
 *.map
+
+.tmp/
+dist/
+
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

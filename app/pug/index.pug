@@ -207,7 +207,7 @@ block content
                             +code("Canvas Wizard", "canvas-wizard", "canvas")
                                 block codeWizard
                                     div(class="code__info")
-                                        p(class="code__text") The «<strong>Canvas Wizard</strong>» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. In this challenge you are allowed to control the wizards' movements inside restricted area. For now you can move the Wizard <strong>only from desktop</strong>.
+                                        p(class="code__text") The «<strong>Canvas Wizard</strong>» is course project designed to help students to gain expierence with canvas <abbr title="application programming interface">API</abbr>. <code class="code-container"> &lt;canvas&gt; </code> is an HTML element which can be used to draw graphics via scripting. For instance, it can be used to draw graphs, combine photos, create different animations. In this challenge you are allowed to control the wizards' movements inside restricted area. Made just for fun. And works on all devices.
                                     div(class="code__content code__content--canvas-wizard")
                                         img(class="wizard-image", src="https://i.ibb.co/HHBFJdH/char.png", alt="Little wizard")
                                         canvas(id="wizard" width="600px" height="400px" aria-label="Canvas Wizard animation built with canvas API.") Please upgrade your browser.
@@ -273,4 +273,4 @@ block content
 
 
 block scripts
-    script(src="scripts/scripts.min.js")
+    script(src="scripts/scripts.min.js" defer)
