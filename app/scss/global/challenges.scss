@@ -76,9 +76,6 @@
   height: 100%;
   font-weight: 500;
   background: linear-gradient(-45deg, hsl(207, 32%, 94%) 50%, #f5f8fa  50%);
-  // background: linear-gradient(-45deg, hsl(220, 47%, 96%) 50%, hsl(209, 53%, 90%) 50%);
-  // --color-cards: linear-gradient(to bottom, #f1f5f8 0%, #ebf3fa 0.01%, #dde7f3 53.92%, #e5f0f9 100%); #deecf8 #e5f0f9
-  // background: linear-gradient(-45deg, #f1f5f8 50%, #e5f0f9  50%);
   background-position: 100% 100%;
   background-size: 200% 200%;
   border-radius: 1.5rem;
@@ -120,26 +117,6 @@
     }
   }
 
-  // .challenge--previous & {
-  //   color: white;
-  //   background: linear-gradient(-45deg, #30e6e6 50%, #f3a633 50%);
-  //   background-position: 100% 100%;
-  //   background-size: 200% 200%;
-
-  //   &:hover,
-  //   &:focus {
-  //     background-position: 0% 100%;
-  //     box-shadow:
-  //       inset 0 0 0 #ffffff60,
-  //       inset 0 0 0 rgba(136, 165, 191, 0.58),
-  //       0 0 0 #ffffff,
-  //       0 0 0 rgba(136, 165, 191, 0.58);
-  //   }
-
-  //   .tag__badge {
-  //     color: white;
-  //   }
-  // }
 
   .challenge--inspiration & {
     color: white;
@@ -164,7 +141,6 @@
 
   .challenge--course & {
     color: white;
-    // background: linear-gradient(-45deg, #60b163 50%, #66bb69 50%);
     background: linear-gradient(-45deg, #8c60b1 50%, #9266bb 50%);
     background-position: 100% 100%;
     background-size: 200% 200%;
@@ -187,59 +163,14 @@
 
 
 .challenge {
-  // clip-path: circle(75%);
-  // transform: translate(0);
-  // position: static;
   display: block;
   transition: all 0.6s ease;
-  // animation: appear 0.6s ease alternate forwards;
 
   &--hidden {
     display: none;
-    // position: relative;
     transition: all 0.6s ease;
-    // clip-path: circle(0%);
-    // transform: translate(-10%, -40%);
-    // animation: disappear 0.6s ease alternate forwards;
   }
 }
-
-// @keyframes disappear {
-//   0% {
-//     clip-path: circle(750%);
-//     transform: translate(0);
-//   }
-
-//   50% {
-//     clip-path: circle(35%);
-//     transform: translate(-10%, -40%);
-//   }
-
-//   90% {
-//     clip-path: circle(0%);
-//     transform: translate(-10%, -40%);
-//   }
-
-//   100% {
-//     transform: translate(-10%, -40%);
-//   }
-// }
-
-// @keyframes appear {
-//   0% {
-//     clip-path: circle(5%);
-//     transform: translate(-10%, -40%);
-//   }
-
-//   50% {
-//     clip-path: circle(35%);
-//   }
-
-//   100% {
-//     clip-path: circle(750%);
-//     transform: translate(0);
-//   }
-// }
 
 .challenge__text {
   font-size: $font-regular;

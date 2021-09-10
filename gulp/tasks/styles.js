@@ -1,8 +1,13 @@
 module.exports = function () {
+  const tilde = require('node-sass-tilde-importer')
+
   $.gulp.task('styles', () => {
     return $.gulp.src('./app/scss/style.scss')
       .pipe($.plugins.sourcemaps.init()) // инициализируем карту для стилевых файлов
-      .pipe($.sass().on('error', console.error.bind(console)))
+      .pipe($.sass.sync({
+        importer: tilde,
+        includePaths: ['node_modules'],
+      }).on('error', console.error.bind(console)))
       .pipe($.plugins.purgecss({
         content: [`./${$.output}/**/*.{html,js}`],
         whitelistPatterns: [

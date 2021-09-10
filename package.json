@@ -9,11 +9,11 @@
     "url": "https//github.com/ereburg/challenges"
   },
   "scripts": {
-    "dev": "yarn gulp dev",
-    "build": "yarn gulp build",
+    "dev": "gulp dev",
+    "build": "gulp build",
     "style:lint": "stylelint 'app/scss/**/*.scss' --syntax scss",
     "style:fix": "stylelint 'app/scss/**/*.scss' --syntax scss --fix",
-    "predeploy": "yarn gulp build",
+    "predeploy": "gulp build",
     "deploy": "gh-pages -d dist"
   },
   "author": {
@@ -41,14 +41,26 @@
     "gulp-terser": "^2.0.1",
     "gulp-tinypng-web": "^1.0.1",
     "gulp-webp": "^4.0.1",
+    "node-sass-tilde-importer": "^1.0.2",
     "sass": "^1.39.2",
     "stylelint": "^13.13.1",
     "stylelint-config-htmlacademy": "^0.1.10",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-order": "^4.1.0"
   },
-  "browserslist": [
-    "last 4 version",
-    "> 2%"
-  ]
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
 }
